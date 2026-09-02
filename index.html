@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b0e12" />
+<title>Daily Wisdom</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="card" id="quoteCard" aria-live="polite">
+      <div class="noise"></div>
+      <div class="embers" aria-hidden="true"></div>
+      <header class="topbar">
+        <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
+        <div class="title-wrap"><div class="title">DAILY WISDOM</div><div class="date" id="dateText"></div></div>
+        <button class="icon-btn" id="favBtn" aria-label="Favorite">♡</button>
+      </header>
+
+      <div class="quote-area" id="quoteArea">
+        <div class="quote-mark">“</div>
+        <blockquote id="quoteText">Tap below for today’s wisdom.</blockquote>
+        <div class="accent-stroke"></div>
+        <p class="micro" id="microText">A little surprise. A useful thought.</p>
+      </div>
+
+      <section class="source-panel hidden" id="sourcePanel">
+        <div class="source-name" id="sourceName"></div>
+        <div class="source-meta" id="sourceMeta"></div>
+      </section>
+
+      <section class="passage-panel hidden" id="passagePanel">
+        <h2>Full passage / context</h2>
+        <p id="passageText"></p>
+      </section>
+
+      <section class="journal-panel hidden" id="journalPanel">
+        <h2>Reflect</h2>
+        <label for="journal">How can you apply this wisdom today?</label>
+        <textarea id="journal" rows="5" placeholder="Write your thoughts…"></textarea>
+        <button class="primary" id="saveNoteBtn">Save note</button>
+      </section>
+
+      <button class="reveal" id="revealBtn">TAP TO REVEAL</button>
+
+      <footer class="actions">
+        <button class="action" id="shareBtn"><span>⌯</span><small>SHARE</small></button>
+        <button class="surprise" id="shuffleBtn"><span>⤨</span><small>SURPRISE ME</small></button>
+        <button class="action" id="saveBtn"><span>▱</span><small>SAVE</small></button>
+      </footer>
+    </section>
+  </main>
+<script src="app.js"></script>
+</body>
+</html>

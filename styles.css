@@ -1,0 +1,37 @@
+:root{
+  --bg:#07090c; --panel:#0b0f14; --text:#f5f1e8; --muted:#b8b0a4;
+  --gold:#f0b449; --orange:#f06a17; --line:rgba(255,255,255,.11);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#05070a;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+body{min-height:100dvh;display:grid;place-items:center;padding:12px}
+.app-shell{width:min(100%,430px);min-height:100dvh;display:flex;align-items:stretch}
+.card{position:relative;overflow:hidden;isolation:isolate;min-height:calc(100dvh - 24px);width:100%;border:1px solid rgba(240,180,73,.28);border-radius:28px;padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));background:
+ radial-gradient(circle at 88% 75%,rgba(240,106,23,.22),transparent 28%),
+ radial-gradient(circle at 15% 22%,rgba(69,88,105,.22),transparent 30%),
+ linear-gradient(145deg,#131922 0%,#090c10 44%,#07090c 100%);box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.card::before,.card::after{content:"";position:absolute;z-index:-2;inset:-20%;background:linear-gradient(120deg,transparent 44%,rgba(240,106,23,.15) 46%,transparent 49%);transform:rotate(-8deg)}
+.card::after{inset:35% -30% -20% 40%;background:radial-gradient(ellipse at center,rgba(240,106,23,.18),transparent 60%)}
+.noise{position:absolute;inset:0;z-index:-1;opacity:.2;background-image:repeating-linear-gradient(120deg,rgba(255,255,255,.03) 0 1px,transparent 1px 9px);mix-blend-mode:screen}
+.embers{position:absolute;inset:0;pointer-events:none;background:
+ radial-gradient(circle at 80% 35%,rgba(255,125,30,.8) 0 1px,transparent 2px),
+ radial-gradient(circle at 73% 46%,rgba(255,177,73,.7) 0 1px,transparent 2px),
+ radial-gradient(circle at 90% 61%,rgba(255,116,20,.7) 0 1px,transparent 2px),
+ radial-gradient(circle at 62% 69%,rgba(255,179,80,.5) 0 1px,transparent 2px);filter:blur(.2px)}
+.topbar{display:grid;grid-template-columns:44px 1fr 44px;align-items:start}
+.icon-btn{border:0;background:transparent;color:var(--text);font-size:28px;line-height:1;padding:6px;cursor:pointer}
+.title-wrap{text-align:center}.title{font-weight:800;letter-spacing:.08em;font-size:13px}.date{color:var(--muted);font-size:12px;margin-top:5px}
+.quote-area{margin:clamp(62px,11vh,110px) auto 0;text-align:center;max-width:340px;transition:.35s ease}
+.quote-mark{font-family:Georgia,serif;color:var(--gold);font-size:72px;height:50px;line-height:1}
+blockquote{margin:24px 0 18px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(29px,7vw,40px);line-height:1.12;font-weight:700;text-wrap:balance}
+.accent-stroke{width:122px;height:5px;border-radius:999px;background:linear-gradient(90deg,transparent,var(--orange),transparent);margin:22px auto}
+.micro{font-family:Georgia,serif;font-size:18px;line-height:1.45;color:#e6ded2;margin:0 auto;max-width:280px}
+.reveal{display:block;margin:38px auto 24px;border:0;background:transparent;color:var(--gold);font-size:12px;letter-spacing:.08em;font-weight:800;padding:10px 16px;cursor:pointer}
+.source-panel,.passage-panel,.journal-panel{margin:28px auto 0;max-width:330px;text-align:center;border-top:1px solid var(--line);padding-top:22px;animation:fadeUp .3s ease}
+.source-name{font-weight:900;color:var(--gold);font-size:20px;letter-spacing:.03em}.source-meta{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.4}
+.passage-panel h2,.journal-panel h2{font-size:14px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em}.passage-panel p{font-family:Georgia,serif;line-height:1.55;color:#eee4d7}
+.journal-panel label{display:block;color:var(--muted);font-size:14px;margin-bottom:10px}.journal-panel textarea{width:100%;resize:none;border-radius:14px;background:#0b1016;border:1px solid var(--line);color:var(--text);padding:13px;font:inherit}.primary{margin-top:10px;background:linear-gradient(135deg,var(--gold),var(--orange));border:0;border-radius:999px;padding:11px 18px;font-weight:800;color:#111}
+.actions{margin-top:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end;padding-top:10px}.action,.surprise{border:0;background:transparent;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:5px}.action span,.surprise span{font-size:24px}.action small,.surprise small{font-size:10px;color:#ddd6ca}.surprise span{width:52px;height:52px;border:1px solid rgba(240,180,73,.35);border-radius:50%;display:grid;place-items:center;font-size:28px}
+.hidden{display:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-height:760px){.quote-area{margin-top:38px}blockquote{font-size:28px}.reveal{margin-top:26px}}

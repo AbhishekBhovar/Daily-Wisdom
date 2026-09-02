@@ -1,6 +1,18 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090c0e"><title>Daily Wisdom</title><link rel="stylesheet" href="styles.css"></head><body>
-<main class="app"><header><button id="menu">☰</button><div><b>DAILY WISDOM</b><small id="date"></small></div><button id="calendar">▣</button></header><nav class="dates"><button id="prev">‹</button><span id="dateNav"></span><button id="next">›</button></nav>
-<section id="today" class="screen active"><div class="orb"></div><div class="stickyWisdom"><div class="quote"><div class="mark">“</div><blockquote id="quoteText"></blockquote><div class="rule"></div><p id="hint">Tap to reveal</p></div><div id="source" class="source hidden"><b id="who"></b><span id="where"></span><p id="sourceHint">Swipe up for the full passage</p></div></div><div id="details" class="details hidden"><h3>THE FULL PASSAGE</h3><p id="inlineFull"></p><button id="collapseDetails" class="collapseDetails">⌄ Collapse</button></div></section>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07090a"><title>Daily Wisdom</title><link rel="stylesheet" href="styles.css"></head><body>
+<main class="app">
+<header><button id="menu" aria-label="Menu">☰</button><div><b>DAILY WISDOM</b><small id="date"></small></div><button id="calendar" aria-label="Weekly recap">▣</button></header>
+<nav class="dates"><button id="prev" aria-label="Previous day">‹</button><span id="dateNav"></span><button id="next" aria-label="Next day">›</button></nav>
+<section id="today" class="screen active">
+  <article class="wisdomCard" id="wisdomCard">
+    <div class="mark">“</div>
+    <div id="fullQuote" class="fullQuote"></div>
+    <div class="rule"></div>
+    <button id="revealSource" class="revealSource">Tap to reveal source</button>
+    <div id="source" class="source hidden"><b id="who"></b><span id="where"></span></div>
+  </article>
+</section>
 <section id="library" class="screen"><h2>LIBRARY</h2><div class="tabs"><button class="tab on" data-tab="all">ALL QUOTES</button><button class="tab" data-tab="favs">FAVORITES</button></div><div id="libraryList"></div></section>
 <section id="week" class="screen modal"><button class="close" id="closeWeek">×</button><div class="sun">☼</div><h2>YOUR WEEK IN WISDOM</h2><p id="weekRange"></p><p>Here are the quotes you received this week.<br><strong>These are the ones that stayed with you.</strong></p><div id="weekGrid" class="weekgrid"></div><button class="outline" id="viewFavs">VIEW FAVORITES</button><small>Keep reflecting. See you tomorrow.</small></section>
-<footer><button id="fav">♡<small>FAVORITE</small></button><button id="share">⌯<small>SHARE</small></button><button id="surprise">⤨<small>SURPRISE ME</small></button></footer><div class="bottomnav"><button data-page="today" class="on">☼<small>TODAY</small></button><button data-page="library">▤<small>LIBRARY</small></button><button id="profile">○<small>PROFILE</small></button></div><div id="toast"></div></main><script src="app.js"></script></body></html>
+<footer><button id="fav">♡<small>FAVORITE</small></button><button id="share">⌯<small>SHARE</small></button></footer>
+<div class="bottomnav"><button data-page="today" class="on">☼<small>TODAY</small></button><button data-page="library">▤<small>LIBRARY</small></button><button id="profile">○<small>PROFILE</small></button></div>
+<div id="toast"></div></main><script src="app.js"></script></body></html>

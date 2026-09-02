@@ -16,8 +16,31 @@ function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setT
 function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='library')lib()}
 $('revealSource').onclick=e=>{e.stopPropagation();revealed=true;render()};
 $('wisdomCard').onclick=e=>{if(e.target.closest('button'))return;if(!revealed){revealed=true;render()}};
-$('prev').onclick=()=>{if(i<quotes.length-1){i++;revealed=false;render()}};
-$('next').onclick=()=>{if(i>0){i--;revealed=false;render()}else toast("Tomorrow's wisdom is still waiting.")};
+let transitioning=false;
+function flashDay(label){
+  const f=$('dayFlash'); f.textContent=label; f.classList.remove('show'); void f.offsetWidth; f.classList.add('show');
+  $('dateNav').classList.remove('bump'); void $('dateNav').offsetWidth; $('dateNav').classList.add('bump');
+}
+function changeDay(delta){
+  if(transitioning)return;
+  const target=i+delta;
+  if(target<0){toast("Tomorrow's wisdom is still waiting.");return;}
+  if(target>=quotes.length)return;
+  transitioning=true;
+  const card=$('wisdomCard');
+  const goingOlder=delta>0;
+  card.classList.remove('swipe-in-left','swipe-in-right');
+  card.classList.add(goingOlder?'swipe-out-left':'swipe-out-right');
+  setTimeout(()=>{
+    i=target; revealed=false; render();
+    card.classList.remove('swipe-out-left','swipe-out-right');
+    card.classList.add(goingOlder?'swipe-in-right':'swipe-in-left');
+    flashDay(i===0?'TODAY':quotes[i].date);
+    setTimeout(()=>{card.classList.remove('swipe-in-left','swipe-in-right');transitioning=false},300);
+  },220);
+}
+$('prev').onclick=()=>changeDay(1);
+$('next').onclick=()=>changeDay(-1);
 $('fav').onclick=()=>{favs.has(i)?favs.delete(i):favs.add(i);render();toast(favs.has(i)?'Added to favorites':'Removed from favorites')};
 $('share').onclick=async()=>{let t='“'+whole(quotes[i])+'”';if(revealed)t+=` — ${quotes[i].who}, ${quotes[i].where}`;if(navigator.share)try{await navigator.share({title:'Daily Wisdom',text:t})}catch{}else{await navigator.clipboard?.writeText(t);toast('Quote copied')}};
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(b.dataset.page));
@@ -25,5 +48,5 @@ function lib(filter='all'){let h='';quotes.forEach((x,n)=>{if(filter==='favs'&&!
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');lib(t.dataset.tab)});
 function week(){$('weekRange').textContent='AUG 28 – SEP 3';$('weekGrid').innerHTML=quotes.slice(0,7).reverse().map((x,n)=>{let idx=6-n,f=favs.has(idx);return `<div class="daycard ${f?'faved':''}">${x.date}<span class="star">★</span>${f?'<span class="heart">♥</span>':'—'}</div>`}).join('');$('week').classList.add('active')}
 $('calendar').onclick=week;$('closeWeek').onclick=()=>$('week').classList.remove('active');$('viewFavs').onclick=()=>{$('week').classList.remove('active');page('library');document.querySelector('[data-tab=favs]').click()};$('profile').onclick=()=>toast('Profile coming later');$('menu').onclick=()=>toast('Daily Wisdom');
-let sx=0,sy=0;$('today').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('today').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)){dx<0?$('prev').click():$('next').click()}},{passive:true});
+let sx=0,sy=0;$('today').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('today').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>52&&Math.abs(dx)>Math.abs(dy)){dx<0?changeDay(1):changeDay(-1)}},{passive:true});
 render();

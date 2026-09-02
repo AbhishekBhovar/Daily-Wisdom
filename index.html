@@ -1,57 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#0b0e12" />
-<title>Daily Wisdom</title>
-<link rel="manifest" href="manifest.webmanifest" />
-<link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <main class="app-shell">
-    <section class="card" id="quoteCard" aria-live="polite">
-      <div class="noise"></div>
-      <div class="embers" aria-hidden="true"></div>
-      <header class="topbar">
-        <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
-        <div class="title-wrap"><div class="title">DAILY WISDOM</div><div class="date" id="dateText"></div></div>
-        <button class="icon-btn" id="favBtn" aria-label="Favorite">♡</button>
-      </header>
-
-      <div class="quote-area" id="quoteArea">
-        <div class="quote-mark">“</div>
-        <blockquote id="quoteText">Tap below for today’s wisdom.</blockquote>
-        <div class="accent-stroke"></div>
-        <p class="micro" id="microText">A little surprise. A useful thought.</p>
-      </div>
-
-      <section class="source-panel hidden" id="sourcePanel">
-        <div class="source-name" id="sourceName"></div>
-        <div class="source-meta" id="sourceMeta"></div>
-      </section>
-
-      <section class="passage-panel hidden" id="passagePanel">
-        <h2>Full passage / context</h2>
-        <p id="passageText"></p>
-      </section>
-
-      <section class="journal-panel hidden" id="journalPanel">
-        <h2>Reflect</h2>
-        <label for="journal">How can you apply this wisdom today?</label>
-        <textarea id="journal" rows="5" placeholder="Write your thoughts…"></textarea>
-        <button class="primary" id="saveNoteBtn">Save note</button>
-      </section>
-
-      <button class="reveal" id="revealBtn">TAP TO REVEAL</button>
-
-      <footer class="actions">
-        <button class="action" id="shareBtn"><span>⌯</span><small>SHARE</small></button>
-        <button class="surprise" id="shuffleBtn"><span>⤨</span><small>SURPRISE ME</small></button>
-        <button class="action" id="saveBtn"><span>▱</span><small>SAVE</small></button>
-      </footer>
-    </section>
-  </main>
-<script src="app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090c0e"><title>Daily Wisdom</title><link rel="stylesheet" href="styles.css"></head><body>
+<main class="app" id="app"><header><button id="menu">☰</button><div><b>DAILY WISDOM</b><small id="date"></small></div><button id="calendar">▣</button></header>
+<nav class="dates"><button id="prev">‹</button><span id="dateNav"></span><button id="next">›</button></nav>
+<section id="today" class="screen active"><div class="orb"></div><div class="quote"><div class="mark">“</div><blockquote id="quoteText"></blockquote><div class="rule"></div><p id="hint">Tap to reveal</p></div><div id="source" class="source hidden"><b id="who"></b><span id="where"></span><p>Swipe up for the full passage</p></div></section>
+<section id="passage" class="screen"><button class="back" data-back>‹ Quote</button><h3>THE FULL PASSAGE</h3><p id="full"></p><h3>CONTEXT</h3><p id="context"></p></section>
+<section id="library" class="screen"><h2>LIBRARY</h2><div class="tabs"><button class="tab on" data-tab="all">ALL QUOTES</button><button class="tab" data-tab="favs">FAVORITES</button></div><div id="libraryList"></div></section>
+<section id="week" class="screen modal"><button class="close" id="closeWeek">×</button><div class="sun">☼</div><h2>YOUR WEEK IN WISDOM</h2><p id="weekRange"></p><p>Here are the quotes you received this week.<br><strong>These are the ones that stayed with you.</strong></p><div id="weekGrid" class="weekgrid"></div><button class="outline" id="viewFavs">VIEW FAVORITES</button><small>Keep reflecting. See you tomorrow.</small></section>
+<footer><button id="fav">♡<small>FAVORITE</small></button><button id="share">⌯<small>SHARE</small></button><button id="surprise">⤨<small>SURPRISE ME</small></button></footer>
+<div class="bottomnav"><button data-page="today" class="on">☼<small>TODAY</small></button><button data-page="library">▤<small>LIBRARY</small></button><button id="profile">○<small>PROFILE</small></button></div>
+<div id="toast"></div></main><script src="app.js"></script></body></html>

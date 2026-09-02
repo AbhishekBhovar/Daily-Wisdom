@@ -1,53 +1,16 @@
-const quotes = [
-  {
-    id:'demo-1',
-    quote:'The obstacle is not always a wall. Sometimes it is the instruction.',
-    micro:'Pause. Reframe. Move.',
-    speaker:'Prototype Wisdom',
-    source:'Original app placeholder • copyright-safe demo text',
-    context:'This build intentionally uses original placeholder copy. Your authenticated quote library can be plugged into the same layout later, with full-scene references and source metadata.'
-  },
-  {
-    id:'demo-2',
-    quote:'Discipline is what remains when motivation has already left the room.',
-    micro:'Do the next useful thing.',
-    speaker:'Prototype Wisdom',
-    source:'Original app placeholder • copyright-safe demo text',
-    context:'The final app can keep the quote hidden at first, then reveal speaker, universe and source on a second tap so the character does not give away the surprise.'
-  },
-  {
-    id:'demo-3',
-    quote:'You do not need certainty before you move. You need enough clarity for the next step.',
-    micro:'Act without pretending to know everything.',
-    speaker:'Prototype Wisdom',
-    source:'Original app placeholder • copyright-safe demo text',
-    context:'Longer passages can open in this contextual panel. For copyrighted works, the production app should use only text you have rights to display, or brief excerpts with scene/source references.'
-  }
+const quotes=[
+{date:'SEP 3',q:'What matters most is not the noise around you, but the choice you make next.',who:'MYSTERY VOICE',where:'Prototype wisdom',full:'What matters most is not the noise around you, but the choice you make next. Direction is built one decision at a time.',context:'Prototype text only. Final builds will use the authenticated passages from the curated Daily Wisdom library.'},
+{date:'SEP 2',q:'Courage can be quiet. Sometimes it is simply choosing to continue.',who:'MYSTERY VOICE',where:'Prototype wisdom',full:'Courage can be quiet. Sometimes it is simply choosing to continue when stopping would be easier.',context:'A copyright-safe placeholder demonstrating a previously unlocked daily quote.'},
+{date:'SEP 1',q:'A setback can become information if you are willing to learn from it.',who:'MYSTERY VOICE',where:'Prototype wisdom',full:'A setback can become information if you are willing to learn from it. Adjust, then move again.',context:'Prototype content for the swipe-history interaction.'},
+{date:'AUG 31',q:'Strength is useful. Knowing when and why to use it is wisdom.',who:'MYSTERY VOICE',where:'Prototype wisdom',full:'Strength is useful. Knowing when and why to use it is wisdom.',context:'Prototype content only.'},
+{date:'AUG 30',q:'Preparation gives you more choices when the unexpected arrives.',who:'MYSTERY VOICE',where:'Prototype wisdom',full:'Preparation gives you more choices when the unexpected arrives.',context:'Prototype content only.'},
+{date:'AUG 29',q:'You do not need certainty before you take the next sensible step.',who:'MYSTERY VOICE',where:'Prototype wisdom',full:'You do not need certainty before you take the next sensible step.',context:'Prototype content only.'},
+{date:'AUG 28',q:'The standard you keep in private eventually becomes the person others see.',who:'MYSTERY VOICE',where:'Prototype wisdom',full:'The standard you keep in private eventually becomes the person others see.',context:'Prototype content only.'}
 ];
-let idx = Math.floor(Math.random()*quotes.length); let stage=0;
-const $=id=>document.getElementById(id);
-function render(){
-  const q=quotes[idx]; stage=0;
-  $('quoteText').textContent='Tap below for today’s wisdom.';
-  $('microText').textContent='A little surprise. A useful thought.';
-  $('sourceName').textContent=q.speaker; $('sourceMeta').textContent=q.source; $('passageText').textContent=q.context;
-  $('sourcePanel').classList.add('hidden'); $('passagePanel').classList.add('hidden'); $('journalPanel').classList.add('hidden');
-  $('revealBtn').textContent='TAP TO REVEAL';
-  $('favBtn').textContent=localStorage.getItem('fav:'+q.id)?'♥':'♡';
-  $('journal').value=localStorage.getItem('note:'+q.id)||'';
-}
-function reveal(){
-  const q=quotes[idx]; stage++;
-  if(stage===1){$('quoteText').textContent=q.quote;$('microText').textContent=q.micro;$('revealBtn').textContent='REVEAL SOURCE';}
-  else if(stage===2){$('sourcePanel').classList.remove('hidden');$('revealBtn').textContent='FULL CONTEXT';}
-  else if(stage===3){$('passagePanel').classList.remove('hidden');$('revealBtn').textContent='REFLECT';}
-  else {$('journalPanel').classList.remove('hidden');$('revealBtn').textContent='BACK TO QUOTE';stage=4;}
-}
-$('revealBtn').addEventListener('click',()=>{if(stage===4){render()}else reveal()});
-$('shuffleBtn').addEventListener('click',()=>{let n=idx;while(n===idx&&quotes.length>1)n=Math.floor(Math.random()*quotes.length);idx=n;render()});
-$('favBtn').addEventListener('click',()=>{const q=quotes[idx],k='fav:'+q.id;if(localStorage.getItem(k))localStorage.removeItem(k);else localStorage.setItem(k,'1');$('favBtn').textContent=localStorage.getItem(k)?'♥':'♡'});
-$('saveBtn').addEventListener('click',()=>{$('favBtn').click()});
-$('saveNoteBtn').addEventListener('click',()=>{localStorage.setItem('note:'+quotes[idx].id,$('journal').value);$('saveNoteBtn').textContent='Saved ✓';setTimeout(()=>$('saveNoteBtn').textContent='Save note',1200)});
-$('shareBtn').addEventListener('click',async()=>{const q=quotes[idx];const text=`“${q.quote}”\n— ${q.speaker}`;if(navigator.share){try{await navigator.share({title:'Daily Wisdom',text})}catch{}}else{await navigator.clipboard?.writeText(text)}});
-$('dateText').textContent=new Intl.DateTimeFormat(undefined,{day:'numeric',month:'long',year:'numeric'}).format(new Date());
-render();
+let i=+(localStorage.dwIndex||0),revealed=false;let favs=new Set(JSON.parse(localStorage.dwFavs||'[1,4]'));
+const $=id=>document.getElementById(id);function save(){localStorage.dwFavs=JSON.stringify([...favs]);localStorage.dwIndex=i}function render(){let x=quotes[i];$('date').textContent=x.date;$('dateNav').textContent=(i===0?'TODAY · ':'')+x.date;$('quoteText').textContent=x.q;$('who').textContent=x.who;$('where').textContent=x.where;$('full').textContent=x.full;$('context').textContent=x.context;$('source').classList.toggle('hidden',!revealed);$('hint').textContent=revealed?'Revealed':'Tap to reveal';$('fav').classList.toggle('active',favs.has(i));$('fav').firstChild.nodeValue=favs.has(i)?'♥':'♡';$('next').style.opacity=i===0?.25:1;save()}
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1300)}function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='library')lib()}
+$('today').onclick=e=>{if(e.target.closest('button'))return;if(!revealed){revealed=true;render()}else page('passage')};$('prev').onclick=()=>{if(i<quotes.length-1){i++;revealed=false;render()}};$('next').onclick=()=>{if(i>0){i--;revealed=false;render()}else toast("Tomorrow's wisdom is still waiting.")};$('fav').onclick=()=>{favs.has(i)?favs.delete(i):favs.add(i);render();toast(favs.has(i)?'Added to favorites':'Removed from favorites')};$('share').onclick=async()=>{let t='“'+quotes[i].q+'”';if(navigator.share)try{await navigator.share({title:'Daily Wisdom',text:t})}catch{}else{await navigator.clipboard?.writeText(t);toast('Quote copied')}};$('surprise').onclick=()=>toast('Surprise Me will use bonus unlocked quotes — never tomorrow’s quote.');document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(b.dataset.page));document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>page('today'));
+function lib(filter='all'){let h='';quotes.forEach((x,n)=>{if(filter==='favs'&&!favs.has(n))return;h+=`<div class="libitem" data-n="${n}"><span class="d">${x.date}</span><p>${x.q}</p><small>${revealed&&n===i?x.who:'UNLOCKED'}</small>${favs.has(n)?'<span class="heart">♥</span>':''}</div>`});$('libraryList').innerHTML=h;document.querySelectorAll('.libitem').forEach(e=>e.onclick=()=>{i=+e.dataset.n;revealed=true;page('today');render()})}document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');lib(t.dataset.tab)});
+function week(){ $('weekRange').textContent='AUG 28 – SEP 3';$('weekGrid').innerHTML=quotes.slice(0,7).reverse().map((x,n)=>{let idx=6-n,f=favs.has(idx);return `<div class="daycard ${f?'faved':''}">${x.date}<span class="star">★</span>${f?'<span class="heart">♥</span>':'—'}</div>`}).join('');$('week').classList.add('active')}$('calendar').onclick=week;$('closeWeek').onclick=()=>$('week').classList.remove('active');$('viewFavs').onclick=()=>{$('week').classList.remove('active');page('library');document.querySelector('[data-tab=favs]').click()};$('profile').onclick=()=>toast('Profile coming later');$('menu').onclick=()=>toast('Daily Wisdom prototype');
+let sx=0,sy=0;$('today').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('today').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)){dx<0?$('prev').click():$('next').click()}else if(dy<-70&&revealed)page('passage')},{passive:true});render();setTimeout(()=>{if(!localStorage.dwWeekSeen){week();localStorage.dwWeekSeen='1'}},700);

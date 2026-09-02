@@ -42,11 +42,10 @@ function changeDay(delta){
 $('prev').onclick=()=>changeDay(1);
 $('next').onclick=()=>changeDay(-1);
 $('fav').onclick=()=>{favs.has(i)?favs.delete(i):favs.add(i);render();toast(favs.has(i)?'Added to favorites':'Removed from favorites')};
-$('share').onclick=async()=>{let t='“'+whole(quotes[i])+'”';if(revealed)t+=` — ${quotes[i].who}, ${quotes[i].where}`;if(navigator.share)try{await navigator.share({title:'Daily Wisdom',text:t})}catch{}else{await navigator.clipboard?.writeText(t);toast('Quote copied')}};
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(b.dataset.page));
 function lib(filter='all'){let h='';quotes.forEach((x,n)=>{if(filter==='favs'&&!favs.has(n))return;h+=`<div class="libitem" data-n="${n}"><span class="d">${x.date}</span><p>${whole(x)}</p><small>UNLOCKED</small>${favs.has(n)?'<span class="heart">♥</span>':''}</div>`});$('libraryList').innerHTML=h;document.querySelectorAll('.libitem').forEach(e=>e.onclick=()=>{i=+e.dataset.n;revealed=true;page('today');render()})}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');lib(t.dataset.tab)});
 function week(){$('weekRange').textContent='AUG 28 – SEP 3';$('weekGrid').innerHTML=quotes.slice(0,7).reverse().map((x,n)=>{let idx=6-n,f=favs.has(idx);return `<div class="daycard ${f?'faved':''}">${x.date}<span class="star">★</span>${f?'<span class="heart">♥</span>':'—'}</div>`}).join('');$('week').classList.add('active')}
-$('calendar').onclick=week;$('closeWeek').onclick=()=>$('week').classList.remove('active');$('viewFavs').onclick=()=>{$('week').classList.remove('active');page('library');document.querySelector('[data-tab=favs]').click()};$('profile').onclick=()=>toast('Profile coming later');$('menu').onclick=()=>toast('Daily Wisdom');
+$('openWeek').onclick=week;$('closeWeek').onclick=()=>$('week').classList.remove('active');$('viewFavs').onclick=()=>{$('week').classList.remove('active');page('library');document.querySelector('[data-tab=favs]').click()};
 let sx=0,sy=0;$('today').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('today').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>52&&Math.abs(dx)>Math.abs(dy)){dx<0?changeDay(1):changeDay(-1)}},{passive:true});
 render();

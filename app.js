@@ -11,7 +11,7 @@ let i=+(localStorage.dwIndex||0),revealed=false;let favs=new Set(JSON.parse(loca
 const $=id=>document.getElementById(id);
 function whole(x){return x.before+x.focus+x.after}
 function save(){localStorage.dwFavs=JSON.stringify([...favs]);localStorage.dwIndex=i}
-function render(){const x=quotes[i];$('date').textContent=x.date;$('dateNav').textContent=(i===0?'TODAY · ':'')+x.date;$('fullQuote').innerHTML=`<span class="surround">${x.before}</span><span class="focus">${x.focus}</span><span class="surround">${x.after}</span>`;$('who').textContent=x.who;$('where').textContent=x.where;$('source').classList.toggle('hidden',!revealed);$('revealSource').classList.toggle('hidden',revealed);$('fav').classList.toggle('active',favs.has(i));$('fav').firstChild.nodeValue=favs.has(i)?'♥':'♡';$('next').style.opacity=i===0?.25:1;save()}
+function render(){const x=quotes[i];$('date').textContent=x.date;$('fullQuote').innerHTML=`<span class="surround">${x.before}</span><span class="focus">${x.focus}</span><span class="surround">${x.after}</span>`;$('who').textContent=x.who;$('where').textContent=x.where;$('source').classList.toggle('hidden',!revealed);$('revealSource').classList.toggle('hidden',revealed);$('fav').classList.toggle('active',favs.has(i));$('fav').firstChild.nodeValue=favs.has(i)?'♥':'♡';save()}
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1300)}
 function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='library')lib()}
 $('revealSource').onclick=e=>{e.stopPropagation();revealed=true;render()};
@@ -19,7 +19,6 @@ $('wisdomCard').onclick=e=>{if(e.target.closest('button'))return;if(!revealed){r
 let transitioning=false;
 function flashDay(label){
   const f=$('dayFlash'); f.textContent=label; f.classList.remove('show'); void f.offsetWidth; f.classList.add('show');
-  $('dateNav').classList.remove('bump'); void $('dateNav').offsetWidth; $('dateNav').classList.add('bump');
 }
 function changeDay(delta){
   if(transitioning)return;
@@ -39,8 +38,6 @@ function changeDay(delta){
     setTimeout(()=>{card.classList.remove('swipe-in-left','swipe-in-right');transitioning=false},300);
   },220);
 }
-$('prev').onclick=()=>changeDay(1);
-$('next').onclick=()=>changeDay(-1);
 $('fav').onclick=()=>{favs.has(i)?favs.delete(i):favs.add(i);render();toast(favs.has(i)?'Added to favorites':'Removed from favorites')};
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(b.dataset.page));
 function lib(filter='all'){let h='';quotes.forEach((x,n)=>{if(filter==='favs'&&!favs.has(n))return;h+=`<div class="libitem" data-n="${n}"><span class="d">${x.date}</span><p>${whole(x)}</p><small>UNLOCKED</small>${favs.has(n)?'<span class="heart">♥</span>':''}</div>`});$('libraryList').innerHTML=h;document.querySelectorAll('.libitem').forEach(e=>e.onclick=()=>{i=+e.dataset.n;revealed=true;page('today');render()})}

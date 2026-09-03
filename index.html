@@ -1,6 +1,22 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#14091f"><title>Daily Wisdom</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png"><link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png"><link rel="stylesheet" href="styles.css"></head><body>
 <main class="app">
-<header><div><b>DAILY WISDOM</b><small id="date"></small></div></header>
+<header class="wisdomHeader">
+  <div class="headerAura" aria-hidden="true"></div>
+  <div class="headerOrnament" aria-hidden="true">
+    <span class="star starLeft">✦</span>
+    <span class="arc arcLeft"></span>
+    <svg class="bookMark" viewBox="0 0 120 70" role="img" aria-label="Open book">
+      <path d="M60 59C48 48 33 43 13 44V12c20 0 36 5 47 16v31Z"/>
+      <path d="M60 59c12-11 27-16 47-15V12c-20 0-36 5-47 16v31Z"/>
+      <path d="M60 28v31"/>
+      <path d="M18 19c15 1 27 5 36 12M18 27c14 1 26 5 36 12M102 19c-15 1-27 5-36 12M102 27c-14 1-26 5-36 12" class="bookLines"/>
+    </svg>
+    <span class="arc arcRight"></span>
+    <span class="star starRight">✦</span>
+  </div>
+  <div class="headerTitle"><b>DAILY WISDOM</b><small id="date"></small></div>
+  <div class="headerDivider" aria-hidden="true"><span></span><i>✦</i><span></span></div>
+</header>
 <section id="today" class="screen active"><div id="dayFlash"></div>
   <article class="wisdomCard" id="wisdomCard">
     <div class="mark">“</div>

@@ -12,9 +12,12 @@ let reflections=JSON.parse(localStorage.dwReflections||'{}');
 function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function quoteHtml(q){
   const raw=q.quote||'';
-  // Preserve the quote exactly as stored. No generated emphasis, colour changes,
-  // capitalization changes, or bolding. Newlines become separate dialogue blocks.
-  const blocks=raw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  // R5: display the stored quote verbatim. Never use q.highlight in Today view.
+  // Split dialogue into paragraphs at speaker labels (e.g. "Thor:", "Frigga:")
+  // so multi-speaker scenes are visually separated.
+  const speakerPattern=/(^|\n|\s)([A-Z][A-Za-z.'’ -]{1,35}:\s*)/g;
+  const normalized=raw.replace(speakerPattern,(m,prefix,label)=>`${prefix===' ' ? '\n' : prefix}${label}`);
+  const blocks=normalized.split(/\n+/).map(x=>x.trim()).filter(Boolean);
   return blocks.map(block=>`<p class="quoteBlock">${esc(block)}</p>`).join('');
 }
 function dateForIndex(n){return new Date(START_UTC+n*DAY)}
@@ -34,4 +37,4 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelect
 let sx=0,sy=0;$('today').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('today').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>52&&Math.abs(dx)>Math.abs(dy))dx<0?changeDay(1):changeDay(-1)},{passive:true});
 $('quoteCount').textContent=quotes.length;
 render();
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+if('serviceWorker' in navigator){window.addEventListener('load',async()=>{for(const r of await navigator.serviceWorker.getRegistrations()) await r.unregister(); if('caches' in window){for(const k of await caches.keys()) await caches.delete(k);}})}

@@ -99,3 +99,17 @@ button small{font-size:8px;letter-spacing:1.4px}
 @media(max-height:760px){.wisdomCard{padding-top:0}.fullQuote{font-size:clamp(16px,4.3vw,21px)}.reflection{margin-top:11px}}
 
 .libraryCount{text-align:center;margin:-5px 0 14px;color:#7182a3;font-size:9px;letter-spacing:.16em}
+
+/* Prototype R2 — readability pass */
+.fullQuote{
+  max-width:360px;
+  font-family:Charter,"Bitstream Charter","Iowan Old Style","Palatino Linotype",Palatino,serif;
+  font-size:clamp(18px,4.8vw,24px);
+  line-height:1.52;
+  letter-spacing:.002em;
+  text-wrap:pretty;
+  font-weight:400;
+}
+.fullQuote .focus{color:#b7ccff;font-weight:400;text-transform:none;text-shadow:0 0 12px rgba(90,143,255,.16)}
+.source em{display:none}
+@media(max-height:760px){.fullQuote{font-size:clamp(17px,4.35vw,21px);line-height:1.46}}

@@ -1,1 +1,22 @@
-{"name":"Daily Wisdom","short_name":"Wisdom","description":"One piece of hard-earned wisdom each day.","start_url":"./","scope":"./","display":"standalone","background_color":"#071127","theme_color":"#071127","icons":[{"src":"assets/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"assets/icon-512.png","sizes":"512x512","type":"image/png"}]}
+{
+  "name": "Daily Wisdom V2 Prototype R8",
+  "short_name": "Daily Wisdom",
+  "description": "One piece of hard-earned wisdom each day.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071127",
+  "theme_color": "#071127",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

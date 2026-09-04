@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="daily-wisdom-build" content="R6"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071127"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Daily Wisdom</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/icon-192.png"><style>:root{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="daily-wisdom-build" content="R8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071127"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Daily Wisdom</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/icon-192.png"><style>:root{
   --violet:#ad9cff;
   --violet-bright:#c7bbff;
   --violet-deep:#6f5bc7;
@@ -203,6 +203,28 @@ button small{font-size:8px;letter-spacing:1.4px}
   font-weight: 600 !important;
   letter-spacing: .10em !important;
 }
+
+/* R8 — spacing pass + prototype quality cuts */
+#fullQuote { margin-bottom: 0 !important; }
+.rule { margin: 34px auto 24px !important; }
+.source { margin-top: 0 !important; }
+.reflection {
+  margin-top: 40px !important;
+  padding-top: 24px !important;
+}
+@media(max-height:760px){
+  .rule { margin: 26px auto 18px !important; }
+  .reflection { margin-top: 30px !important; padding-top: 20px !important; }
+}
+
+/* R9 — ruthless quality pass + stronger vertical separation */
+.rule { margin: 58px auto 28px !important; }
+.source { margin-bottom: 0 !important; }
+.reflection { margin-top: 58px !important; padding-top: 30px !important; }
+@media(max-height:760px){
+  .rule { margin: 44px auto 22px !important; }
+  .reflection { margin-top: 44px !important; padding-top: 24px !important; }
+}
 </style></head><body><main class="app">
 <header class="wisdomHeader"><div class="headerAura"></div><div class="headerOrnament"><span>✦</span><svg class="bookMark" viewBox="0 0 120 70"><path d="M60 59C48 48 33 43 13 44V12c20 0 36 5 47 16v31Z"/><path d="M60 59c12-11 27-16 47-15V12c-20 0-36 5-47 16v31Z"/><path d="M60 28v31"/></svg><span>✦</span></div><div class="headerTitle"><b>DAILY WISDOM</b><small id="date"></small></div><div class="headerDivider"><span></span><i>✦</i><span></span></div></header>
 <section id="today" class="screen active"><article class="wisdomCard" id="wisdomCard"><div class="mark">“</div><div id="fullQuote" class="fullQuote"></div><div class="rule"></div><div class="source"><b id="who"></b><span id="where"></span></div><div class="reflection"><button id="reflectionToggle">✦ MAKE IT YOURS <span>How will you apply this today?</span></button><div id="reflectionBox"><textarea id="reflectionText" maxlength="600" placeholder="Write a thought for today…"></textarea><button id="saveReflection">SAVE REFLECTION</button></div></div></article></section>
@@ -264,28 +286,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "status": "KEEP"
   },
   {
-    "id": "HP-006",
-    "world": "Harry Potter",
-    "character": "Albus Dumbledore",
-    "source": "Harry Potter and the Deathly Hallows",
-    "quote": "Do not pity the dead, Harry. Pity the living.",
-    "highlight": "PITY THE LIVING",
-    "theme": "Life; love; perspective",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "HP-007",
-    "world": "Harry Potter",
-    "character": "Albus Dumbledore",
-    "source": "Harry Potter and the Deathly Hallows",
-    "quote": "Why on earth should that mean that it is not real?",
-    "highlight": "IT IS NOT REAL?",
-    "theme": "Meaning; inner life; perspective",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "DBZ-001",
     "world": "Dragon Ball / DBZ",
     "character": "Vegeta",
@@ -293,17 +293,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "quote": "There is one thing a Saiyan always keeps: his pride!",
     "highlight": "HIS PRIDE",
     "theme": "Identity; resolve; pride",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "DBZ-002",
-    "world": "Dragon Ball / DBZ",
-    "character": "Vegeta",
-    "source": "Dragon Ball Z — Buu Saga",
-    "quote": "You're better than me, Kakarot. You are the best.",
-    "highlight": "YOU ARE THE BEST",
-    "theme": "Humility; growth; respect",
     "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
     "status": "KEEP"
   },
@@ -561,50 +550,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "status": "KEEP"
   },
   {
-    "id": "DC-005",
-    "world": "DC",
-    "character": "Bane",
-    "source": "The Dark Knight Rises (2012)",
-    "quote": "Peace has cost you your strength. Victory has defeated you.",
-    "highlight": "VICTORY HAS DEFEATED YOU",
-    "theme": "Complacency; discipline; vigilance",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "DC-006",
-    "world": "DC",
-    "character": "Batman",
-    "source": "The Dark Knight Rises (2012)",
-    "quote": "A hero can be anyone.",
-    "highlight": "A HERO CAN BE ANYONE",
-    "theme": "Kindness; service; courage",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "DC-007",
-    "world": "DC",
-    "character": "Superman",
-    "source": "Justice League Unlimited — Destroyer",
-    "quote": "Batman won't quit so long as he can draw breath.",
-    "highlight": "WON'T QUIT",
-    "theme": "Perseverance; faith in others",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "DC-008",
-    "world": "DC",
-    "character": "Superman",
-    "source": "Justice League Unlimited — Destroyer",
-    "quote": "I feel like I live in a world made of cardboard.",
-    "highlight": "WORLD MADE OF CARDBOARD",
-    "theme": "Restraint; responsibility; power",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "ROC-001",
     "world": "Rocky",
     "character": "Rocky Balboa",
@@ -649,17 +594,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "status": "KEEP"
   },
   {
-    "id": "ROC-005",
-    "world": "Rocky",
-    "character": "Apollo Creed",
-    "source": "Rocky III (1982)",
-    "quote": "You lost your edge.",
-    "highlight": "GET YOUR EDGE BACK",
-    "theme": "Recovery; hunger; training",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "ROC-006",
     "world": "Rocky",
     "character": "Rocky Balboa",
@@ -682,17 +616,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "status": "KEEP"
   },
   {
-    "id": "ANI-001",
-    "world": "Disney & Animation",
-    "character": "Rafiki",
-    "source": "The Lion King (1994)",
-    "quote": "The past can hurt.",
-    "highlight": "RUN FROM IT OR LEARN FROM IT",
-    "theme": "Past; learning; courage",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "ANI-002",
     "world": "Disney & Animation",
     "character": "Mufasa",
@@ -704,39 +627,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "status": "KEEP"
   },
   {
-    "id": "ANI-004",
-    "world": "Disney & Animation",
-    "character": "Master Oogway",
-    "source": "Kung Fu Panda (2008)",
-    "quote": "Yesterday is history, tomorrow is a mystery.",
-    "highlight": "TODAY IS A GIFT",
-    "theme": "Presence; anxiety; perspective",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "ANI-005",
-    "world": "Disney & Animation",
-    "character": "Master Oogway",
-    "source": "Kung Fu Panda (2008)",
-    "quote": "Let go of the illusion of control.",
-    "highlight": "ILLUSION OF CONTROL",
-    "theme": "Control; patience; mentorship",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "ANI-006",
-    "world": "Disney & Animation",
-    "character": "Mr. Ping",
-    "source": "Kung Fu Panda (2008)",
-    "quote": "There is no secret ingredient.",
-    "highlight": "NO SECRET INGREDIENT",
-    "theme": "Self-belief; simplicity",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "ANI-007",
     "world": "Disney & Animation",
     "character": "Olaf",
@@ -744,17 +634,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "quote": "Love is putting someone else's needs before yours.",
     "highlight": "LOVE IS...",
     "theme": "Love; selflessness",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "ANI-008",
-    "world": "Disney & Animation",
-    "character": "Shrek",
-    "source": "Shrek (2001)",
-    "quote": "Ogres have layers.",
-    "highlight": "WE BOTH HAVE LAYERS",
-    "theme": "Complexity; empathy; identity",
     "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
     "status": "KEEP"
   },
@@ -902,17 +781,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "status": "KEEP"
   },
   {
-    "id": "AC-001",
-    "world": "Alex Cross",
-    "character": "Narrator (about Cruz)",
-    "source": "Target: Alex Cross",
-    "quote": "A weaker man might be focused on finding drugs to kill the pain. But Cruz was neither ordinary nor weak. He'd long ago trained himself to be a superior man, one who could control his emotions, mind, and pain.",
-    "highlight": "CONTROL HIS EMOTIONS, MIND, AND PAIN",
-    "theme": "Mental toughness; emotional control; discipline; self-mastery",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "AC-002",
     "world": "Alex Cross",
     "character": "Alex Cross",
@@ -931,17 +799,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "quote": "Shen: How did you? How did you do it?\nPo: You know? You just keep your elbows up, keep the shoulders loose?\nShen: Not that, how did you find peace? I took away your parents, everything, I scarred you for life.\nPo: See, that’s the thing Shen, scars heal.\nShen: No they don’t, wounds heal.\nPo: Oh yeah? Well, what do scars do, they fade I guess?\nShen: I don’t care what scars do.\nPo: You should Shen, you gotta let go of that stuff from the past, cause it just doesn’t matter, the only thing that matters is what you choose to be now.",
     "highlight": "THE ONLY THING THAT MATTERS IS WHAT YOU CHOOSE TO BE NOW",
     "theme": "Letting go of the past; identity; healing; choice; inner peace",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "DW-716",
-    "world": "Disney & Animation",
-    "character": "Mufasa",
-    "source": "The Lion King (1994)",
-    "quote": "Everything you see exists together in a delicate balance.",
-    "highlight": "DELICATE BALANCE",
-    "theme": "Perspective; balance; interconnectedness",
     "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
     "status": "KEEP"
   },
@@ -1012,17 +869,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "status": "KEEP"
   },
   {
-    "id": "NF-009",
-    "world": "General Wisdom",
-    "character": "Sarah Williams",
-    "source": "The Old Astronomer to His Pupil",
-    "quote": "I have loved the stars too fondly to be fearful of the night.",
-    "highlight": "NOT FEARFUL OF THE NIGHT",
-    "theme": "Hope; adversity; courage",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "NF-011",
     "world": "General Wisdom",
     "character": "Jim Henson",
@@ -1063,17 +909,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "quote": "Failure is only the opportunity more intelligently to begin again.",
     "highlight": "BEGIN AGAIN",
     "theme": "Failure; learning; resilience",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "NF-018",
-    "world": "General Wisdom",
-    "character": "Richie Norton",
-    "source": "Author-attributed",
-    "quote": "Every sunset is an opportunity to reset.",
-    "highlight": "OPPORTUNITY TO RESET",
-    "theme": "Reset; reflection; second chances",
     "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
     "status": "KEEP"
   },
@@ -1153,17 +988,6 @@ button small{font-size:8px;letter-spacing:1.4px}
     "theme": "Self-belief; training; perseverance",
     "fullTextStatus": "FULL TEXT RECEIVED",
     "status": "KEEP"
-  },
-  {
-    "id": "NF-031",
-    "world": "General Wisdom",
-    "character": "Sargent Shriver (quoted by Arnold Schwarzenegger)",
-    "source": "Sargent Shriver speech tradition; quoted in Arnold Schwarzenegger, Total Recall (2012)",
-    "quote": "It's not what you get out of life that counts. Break your mirrors!",
-    "highlight": "BREAK YOUR MIRRORS",
-    "theme": "Service; community; meaning",
-    "fullTextStatus": "FULL TEXT RECEIVED",
-    "status": "KEEP — attribution corrected"
   },
   {
     "id": "NF-032",

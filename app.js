@@ -10,28 +10,18 @@ let i=Number.isInteger(+localStorage.dwIndex)?+localStorage.dwIndex:dailyIndex()
 let favs=new Set(JSON.parse(localStorage.dwFavs||'[]'));
 let reflections=JSON.parse(localStorage.dwReflections||'{}');
 function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function highlighted(q){
-  const raw=q.quote||'', h=(q.highlight||'').trim();
-  if(!h)return esc(raw).replace(/\n/g,'<br>');
-  let pos=raw.toLowerCase().indexOf(h.toLowerCase()), match='';
-  if(pos>=0) match=raw.slice(pos,pos+h.length);
-  if(pos<0){
-    const hw=h.toLowerCase().split(/\s+/).filter(w=>w.length>3);
-    let best='';
-    for(let a=0;a<hw.length;a++)for(let b=a+1;b<=hw.length;b++){
-      const phrase=hw.slice(a,b).join(' ');
-      if(phrase.length>best.length && raw.toLowerCase().includes(phrase))best=phrase;
-    }
-    if(best){pos=raw.toLowerCase().indexOf(best);match=raw.slice(pos,pos+best.length)}
-  }
-  if(pos<0)return esc(raw).replace(/\n/g,'<br>');
-  return esc(raw.slice(0,pos)).replace(/\n/g,'<br>')+'<span class="focus">'+esc(match).replace(/\n/g,'<br>')+'</span>'+esc(raw.slice(pos+match.length)).replace(/\n/g,'<br>');
+function quoteHtml(q){
+  const raw=q.quote||'';
+  // Preserve the quote exactly as stored. No generated emphasis, colour changes,
+  // capitalization changes, or bolding. Newlines become separate dialogue blocks.
+  const blocks=raw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  return blocks.map(block=>`<p class="quoteBlock">${esc(block)}</p>`).join('');
 }
 function dateForIndex(n){return new Date(START_UTC+n*DAY)}
 function dateLabelForIndex(n){return dateForIndex(n).toLocaleDateString('en-AU',{timeZone:'UTC',month:'short',day:'numeric'}).toUpperCase()}
 function save(){localStorage.dwFavs=JSON.stringify([...favs]);localStorage.dwIndex=i;localStorage.dwReflections=JSON.stringify(reflections)}
 function reflectionKey(){return todayKey()+'::'+quotes[i].id}
-function render(){if(!quotes.length)return;const q=quotes[i];$('date').textContent=dateLabelForIndex(i);$('fullQuote').innerHTML=highlighted(q);$('who').textContent=q.character;$('where').textContent=q.source;$('fav').classList.toggle('active',favs.has(q.id));$('fav').firstChild.nodeValue=favs.has(q.id)?'♥':'♡';$('reflectionText').value=reflections[reflectionKey()]||'';save()}
+function render(){if(!quotes.length)return;const q=quotes[i];$('date').textContent=dateLabelForIndex(i);$('fullQuote').innerHTML=quoteHtml(q);$('who').textContent=q.character;$('where').textContent=q.source;$('fav').classList.toggle('active',favs.has(q.id));$('fav').firstChild.nodeValue=favs.has(q.id)?'♥':'♡';$('reflectionText').value=reflections[reflectionKey()]||'';save()}
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1300)}
 function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='library')lib()}
 let transitioning=false;function changeDay(delta){if(transitioning)return;let target=i+delta;if(target<0||target>=quotes.length){toast('End of unlocked wisdom.');return}transitioning=true;const card=$('wisdomCard');card.classList.add(delta>0?'swipe-out-left':'swipe-out-right');setTimeout(()=>{i=target;render();card.className='wisdomCard '+(delta>0?'swipe-in-right':'swipe-in-left');setTimeout(()=>{card.className='wisdomCard';transitioning=false},300)},220)}

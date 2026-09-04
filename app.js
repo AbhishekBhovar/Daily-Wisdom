@@ -13,7 +13,8 @@ function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'
 function highlighted(q){
   const raw=q.quote||'', h=(q.highlight||'').trim();
   if(!h)return esc(raw).replace(/\n/g,'<br>');
-  let pos=raw.toLowerCase().indexOf(h.toLowerCase()), match=h;
+  let pos=raw.toLowerCase().indexOf(h.toLowerCase()), match='';
+  if(pos>=0) match=raw.slice(pos,pos+h.length);
   if(pos<0){
     const hw=h.toLowerCase().split(/\s+/).filter(w=>w.length>3);
     let best='';

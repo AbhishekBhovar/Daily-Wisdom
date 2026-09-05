@@ -873,6 +873,44 @@ footer { display:none !important; }
   88%,100%{opacity:0}
 }
 
+
+/* V1.0.12 — two slower, genuinely irregular handwriting lines */
+#dailyIntro .s1{
+  animation:writeStroke .92s linear .42s forwards,
+            fadeStroke .7s ease 3.30s forwards!important;
+}
+#dailyIntro .s2{
+  animation:writeStroke .90s linear 1.48s forwards,
+            fadeStroke .7s ease 3.35s forwards!important;
+}
+#dailyIntro .s3,#dailyIntro .s4{display:none!important}
+
+#dailyIntro .finalPeriod{
+  left:87.2%!important;
+  top:52.85%!important;
+  animation:periodLandSlower 4.35s ease forwards!important;
+}
+#dailyIntro .wordDust{animation:dustEmergeSlower 4.35s ease forwards!important}
+#dailyIntro .introHint{animation:writingHintSlower 4.35s ease forwards!important}
+
+@keyframes periodLandSlower{
+  0%,57%{opacity:0;transform:scale(.2)}
+  61%{opacity:1;transform:scale(1.45)}
+  67%,82%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+@keyframes dustEmergeSlower{
+  0%,48%{opacity:0;transform:translateY(4px)}
+  66%{opacity:.30}
+  82%{opacity:.50;transform:translateY(-4px)}
+  100%{opacity:0;transform:translateY(-14px)}
+}
+@keyframes writingHintSlower{
+  0%,18%{opacity:0}
+  27%,72%{opacity:.25}
+  90%,100%{opacity:0}
+}
+
 </style></head><body>
 
 
@@ -892,10 +930,33 @@ footer { display:none !important; }
     </defs>
     
     
-    <path id="write1" class="wisdomStroke s1" pathLength="100" d="M50 333 C60 319 65 347 75 334 C83 324 88 316 92 333 C97 349 104 318 111 332 C117 345 124 321 131 333 C139 347 145 312 151 330 C157 348 164 323 172 333 C180 344 184 320 190 331 C197 343 205 319 212 332 C219 345 225 315 231 330 C238 346 244 326 252 333 C261 342 267 317 273 330 C280 343 288 324 295 332 C304 341 311 318 318 330 C326 341 333 326 340 329"/>
-    <path id="write2" class="wisdomStroke s2" pathLength="100" d="M64 382 C72 366 78 394 86 381 C93 370 97 361 102 379 C107 396 114 366 121 380 C128 393 134 368 141 381 C148 394 155 360 161 378 C168 395 175 370 183 380 C191 391 196 367 202 379 C209 391 217 366 224 380 C231 393 238 364 244 379 C251 394 258 374 266 381 C275 390 282 365 288 378 C295 391 303 372 311 380 C318 388 325 371 332 378"/>
-    <path id="write3" class="wisdomStroke s3" pathLength="100" d="M78 430 C86 415 92 441 100 429 C107 419 111 408 116 427 C121 444 128 414 135 428 C142 441 148 417 155 429 C162 443 169 409 175 426 C181 443 189 420 197 429 C205 440 210 416 216 428 C223 440 231 415 238 429 C245 442 252 413 258 427 C265 442 272 422 280 429 C288 438 295 415 302 427 C309 439 316 420 324 427"/>
-    <path id="write4" class="wisdomStroke s4" pathLength="100" d="M102 478 C110 463 116 489 124 477 C131 467 135 456 140 475 C145 492 152 462 159 476 C166 489 172 465 179 477 C186 491 193 457 199 474 C205 491 213 468 221 477 C229 488 234 464 240 476 C247 488 255 463 262 477 C269 490 276 461 282 475 C289 490 296 470 304 477 C311 485 318 468 326 475"/>
+    
+    <path id="write1" class="wisdomStroke s1" pathLength="100"
+      d="M47 367
+         C58 350 63 390 74 369
+         C82 353 88 341 94 373
+         C100 398 109 348 118 368
+         C126 386 133 360 141 371
+         C151 385 158 337 166 366
+         C173 394 183 357 193 370
+         C203 383 211 349 220 367
+         C229 389 239 358 249 371
+         C259 382 268 344 277 366
+         C286 392 296 361 306 370
+         C316 378 326 351 340 366"/>
+    <path id="write2" class="wisdomStroke s2" pathLength="100"
+      d="M61 446
+         C71 425 77 469 88 445
+         C97 427 104 414 111 450
+         C118 476 128 423 138 444
+         C148 466 156 435 165 448
+         C175 461 184 418 193 443
+         C202 470 212 430 222 447
+         C232 461 241 426 250 444
+         C260 468 270 437 280 448
+         C290 458 300 422 310 443
+         C320 465 330 437 341 445"/>
+
 
 
   </svg>
@@ -1742,7 +1803,7 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
   // Invisible-book intro plays on every app/page load. Tap anywhere to skip immediately.
   intro.addEventListener('click',removeIntro,{once:true});
   intro.addEventListener('touchstart',removeIntro,{once:true,passive:true});
-  setTimeout(removeIntro,3650);
+  setTimeout(removeIntro,4350);
 })();
 </script>
 
@@ -1754,10 +1815,8 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
   if(!intro || !spark) return;
 
   const segments=[
-    {id:'write1',start:280,dur:390},
-    {id:'write2',start:700,dur:370},
-    {id:'write3',start:1100,dur:360},
-    {id:'write4',start:1490,dur:350}
+    {id:'write1',start:420,dur:920},
+    {id:'write2',start:1480,dur:900}
   ];
   const svg=intro.querySelector('.writingCanvas');
   let started=null, raf=0;
@@ -1787,7 +1846,7 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
       }
     }
     if(!active) spark.style.opacity='0';
-    if(t<2450 && document.body.contains(intro)) raf=requestAnimationFrame(tick);
+    if(t<3350 && document.body.contains(intro)) raf=requestAnimationFrame(tick);
   }
   spark.style.animation='none';
   raf=requestAnimationFrame(tick);

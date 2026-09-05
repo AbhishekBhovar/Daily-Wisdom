@@ -1018,16 +1018,15 @@ footer { display:none !important; }
 <style id="rise-anyway-v111">
 :root{--violet:#d8bd82;--violet-bright:#f0ddb0;--violet-deep:#a67c3d;--line:rgba(225,196,132,.18)}
 .app{background:radial-gradient(ellipse at 50% -8%,rgba(49,84,128,.22),transparent 30%),linear-gradient(180deg,#061225 0%,#050d1b 48%,#030812 100%)}
-/* V1.1.1 — compact, integrated Rise Anyway masthead */
-.wisdomHeader.riseHeader{height:158px;padding-top:calc(7px + env(safe-area-inset-top));gap:0}
+/* V1.1.2 — phoenix-only masthead */
+.wisdomHeader.riseHeader{height:126px;padding-top:calc(8px + env(safe-area-inset-top));gap:0}
 .riseHeader .headerAura{background:radial-gradient(ellipse at 50% 20%,rgba(87,125,174,.16),rgba(22,51,88,.05) 50%,transparent 72%)}
-.risePhoenix{width:52px;height:43px;object-fit:cover;object-position:center 45%;margin:0 auto -1px;mix-blend-mode:screen;opacity:.92;filter:contrast(1.12) saturate(.86) drop-shadow(0 0 8px rgba(232,203,145,.13));clip-path:ellipse(48% 46% at 50% 50%)}
+.risePhoenix{width:92px;height:64px;object-fit:cover;object-position:center 49%;margin:0 auto 4px;mix-blend-mode:screen;opacity:.96;filter:contrast(1.08) saturate(.9) drop-shadow(0 0 10px rgba(232,203,145,.12));clip-path:ellipse(46% 44% at 50% 50%)}
 .riseTitle{margin:0;text-align:center}
-.riseTitle b{display:block;font-family:Georgia,"Times New Roman",serif;font-size:26px;letter-spacing:6px;color:#f2e5c7;font-weight:500;line-height:.98;padding-left:6px}
-.riseTitle em{display:block;font-style:normal;font-size:9px;letter-spacing:5px;color:#dccba8;margin-top:5px;padding-left:5px}
-.riseTitle small{display:block;margin-top:9px;color:#afc1de;letter-spacing:3.7px;font-size:9px;line-height:1}
-.riseMotto{margin-top:7px;font-size:7.5px;letter-spacing:2.3px;color:#bfcce0;opacity:.9}
-.screen{height:calc(100dvh - 158px - 116px)}
+.riseTitle b,.riseTitle em{display:none!important}
+.riseTitle small{display:block;margin-top:2px;color:#afc1de;letter-spacing:3.7px;font-size:9px;line-height:1}
+.riseMotto{margin-top:9px;font-size:7.5px;letter-spacing:2.3px;color:#bfcce0;opacity:.9}
+.screen{height:calc(100dvh - 126px - 116px)}
 .fullQuote{max-width:360px}
 #wisdomCard{padding-top:18px}
 #today.longEntry{overflow-y:auto!important;-webkit-overflow-scrolling:touch}
@@ -1054,7 +1053,7 @@ footer { display:none !important; }
 
 
 <main class="app">
-<header class="wisdomHeader riseHeader"><div class="headerAura"></div><img class="risePhoenix" src="assets/rise-phoenix.png" alt=""><div class="headerTitle riseTitle"><b>RISE</b><em>ANYWAY</em><small id="date"></small></div><div class="riseMotto">PROGRESS OVER PERFECTION.</div></header>
+<header class="wisdomHeader riseHeader"><div class="headerAura"></div><img class="risePhoenix" src="assets/rise-phoenix-only.png" alt=""><div class="headerTitle riseTitle"><b>RISE</b><em>ANYWAY</em><small id="date"></small></div><div class="riseMotto">PROGRESS OVER PERFECTION.</div></header>
 <section id="today" class="screen active"><article class="wisdomCard" id="wisdomCard"><div class="mark">“</div><div id="fullQuote" class="fullQuote"></div><div class="rule"></div><div class="source"><b id="who"></b></div><div class="reflection"><button id="reflectionToggle">✦ MAKE IT YOURS <span>How will you apply this today?</span></button><div id="reflectionBox"><textarea id="reflectionText" maxlength="600" placeholder="Write a thought for today…"></textarea><button id="saveReflection">SAVE REFLECTION</button></div></div></article></section>
 <section id="library" class="screen"><h2>LIBRARY</h2><p class="libraryCount"><span id="quoteCount"></span> APPROVED ENTRIES</p><div class="tabs"><button class="tab on" data-tab="all">ALL WISDOM</button><button class="tab" data-tab="favs">FAVORITES</button></div><div id="libraryList"></div></section>
 <div class="bottomnav"><button data-page="today" class="on"><span class="navIcon">☼</span><small>TODAY</small></button><button id="fav"><span class="navIcon">♡</span><small>FAVOURITE</small></button><button data-page="library"><span class="navIcon">▤</span><small>LIBRARY</small></button></div><div id="toast"></div></main><script>window.DW_QUOTES = [

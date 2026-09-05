@@ -911,6 +911,44 @@ footer { display:none !important; }
   90%,100%{opacity:0}
 }
 
+
+/* V1.0.13 — deliberately slow, two-line handwriting */
+#dailyIntro .s1{
+  display:block!important;
+  animation:writeStroke 2.10s linear .65s forwards,
+            fadeStroke .9s ease 5.65s forwards!important;
+}
+#dailyIntro .s2{
+  display:block!important;
+  animation:writeStroke 2.05s linear 3.00s forwards,
+            fadeStroke .9s ease 5.75s forwards!important;
+}
+#dailyIntro .s3,#dailyIntro .s4{display:none!important}
+
+#dailyIntro .finalPeriod{
+  animation:periodLandVerySlow 7s ease forwards!important;
+}
+#dailyIntro .wordDust{animation:dustEmergeVerySlow 7s ease forwards!important}
+#dailyIntro .introHint{animation:writingHintVerySlow 7s ease forwards!important}
+
+@keyframes periodLandVerySlow{
+  0%,72%{opacity:0;transform:scale(.2)}
+  75%{opacity:1;transform:scale(1.45)}
+  80%,88%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+@keyframes dustEmergeVerySlow{
+  0%,70%{opacity:0;transform:translateY(4px)}
+  80%{opacity:.3}
+  90%{opacity:.48;transform:translateY(-4px)}
+  100%{opacity:0;transform:translateY(-14px)}
+}
+@keyframes writingHintVerySlow{
+  0%,15%{opacity:0}
+  22%,78%{opacity:.25}
+  92%,100%{opacity:0}
+}
+
 </style></head><body>
 
 
@@ -1803,7 +1841,7 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
   // Invisible-book intro plays on every app/page load. Tap anywhere to skip immediately.
   intro.addEventListener('click',removeIntro,{once:true});
   intro.addEventListener('touchstart',removeIntro,{once:true,passive:true});
-  setTimeout(removeIntro,4350);
+  setTimeout(removeIntro,7000);
 })();
 </script>
 
@@ -1815,8 +1853,8 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
   if(!intro || !spark) return;
 
   const segments=[
-    {id:'write1',start:420,dur:920},
-    {id:'write2',start:1480,dur:900}
+    {id:'write1',start:650,dur:2100},
+    {id:'write2',start:3000,dur:2050}
   ];
   const svg=intro.querySelector('.writingCanvas');
   let started=null, raf=0;
@@ -1846,7 +1884,7 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
       }
     }
     if(!active) spark.style.opacity='0';
-    if(t<3350 && document.body.contains(intro)) raf=requestAnimationFrame(tick);
+    if(t<6500 && document.body.contains(intro)) raf=requestAnimationFrame(tick);
   }
   spark.style.animation='none';
   raf=requestAnimationFrame(tick);

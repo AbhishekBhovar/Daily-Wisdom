@@ -1,0 +1,1910 @@
+<!doctype html><html lang="en"><head>
+  <!-- Rise Anyway V1.1.0 — 67 audited entries --><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="daily-wisdom-build" content="Rise-Anyway-V1.1.0"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071127"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Rise Anyway</title><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/icon-192.png"><style>:root{
+  --violet:#ad9cff;
+  --violet-bright:#c7bbff;
+  --violet-deep:#6f5bc7;
+  --cream:#f4f0ea;
+  --muted:#a49fb1;
+  --ink:#060811;
+  --panel:#0d101b;
+  --line:rgba(173,156,255,.18);
+  --rose:#ff6f8f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#04060d;color:var(--cream)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.app{
+  height:100dvh;max-width:430px;margin:auto;overflow:hidden;position:relative;
+  background:
+    radial-gradient(ellipse at 50% -6%,rgba(116,85,204,.34),transparent 35%),
+    radial-gradient(circle at 12% 12%,rgba(92,70,170,.12),transparent 22%),
+    radial-gradient(circle at 88% 15%,rgba(99,75,180,.12),transparent 23%),
+    linear-gradient(180deg,#090b17 0%,#060811 42%,#04060c 100%);
+  border-inline:1px solid rgba(176,160,255,.10)
+}
+.app:before{
+  content:"";position:absolute;inset:0 0 auto 0;height:245px;pointer-events:none;opacity:.85;
+  background-image:
+    radial-gradient(circle at 8% 33%,rgba(196,184,255,.7) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 18% 20%,rgba(196,184,255,.45) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 31% 42%,rgba(196,184,255,.6) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 70% 18%,rgba(196,184,255,.55) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 83% 36%,rgba(196,184,255,.5) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 93% 21%,rgba(196,184,255,.7) 0 1px,transparent 1.5px);
+}
+button{background:none;border:0;color:inherit;font:inherit}
+
+/* premium purple header */
+.wisdomHeader{
+  height:174px;padding:calc(11px + env(safe-area-inset-top)) 18px 8px;
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  overflow:hidden;isolation:isolate
+}
+.headerAura{position:absolute;z-index:-1;top:-95px;left:50%;width:350px;height:245px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(121,91,208,.27),rgba(87,61,165,.08) 48%,transparent 72%);filter:blur(4px)}
+.headerOrnament{height:54px;width:270px;display:flex;align-items:center;justify-content:center;position:relative;margin-top:1px;color:var(--violet)}
+.bookMark{width:66px;height:43px;overflow:visible;fill:none;stroke:#d7ceff;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 8px rgba(173,156,255,.28))}
+.bookLines{stroke-width:1.25;opacity:.68}
+.arc{width:54px;height:32px;border-top:1px solid rgba(192,180,255,.55);margin-top:23px}
+.arcLeft{border-radius:100% 0 0 0;transform:rotate(7deg);margin-right:-5px}.arcRight{border-radius:0 100% 0 0;transform:rotate(-7deg);margin-left:-5px}
+.star{font-size:11px;color:#c4b8ff;text-shadow:0 0 10px rgba(173,156,255,.5)}
+.starLeft{margin-right:2px}.starRight{margin-left:2px}
+.headerTitle{text-align:center;margin-top:0}
+.headerTitle b{display:block;font-family:Georgia,"Times New Roman",serif;font-size:25px;line-height:1.05;letter-spacing:4.3px;font-weight:500;color:#f6f1f2;text-shadow:0 0 18px rgba(173,156,255,.17)}
+.headerTitle small{display:block;font-size:11px;letter-spacing:5px;margin-top:11px;color:var(--violet-bright);font-weight:500}
+.headerDivider{width:150px;display:flex;align-items:center;gap:9px;margin-top:11px;color:var(--violet)}
+.headerDivider span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(173,156,255,.55))}.headerDivider span:last-child{background:linear-gradient(90deg,rgba(173,156,255,.55),transparent)}
+.headerDivider i{font-style:normal;font-size:8px;text-shadow:0 0 8px rgba(173,156,255,.65)}
+
+.screen{display:none;height:calc(100dvh - 174px - 116px);padding:0 24px 18px;overflow:auto}.screen.active{display:block}
+#today{overflow:hidden;touch-action:pan-y;position:relative}
+.wisdomCard{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 6px 18px;will-change:transform,opacity;transform:translateX(0) scale(1);opacity:1}
+.mark{font:50px/.8 Georgia,serif;color:var(--violet);margin-bottom:16px;text-shadow:0 0 16px rgba(173,156,255,.25)}
+.fullQuote{max-width:350px;font:clamp(19px,5.25vw,27px)/1.38 Georgia,"Times New Roman",serif;letter-spacing:.004em;text-wrap:balance;color:var(--cream);text-shadow:0 1px 10px rgba(0,0,0,.25)}
+.fullQuote .focus{color:var(--violet-bright);font-weight:600}.fullQuote .surround{color:var(--cream)}
+.rule{width:106px;height:9px;border:0;margin:20px auto 12px;position:relative}
+.rule:before,.rule:after{content:"";position:absolute;top:4px;width:42px;height:1px;background:linear-gradient(90deg,transparent,var(--violet))}.rule:before{left:0}.rule:after{right:0;transform:scaleX(-1)}
+.rule:after{}.rule{background:radial-gradient(circle at 50% 50%,var(--violet-bright) 0 2px,transparent 2.5px)}
+.revealSource{color:var(--violet-bright);font-size:11px;letter-spacing:.19em;padding:8px 12px;text-transform:uppercase}
+.source{margin-top:6px;animation:fade .28s ease}.source b{display:block;color:var(--violet-bright);letter-spacing:2px;font-size:14px}.source span{display:block;color:#aaa2c8;margin-top:5px;font-size:12px}.hidden{display:none!important}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}}
+
+footer{position:absolute;bottom:66px;left:0;right:0;height:50px;border-top:1px solid var(--line);display:flex;justify-content:center;align-items:center;background:rgba(5,7,14,.88);backdrop-filter:blur(14px)}
+footer button,.bottomnav button{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:21px}
+button small{font-size:8px;letter-spacing:1.4px}
+.bottomnav{position:absolute;bottom:0;left:0;right:0;height:66px;padding-bottom:env(safe-area-inset-bottom);background:rgba(6,8,16,.94);border-top:1px solid rgba(173,156,255,.16);display:flex;justify-content:space-evenly;align-items:center;backdrop-filter:blur(14px)}
+.bottomnav button{font-size:19px;color:#777487;min-width:100px;padding:7px 20px;border-radius:28px}
+.bottomnav .on{color:var(--violet-bright);background:linear-gradient(135deg,rgba(112,88,194,.30),rgba(82,65,151,.16));box-shadow:inset 0 0 0 1px rgba(173,156,255,.07)}
+#fav{color:#a9a4b8}#fav.active{color:var(--rose)}
+
+#library h2{text-align:center;color:var(--violet-bright);letter-spacing:4px;font-size:17px}.tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:14px}.tab{flex:1;padding:12px;font-size:10px;letter-spacing:1px}.tab.on{color:var(--violet-bright);border-bottom:1px solid var(--violet)}
+.libitem{background:rgba(14,16,28,.82);border:1px solid rgba(173,156,255,.16);border-radius:12px;padding:13px 42px 13px 14px;margin:8px 0;position:relative}.libitem .d{color:var(--violet);font-size:9px;letter-spacing:1px}.libitem p{margin:7px 0;font:14px/1.4 Georgia}.libitem small{color:#9893a5}.libitem .heart{position:absolute;right:14px;top:28px;color:var(--rose);font-size:19px}
+.modal{position:absolute;z-index:8;inset:0;height:auto!important;padding:55px 24px 30px!important;background:radial-gradient(circle at 50% 15%,#24183f,#080a14 50%,#05070e);text-align:center}.modal.active{display:block}.close{position:absolute;right:20px;top:18px;font-size:29px}.sun{color:var(--violet);font-size:28px}.modal h2{color:var(--violet-bright);font-size:16px;letter-spacing:2px}.modal>p{font-size:12px;line-height:1.7}.weekgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px 0}.daycard{height:90px;border:1px solid rgba(173,156,255,.16);border-radius:8px;padding:10px;font-size:9px}.daycard.faved{border-color:var(--violet)}.star{color:var(--violet)}.heart{color:var(--rose)}.outline{width:100%;border:1px solid var(--violet);border-radius:24px;padding:13px;color:var(--violet-bright);letter-spacing:1px;margin:10px 0 18px}
+#toast{position:absolute;z-index:20;left:50%;bottom:145px;transform:translateX(-50%);background:#19172a;border:1px solid rgba(173,156,255,.18);padding:9px 15px;border-radius:18px;font-size:11px;opacity:0;transition:.2s;white-space:nowrap}#toast.show{opacity:1}
+
+.wisdomCard.swipe-out-left{animation:swipeOutLeft .22s cubic-bezier(.4,0,1,1) forwards}.wisdomCard.swipe-out-right{animation:swipeOutRight .22s cubic-bezier(.4,0,1,1) forwards}.wisdomCard.swipe-in-left{animation:swipeInLeft .28s cubic-bezier(.2,.8,.2,1) both}.wisdomCard.swipe-in-right{animation:swipeInRight .28s cubic-bezier(.2,.8,.2,1) both}
+@keyframes swipeOutLeft{to{transform:translateX(-115%) scale(.96);opacity:0}}@keyframes swipeOutRight{to{transform:translateX(115%) scale(.96);opacity:0}}@keyframes swipeInLeft{from{transform:translateX(-115%) scale(.97);opacity:0}to{transform:translateX(0) scale(1);opacity:1}}@keyframes swipeInRight{from{transform:translateX(115%) scale(.97);opacity:0}to{transform:translateX(0) scale(1);opacity:1}}
+#dayFlash{position:absolute;z-index:6;top:4px;left:50%;transform:translate(-50%,-8px);padding:6px 10px;border:1px solid rgba(173,156,255,.28);border-radius:999px;background:rgba(8,8,18,.9);color:var(--violet-bright);font-size:9px;letter-spacing:1.5px;opacity:0;pointer-events:none;white-space:nowrap}#dayFlash.show{animation:dayFlash .72s ease}@keyframes dayFlash{0%{opacity:0;transform:translate(-50%,-8px)}18%,72%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,4px)}}
+.weekLink{display:block;margin:2px auto 14px;padding:8px 12px;color:var(--violet-bright);font-size:9px;letter-spacing:1.5px;border:1px solid rgba(173,156,255,.30);border-radius:999px}
+
+@media(max-height:760px){.wisdomHeader{height:150px}.screen{height:calc(100dvh - 150px - 108px)}footer{bottom:62px;height:46px}.bottomnav{height:62px}.headerOrnament{height:43px}.bookMark{width:56px;height:36px}.headerTitle b{font-size:22px}.headerTitle small{margin-top:8px}.headerDivider{margin-top:8px}.fullQuote{font-size:clamp(18px,4.85vw,23px);line-height:1.32}.mark{font-size:42px;margin-bottom:9px}.rule{margin:14px auto 9px}}
+:root{--violet:#7fa8ff;--violet-bright:#b7ccff;--violet-deep:#315da9;--line:rgba(101,151,255,.20)}
+.app{background:radial-gradient(ellipse at 50% -8%,rgba(20,83,177,.44),transparent 36%),radial-gradient(circle at 12% 12%,rgba(31,89,180,.14),transparent 22%),linear-gradient(180deg,#071127 0%,#050b18 45%,#030711 100%)}
+.headerAura{background:radial-gradient(ellipse,rgba(43,105,213,.30),rgba(21,66,145,.10) 48%,transparent 72%)}
+.bookMark{stroke:#d9e5ff}.headerTitle small,.source b{color:var(--violet-bright)}
+.screen{height:calc(100dvh - 174px - 116px)}
+.wisdomCard{justify-content:flex-start;padding-top:2vh;overflow:auto;scrollbar-width:none}.wisdomCard::-webkit-scrollbar{display:none}
+.fullQuote{font-size:clamp(17px,4.65vw,24px);line-height:1.38;white-space:normal}.fullQuote .focus{color:#b7ccff;text-shadow:0 0 14px rgba(90,143,255,.22)}
+.source{margin-top:2px;text-align:center}.source span{display:block;color:#8798ba;margin-top:4px;font-size:11px}.source em{display:block;color:#667594;margin-top:5px;font-size:9px;font-style:normal;letter-spacing:.04em}
+.reflection{width:100%;max-width:350px;margin:16px auto 6px;border-top:1px solid var(--line);padding-top:12px}.reflection>button{width:100%;color:var(--violet-bright);font-size:10px;letter-spacing:.14em}.reflection>button span{display:block;margin-top:5px;color:#8d99b1;letter-spacing:.03em;text-transform:none;font-size:11px}#reflectionBox{display:none;margin-top:10px}#reflectionBox.open{display:block}textarea{width:100%;height:82px;resize:none;border-radius:12px;border:1px solid var(--line);background:rgba(7,15,31,.9);color:#f4f0ea;padding:11px;font:13px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;outline:none}#saveReflection{margin-top:7px;border:1px solid rgba(127,168,255,.35);border-radius:999px;padding:8px 14px;color:var(--violet-bright);font-size:9px;letter-spacing:.12em}
+.libitem p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.empty{text-align:center;color:#7e879c;margin-top:40px}
+@media(max-height:760px){.wisdomCard{padding-top:0}.fullQuote{font-size:clamp(16px,4.3vw,21px)}.reflection{margin-top:11px}}
+
+.libraryCount{text-align:center;margin:-5px 0 14px;color:#7182a3;font-size:9px;letter-spacing:.16em}
+
+/* Prototype R2 — readability pass */
+.fullQuote{
+  max-width:360px;
+  font-family:Charter,"Bitstream Charter","Iowan Old Style","Palatino Linotype",Palatino,serif;
+  font-size:clamp(18px,4.8vw,24px);
+  line-height:1.52;
+  letter-spacing:.002em;
+  text-wrap:pretty;
+  font-weight:400;
+}
+.fullQuote .focus{color:#b7ccff;font-weight:400;text-transform:none;text-shadow:0 0 12px rgba(90,143,255,.16)}
+.source em{display:none}
+@media(max-height:760px){.fullQuote{font-size:clamp(17px,4.35vw,21px);line-height:1.46}}
+
+/* Prototype R3 — quote typography matches speaker; emphasis is colour only */
+.fullQuote{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:400;
+  letter-spacing:.005em;
+}
+.fullQuote .focus{
+  color:#b7ccff;
+  font-family:inherit;
+  font-size:inherit;
+  font-weight:inherit;
+  letter-spacing:inherit;
+  text-transform:none;
+}
+
+
+/* Prototype R4 — uniform quote treatment + dialogue spacing */
+.fullQuote{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+  font-weight:400 !important;
+  color:var(--cream) !important;
+  text-shadow:none;
+  text-wrap:pretty;
+}
+.fullQuote .focus, .fullQuote .surround{
+  color:inherit !important;
+  font:inherit !important;
+  letter-spacing:inherit !important;
+  text-transform:none !important;
+  text-shadow:none !important;
+}
+.quoteBlock{
+  margin:0;
+  padding:0;
+  color:inherit;
+  font:inherit;
+}
+.quoteBlock + .quoteBlock{
+  margin-top:.72em;
+}
+
+/* Prototype R5 — hard reset: quote typography exactly follows speaker family; no emphasis styling */
+.fullQuote,
+.fullQuote *,
+.quoteBlock {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  color: var(--cream) !important;
+  text-shadow: none !important;
+  letter-spacing: .005em !important;
+}
+.fullQuote { line-height: 1.48 !important; }
+.fullQuote .focus, .fullQuote .surround { color: var(--cream) !important; }
+.quoteBlock { margin: 0 !important; }
+.quoteBlock + .quoteBlock { margin-top: .9em !important; }
+.source b {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+
+/* R6 LOCKED TYPOGRAPHY — Today quote is plain text: no highlight styling, no caps transform. */
+#fullQuote,
+#fullQuote *,
+#fullQuote .quoteBlock,
+.source b {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+}
+#fullQuote,
+#fullQuote *,
+#fullQuote .quoteBlock {
+  color: #f4f0ea !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+  letter-spacing: 0 !important;
+}
+#fullQuote {
+  font-size: clamp(18px, 4.8vw, 24px) !important;
+  line-height: 1.50 !important;
+}
+#fullQuote .quoteBlock { margin: 0 !important; }
+#fullQuote .quoteBlock + .quoteBlock { margin-top: 1.05em !important; }
+.source b {
+  font-weight: 600 !important;
+  letter-spacing: .10em !important;
+}
+
+/* R8 — spacing pass + prototype quality cuts */
+#fullQuote { margin-bottom: 0 !important; }
+.rule { margin: 34px auto 24px !important; }
+.source { margin-top: 0 !important; }
+.reflection {
+  margin-top: 40px !important;
+  padding-top: 24px !important;
+}
+@media(max-height:760px){
+  .rule { margin: 26px auto 18px !important; }
+  .reflection { margin-top: 30px !important; padding-top: 20px !important; }
+}
+
+/* R9 — ruthless quality pass + stronger vertical separation */
+.rule { margin: 58px auto 28px !important; }
+.source { margin-bottom: 0 !important; }
+.reflection { margin-top: 58px !important; padding-top: 30px !important; }
+@media(max-height:760px){
+  .rule { margin: 44px auto 22px !important; }
+  .reflection { margin-top: 44px !important; padding-top: 24px !important; }
+}
+
+/* V1.0 FINAL — clean attribution, smaller quote type, unified bottom navigation */
+#fullQuote {
+  font-size: clamp(16px, 4.15vw, 21px) !important;
+  line-height: 1.48 !important;
+  max-width: 360px !important;
+}
+.source b { font-size: 14px !important; }
+.source span { display:none !important; }
+/* One bottom navigation surface; no stacked favourite footer. */
+footer { display:none !important; }
+.screen { height: calc(100dvh - 174px - 82px) !important; }
+.bottomnav {
+  height: 82px !important;
+  padding: 5px 12px max(5px, env(safe-area-inset-bottom)) !important;
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:8px !important;
+  background:rgba(4,7,15,.94) !important;
+  border-top:1px solid rgba(127,168,255,.20) !important;
+}
+.bottomnav button {
+  min-width:0 !important;
+  width:100% !important;
+  padding:8px 4px !important;
+  border-radius:28px !important;
+  color:#858294 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.bottomnav button.on {
+  color:var(--violet-bright) !important;
+  background:linear-gradient(135deg,rgba(112,88,194,.30),rgba(82,65,151,.16)) !important;
+  box-shadow:inset 0 0 0 1px rgba(173,156,255,.12) !important;
+}
+.bottomnav #fav.active { color:var(--violet-bright) !important; }
+.bottomnav .navIcon { display:block; font-size:22px; line-height:1; height:24px; }
+.bottomnav small { display:block; margin-top:5px; font-size:8px; letter-spacing:1.4px; }
+@media(max-height:760px){
+  #fullQuote { font-size:clamp(15px,3.9vw,19px) !important; line-height:1.44 !important; }
+  .screen { height:calc(100dvh - 150px - 74px) !important; }
+  .bottomnav { height:74px !important; }
+}
+
+/* V1.0.4 — once-per-day celestial loading ritual */
+#dailyIntro{
+  position:fixed; inset:0; z-index:99999;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(52,112,255,.16), transparent 30%),
+    linear-gradient(180deg,#020817 0%,#030b1d 58%,#020713 100%);
+  overflow:hidden;
+  opacity:1;
+  transition:opacity .7s ease;
+  touch-action:manipulation;
+}
+#dailyIntro.introHide{opacity:0;pointer-events:none}
+#dailyIntro .introNebula{
+  position:absolute; inset:-15%;
+  background:
+    radial-gradient(ellipse at 22% 42%,rgba(58,104,255,.13),transparent 31%),
+    radial-gradient(ellipse at 80% 62%,rgba(121,88,255,.10),transparent 30%),
+    radial-gradient(ellipse at 53% 50%,rgba(107,175,255,.09),transparent 25%);
+  filter:blur(22px);
+  opacity:0;
+  animation:introNebula 5s ease forwards;
+}
+#dailyIntro .introStar{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:#dce9ff;
+  box-shadow:0 0 6px rgba(184,213,255,.8);
+  opacity:0;
+  animation:introTwinkle 3.8s ease forwards;
+}
+#dailyIntro .introCore{
+  position:absolute;left:50%;top:48%;width:3px;height:3px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;background:#fff;
+  box-shadow:0 0 8px #fff,0 0 18px #88b8ff,0 0 38px #5b8fff;
+  opacity:0;
+  animation:introCore 5s ease forwards;
+}
+#dailyIntro .introCore:before,
+#dailyIntro .introCore:after{
+  content:"";position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  background:linear-gradient(90deg,transparent,#cfe2ff,transparent);
+  opacity:0;
+  animation:introRays 5s ease forwards;
+}
+#dailyIntro .introCore:before{width:150px;height:1px}
+#dailyIntro .introCore:after{width:1px;height:150px;background:linear-gradient(180deg,transparent,#cfe2ff,transparent)}
+#dailyIntro .introHint{
+  position:absolute;left:50%;bottom:8.5%;
+  transform:translateX(-50%);
+  color:rgba(210,224,255,.42);
+  font:500 11px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  letter-spacing:.22em;text-transform:uppercase;
+  opacity:0;animation:introHint 5s ease forwards;
+}
+@keyframes introNebula{
+  0%,12%{opacity:0;transform:scale(.96)}
+  48%{opacity:.7}
+  82%{opacity:.9;transform:scale(1.03)}
+  100%{opacity:0;transform:scale(1.05)}
+}
+@keyframes introTwinkle{
+  0%{opacity:0;transform:scale(.4)}
+  35%{opacity:.25}
+  58%{opacity:.95;transform:scale(1)}
+  85%{opacity:.6}
+  100%{opacity:0}
+}
+@keyframes introCore{
+  0%,36%{opacity:0;transform:translate(-50%,-50%) scale(.2)}
+  58%{opacity:.55}
+  73%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  89%{opacity:.9;transform:translate(-50%,-50%) scale(1.8)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(3)}
+}
+@keyframes introRays{
+  0%,60%{opacity:0}
+  74%{opacity:.65}
+  92%{opacity:.35}
+  100%{opacity:0}
+}
+@keyframes introHint{
+  0%,25%{opacity:0}
+  35%,74%{opacity:.45}
+  90%,100%{opacity:0}
+}
+
+
+#dailyIntro .introStarExtra{
+  width:1.5px;height:1.5px;
+  box-shadow:0 0 5px rgba(186,214,255,.75);
+}
+
+23%{
+    opacity:1;
+  }
+  36%{
+    opacity:1;
+    transform:translate3d(46vw,16vh,0) rotate(-28deg) scaleX(1);
+  }
+  49%{
+    opacity:1;
+    transform:translate3d(91vw,33vh,0) rotate(-28deg) scaleX(1.04);
+  }
+  58%{
+    opacity:.75;
+    transform:translate3d(124vw,49vh,0) rotate(-28deg) scaleX(.94);
+  }
+  64%,100%{
+    opacity:0;
+    transform:translate3d(148vw,61vh,0) rotate(-28deg) scaleX(.8);
+  }
+}
+34%{opacity:1}
+  58%{opacity:1;transform:translate(128vw,42vh) rotate(-18deg) scaleX(1)}
+  66%,100%{opacity:0;transform:translate(140vw,48vh) rotate(-18deg) scaleX(1)}
+}
+
+
+#dailyIntro .introStar:nth-of-type(3n){animation-duration:3.1s}
+#dailyIntro .introStar:nth-of-type(4n){animation-duration:4.4s}
+#dailyIntro .introStar:nth-of-type(5n){transform:scale(1.35)}
+
+
+/* V1.0.7 — invisible-book light opening */
+#dailyIntro{
+  position:fixed; inset:0; z-index:99999;
+  overflow:hidden;
+  background:#01040b;
+  opacity:1;
+  transition:opacity .75s ease;
+  touch-action:manipulation;
+}
+#dailyIntro.introHide{opacity:0;pointer-events:none}
+
+#dailyIntro .bookDarkness{
+  position:absolute; inset:0;
+  background:#01040b;
+  animation:bookDarknessFade 5s ease forwards;
+}
+
+#dailyIntro .bookNebula{
+  position:absolute; inset:-3%;
+  background:
+    linear-gradient(rgba(1,5,16,.94),rgba(1,5,16,.72)),
+    url("assets/book-light-intro.png") center 54% / cover no-repeat;
+  opacity:0;
+  transform:scale(1.035);
+  filter:saturate(.95) brightness(.78);
+  animation:bookNebulaReveal 5s ease forwards;
+}
+
+#dailyIntro .bookSeam{
+  position:absolute;
+  left:50%; top:68%;
+  width:2px; height:2px;
+  transform:translate(-50%,-50%);
+  border-radius:999px;
+  background:#e7f5ff;
+  box-shadow:
+    0 0 8px 2px rgba(255,255,255,.95),
+    0 0 20px 7px rgba(127,194,255,.7),
+    0 0 48px 18px rgba(54,127,255,.28);
+  animation:bookSeamOpen 5s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+#dailyIntro .bookBeam{
+  position:absolute;
+  left:50%; top:67.8%;
+  width:44vw; height:50vh;
+  transform:translate(-50%,-100%) scaleY(.06);
+  transform-origin:50% 100%;
+  opacity:0;
+  clip-path:polygon(45% 100%,55% 100%,82% 0%,18% 0%);
+  background:linear-gradient(
+    180deg,
+    rgba(180,221,255,0) 0%,
+    rgba(152,207,255,.12) 25%,
+    rgba(120,190,255,.24) 64%,
+    rgba(226,247,255,.68) 100%
+  );
+  filter:blur(2px);
+  animation:bookBeamRise 5s ease-out forwards;
+}
+
+#dailyIntro .pageArc{
+  position:absolute;
+  top:67.7%;
+  width:48vw; height:15vh;
+  border-top:2px solid rgba(193,226,255,.75);
+  opacity:0;
+  filter:drop-shadow(0 0 8px rgba(111,180,255,.55));
+  animation:pageArcOpen 5s ease forwards;
+}
+#dailyIntro .pageArcLeft{
+  right:50%;
+  border-radius:100% 0 0 0;
+  transform-origin:right top;
+  transform:rotate(8deg) scaleX(.05);
+}
+#dailyIntro .pageArcRight{
+  left:50%;
+  border-radius:0 100% 0 0;
+  transform-origin:left top;
+  transform:rotate(-8deg) scaleX(.05);
+}
+
+#dailyIntro .particleField{
+  position:absolute; inset:0;
+  opacity:0;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.4px),
+    radial-gradient(circle,rgba(143,202,255,.9) 0 1.2px,transparent 1.6px),
+    radial-gradient(circle,rgba(205,228,255,.7) 0 .8px,transparent 1.2px);
+  background-size:41px 55px,67px 83px,29px 43px;
+  background-position:3px 0,19px 11px,8px 17px;
+  mask-image:linear-gradient(to top,black 0%,black 64%,transparent 98%);
+  -webkit-mask-image:linear-gradient(to top,black 0%,black 64%,transparent 98%);
+  animation:particlesRise 5s ease-out forwards;
+}
+
+#dailyIntro .introHint{
+  position:absolute;left:50%;bottom:7.5%;
+  transform:translateX(-50%);
+  color:rgba(210,224,255,.36);
+  font:500 11px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  letter-spacing:.22em;text-transform:uppercase;
+  opacity:0;
+  animation:introHintBook 5s ease forwards;
+}
+
+@keyframes bookDarknessFade{
+  0%,12%{opacity:1}
+  72%{opacity:.28}
+  100%{opacity:0}
+}
+@keyframes bookNebulaReveal{
+  0%,15%{opacity:0;transform:scale(1.05)}
+  38%{opacity:.22}
+  68%{opacity:.86;transform:scale(1.015)}
+  90%{opacity:.96}
+  100%{opacity:0;transform:scale(1)}
+}
+@keyframes bookSeamOpen{
+  0%,16%{width:2px;opacity:0}
+  25%{opacity:1;width:10px}
+  46%{width:72vw;height:2px;opacity:1}
+  74%{width:94vw;opacity:.96}
+  100%{width:100vw;opacity:0}
+}
+@keyframes pageArcOpen{
+  0%,26%{opacity:0}
+  35%{opacity:.18}
+  52%{opacity:.8;transform:rotate(0deg) scaleX(1)}
+  78%{opacity:.48;transform:rotate(0deg) scaleX(1.05) translateY(-8px)}
+  100%{opacity:0;transform:rotate(0deg) scaleX(1.08) translateY(-16px)}
+}
+@keyframes bookBeamRise{
+  0%,28%{opacity:0;transform:translate(-50%,-100%) scaleY(.04)}
+  42%{opacity:.28}
+  65%{opacity:.9;transform:translate(-50%,-100%) scaleY(.9)}
+  84%{opacity:.58;transform:translate(-50%,-100%) scaleY(1.18)}
+  100%{opacity:0;transform:translate(-50%,-100%) scaleY(1.34)}
+}
+@keyframes particlesRise{
+  0%,35%{opacity:0;transform:translateY(10vh)}
+  50%{opacity:.28}
+  72%{opacity:.9;transform:translateY(-4vh)}
+  90%{opacity:.48;transform:translateY(-14vh)}
+  100%{opacity:0;transform:translateY(-20vh)}
+}
+@keyframes introHintBook{
+  0%,22%{opacity:0}
+  30%,76%{opacity:.38}
+  92%,100%{opacity:0}
+}
+
+
+/* V1.0.8 — invisible pages unfurl + rising stardust */
+#dailyIntro{
+  position:fixed!important;inset:0!important;z-index:99999!important;
+  overflow:hidden!important;background:#010611!important;
+  opacity:1;transition:opacity .78s ease;touch-action:manipulation;
+}
+#dailyIntro.introHide{opacity:0!important;pointer-events:none!important}
+#dailyIntro .bookDarkness,#dailyIntro .bookNebula,#dailyIntro .bookSeam,
+#dailyIntro .bookBeam,#dailyIntro .pageArc,#dailyIntro .particleField,
+#dailyIntro .shootingStar,#dailyIntro .introNebula,#dailyIntro .introCore,
+#dailyIntro .introStar{display:none!important}
+
+#dailyIntro .softNight{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 79%,rgba(62,127,255,.12),transparent 23%),
+    radial-gradient(ellipse at 50% 56%,rgba(47,83,165,.055),transparent 44%),
+    linear-gradient(180deg,#01040c 0%,#020817 58%,#030b1d 100%);
+  animation:nightBreathe 5s ease forwards;
+}
+
+#dailyIntro .spineGlow{
+  position:absolute;left:50%;top:79%;
+  width:7px;height:7px;border-radius:50%;
+  transform:translate(-50%,-50%) scale(.2);
+  background:#f5fbff;opacity:0;
+  box-shadow:
+    0 0 10px 3px rgba(240,249,255,.95),
+    0 0 26px 10px rgba(122,187,255,.62),
+    0 0 62px 24px rgba(67,119,255,.22);
+  animation:spineAwake 5s ease forwards;
+}
+
+#dailyIntro .pageWhisper{
+  position:absolute;top:78.7%;
+  width:42vw;height:12vh;
+  opacity:0;
+  border-top:1.5px solid rgba(199,229,255,.78);
+  filter:drop-shadow(0 0 6px rgba(105,174,255,.46));
+}
+#dailyIntro .pageWhisperLeft{
+  right:50%;
+  border-radius:95% 10% 0 0;
+  transform-origin:right top;
+  transform:rotate(-2deg) scaleX(.02) translateY(0);
+  animation:pageLeftUnfurl 5s cubic-bezier(.2,.7,.25,1) forwards;
+}
+#dailyIntro .pageWhisperRight{
+  left:50%;
+  border-radius:10% 95% 0 0;
+  transform-origin:left top;
+  transform:rotate(2deg) scaleX(.02) translateY(0);
+  animation:pageRightUnfurl 5s cubic-bezier(.2,.7,.25,1) forwards;
+}
+#dailyIntro .pageWhisper.second{
+  top:79.4%;width:35vw;height:9vh;
+  border-top-color:rgba(133,191,255,.38);
+  filter:drop-shadow(0 0 4px rgba(84,144,255,.28));
+  animation-delay:.18s;
+}
+
+#dailyIntro .stardust{position:absolute;inset:0;pointer-events:none}
+#dailyIntro .wisdomParticle{
+  position:absolute;left:var(--x);top:var(--y);
+  width:var(--s);height:var(--s);border-radius:50%;
+  background:rgba(226,243,255,.95);
+  opacity:0;
+  box-shadow:0 0 5px rgba(151,205,255,.85);
+  animation:wisdomRise var(--dur) ease-out var(--delay) forwards;
+}
+
+#dailyIntro .introHint{
+  position:absolute!important;left:50%!important;bottom:7.5%!important;
+  transform:translateX(-50%)!important;
+  color:rgba(210,224,255,.30)!important;
+  font:500 11px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;
+  letter-spacing:.22em!important;text-transform:uppercase!important;
+  opacity:0;animation:softHint 5s ease forwards!important;
+}
+
+@keyframes nightBreathe{
+  0%{filter:brightness(.58)}
+  28%{filter:brightness(.72)}
+  70%{filter:brightness(1)}
+  90%{filter:brightness(1.05)}
+  100%{filter:brightness(.92)}
+}
+@keyframes spineAwake{
+  0%,16%{opacity:0;transform:translate(-50%,-50%) scale(.15)}
+  29%{opacity:.72;transform:translate(-50%,-50%) scale(.7)}
+  48%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  76%{opacity:.8;transform:translate(-50%,-50%) scale(1.2)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)}
+}
+@keyframes pageLeftUnfurl{
+  0%,21%{opacity:0;transform:rotate(-2deg) scaleX(.02) translateY(0)}
+  34%{opacity:.42}
+  54%{opacity:.9;transform:rotate(-8deg) scaleX(.88) translateY(-3px)}
+  72%{opacity:.7;transform:rotate(-12deg) scaleX(1) translateY(-10px)}
+  100%{opacity:0;transform:rotate(-15deg) scaleX(1.06) translateY(-18px)}
+}
+@keyframes pageRightUnfurl{
+  0%,21%{opacity:0;transform:rotate(2deg) scaleX(.02) translateY(0)}
+  34%{opacity:.42}
+  54%{opacity:.9;transform:rotate(8deg) scaleX(.88) translateY(-3px)}
+  72%{opacity:.7;transform:rotate(12deg) scaleX(1) translateY(-10px)}
+  100%{opacity:0;transform:rotate(15deg) scaleX(1.06) translateY(-18px)}
+}
+@keyframes wisdomRise{
+  0%{opacity:0;transform:translate3d(0,0,0) scale(.45)}
+  14%{opacity:.9}
+  62%{opacity:.72}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.15)}
+}
+@keyframes softHint{
+  0%,24%{opacity:0}
+  34%,74%{opacity:.32}
+  90%,100%{opacity:0}
+}
+
+
+/* V1.0.9 — invisible writing intro */
+#dailyIntro{
+  position:fixed!important;inset:0!important;z-index:99999!important;
+  overflow:hidden!important;background:#010611!important;
+  opacity:1;transition:opacity .8s ease;touch-action:manipulation;
+}
+#dailyIntro.introHide{opacity:0!important;pointer-events:none!important}
+
+/* suppress older intro visuals */
+#dailyIntro .softNight,#dailyIntro .spineGlow,#dailyIntro .pageWhisper,
+#dailyIntro .stardust,#dailyIntro .wisdomParticle,
+#dailyIntro .bookDarkness,#dailyIntro .bookNebula,#dailyIntro .bookSeam,
+#dailyIntro .bookBeam,#dailyIntro .pageArc,#dailyIntro .particleField,
+#dailyIntro .shootingStar,#dailyIntro .introNebula,#dailyIntro .introCore,
+#dailyIntro .introStar{display:none!important}
+
+#dailyIntro .writingNight{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 49%,rgba(42,82,162,.08),transparent 42%),
+    radial-gradient(ellipse at 50% 65%,rgba(76,122,232,.06),transparent 28%),
+    linear-gradient(180deg,#01040c 0%,#020817 62%,#030a1a 100%);
+  animation:writingNightBreathe 5s ease forwards;
+}
+
+#dailyIntro .writingCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  overflow:visible;
+}
+#dailyIntro .wisdomStroke{
+  fill:none;
+  stroke:rgba(199,227,255,.95);
+  stroke-width:1.65;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:url(#glowLine);
+  stroke-dasharray:100;
+  stroke-dashoffset:100;
+  opacity:0;
+}
+#dailyIntro .s1{animation:writeStroke 1.05s ease-out .55s forwards, fadeStroke 1s ease 3.65s forwards}
+#dailyIntro .s2{animation:writeStroke 1.05s ease-out 1.18s forwards, fadeStroke 1s ease 3.75s forwards}
+#dailyIntro .s3{animation:writeStroke 1.00s ease-out 1.82s forwards, fadeStroke 1s ease 3.85s forwards}
+#dailyIntro .s4{animation:writeStroke .95s ease-out 2.42s forwards, fadeStroke 1s ease 3.95s forwards}
+
+#dailyIntro .penSpark{
+  position:absolute;
+  left:18%;top:37.7%;
+  width:5px;height:5px;border-radius:50%;
+  background:#fff;
+  box-shadow:
+    0 0 6px 2px rgba(255,255,255,.95),
+    0 0 16px 5px rgba(124,183,255,.78),
+    0 0 28px 9px rgba(77,123,255,.30);
+  opacity:0;
+  animation:penTravel 4.15s cubic-bezier(.25,.65,.25,1) .45s forwards;
+}
+
+#dailyIntro .wordDust{
+  position:absolute;inset:0;
+  opacity:0;
+  background-image:
+    radial-gradient(circle at 12% 14%,rgba(220,239,255,.9) 0 1px,transparent 1.3px),
+    radial-gradient(circle at 72% 23%,rgba(153,205,255,.7) 0 1px,transparent 1.3px),
+    radial-gradient(circle at 36% 51%,rgba(213,235,255,.85) 0 1px,transparent 1.2px),
+    radial-gradient(circle at 58% 68%,rgba(142,194,255,.75) 0 1px,transparent 1.25px),
+    radial-gradient(circle at 82% 47%,rgba(218,238,255,.8) 0 1px,transparent 1.3px),
+    radial-gradient(circle at 25% 76%,rgba(177,216,255,.7) 0 1px,transparent 1.2px);
+  background-size:97px 101px,121px 113px,83px 89px,109px 127px,91px 103px,131px 119px;
+  animation:dustEmerge 5s ease forwards;
+}
+
+#dailyIntro .introHint{
+  position:absolute!important;left:50%!important;bottom:7.5%!important;
+  transform:translateX(-50%)!important;
+  color:rgba(210,224,255,.28)!important;
+  font:500 11px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;
+  letter-spacing:.22em!important;text-transform:uppercase!important;
+  opacity:0;animation:writingHint 5s ease forwards!important;
+}
+
+@keyframes writeStroke{
+  0%{stroke-dashoffset:100;opacity:0}
+  12%{opacity:.9}
+  100%{stroke-dashoffset:0;opacity:1}
+}
+@keyframes fadeStroke{
+  0%{opacity:1}
+  100%{opacity:0;filter:blur(2px)}
+}
+@keyframes penTravel{
+  0%{opacity:0;left:18%;top:37.7%;transform:scale(.7)}
+  5%{opacity:1}
+  22%{left:78%;top:38.4%;transform:scale(1)}
+  25%{opacity:.9}
+  28%{left:22%;top:43.1%}
+  48%{left:77%;top:43.8%}
+  52%{left:23%;top:48.2%}
+  70%{left:74%;top:49.0%}
+  74%{left:30%;top:53.6%}
+  91%{left:70%;top:54.3%;opacity:1}
+  100%{left:75%;top:55.2%;opacity:0;transform:scale(1.15)}
+}
+@keyframes dustEmerge{
+  0%,38%{opacity:0;transform:translateY(6px)}
+  58%{opacity:.36}
+  78%{opacity:.72;transform:translateY(-5px)}
+  100%{opacity:0;transform:translateY(-18px)}
+}
+@keyframes writingNightBreathe{
+  0%{filter:brightness(.55)}
+  35%{filter:brightness(.72)}
+  74%{filter:brightness(.96)}
+  100%{filter:brightness(.88)}
+}
+@keyframes writingHint{
+  0%,22%{opacity:0}
+  30%,73%{opacity:.28}
+  90%,100%{opacity:0}
+}
+
+
+/* V1.0.10 — faster running-handwriting pass */
+#dailyIntro .wisdomStroke{
+  stroke-width:1.55!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+#dailyIntro .s1{animation:writeStroke .58s linear .42s forwards,fadeStroke .65s ease 3.78s forwards!important}
+#dailyIntro .s2{animation:writeStroke .55s linear .92s forwards,fadeStroke .65s ease 3.82s forwards!important}
+#dailyIntro .s3{animation:writeStroke .55s linear 1.40s forwards,fadeStroke .65s ease 3.86s forwards!important}
+#dailyIntro .s4{animation:writeStroke .52s linear 1.88s forwards,fadeStroke .65s ease 3.90s forwards!important}
+
+#dailyIntro .penSpark{
+  animation:penTravelFast 2.35s cubic-bezier(.22,.7,.25,1) .35s forwards!important;
+}
+#dailyIntro .finalPeriod{
+  position:absolute;
+  left:79.2%;top:56.05%;
+  width:5px;height:5px;border-radius:50%;
+  background:#f8fcff;
+  opacity:0;
+  box-shadow:0 0 6px 2px rgba(255,255,255,.9),0 0 15px 5px rgba(116,181,255,.65);
+  animation:periodLand 5s ease forwards;
+}
+@keyframes penTravelFast{
+  0%{opacity:0;left:13%;top:39.5%;transform:scale(.72)}
+  3%{opacity:1}
+  22%{left:86%;top:39.0%}
+  25%{left:17%;top:45.2%}
+  47%{left:82%;top:44.7%}
+  50%{left:20%;top:50.9%}
+  72%{left:84%;top:50.3%}
+  75%{left:27%;top:56.6%}
+  95%{left:79%;top:56.0%;opacity:1;transform:scale(1)}
+  100%{left:79.2%;top:56.05%;opacity:0;transform:scale(.8)}
+}
+@keyframes periodLand{
+  0%,50%{opacity:0;transform:scale(.2)}
+  54%{opacity:1;transform:scale(1.55)}
+  59%{opacity:1;transform:scale(1)}
+  78%{opacity:1}
+  91%{opacity:.9;transform:scale(1)}
+  100%{opacity:0;transform:scale(.55)}
+}
+
+
+/* V1.0.11 — irregular handwriting, faster pass, path-synced pen light */
+#dailyIntro .s1{animation:writeStroke .39s linear .28s forwards,fadeStroke .55s ease 2.65s forwards!important}
+#dailyIntro .s2{animation:writeStroke .37s linear .70s forwards,fadeStroke .55s ease 2.70s forwards!important}
+#dailyIntro .s3{animation:writeStroke .36s linear 1.10s forwards,fadeStroke .55s ease 2.75s forwards!important}
+#dailyIntro .s4{animation:writeStroke .35s linear 1.49s forwards,fadeStroke .55s ease 2.80s forwards!important}
+#dailyIntro .penSpark{
+  position:fixed!important;
+  width:4px!important;height:4px!important;
+  transform:translate(-50%,-50%)!important;
+  animation:none!important;
+  transition:none!important;
+  will-change:left,top,opacity;
+}
+#dailyIntro .finalPeriod{
+  left:83.5%!important;top:56.4%!important;
+  animation:periodLandFast 3.65s ease forwards!important;
+}
+#dailyIntro .wordDust{animation:dustEmergeFast 3.65s ease forwards!important}
+#dailyIntro .introHint{animation:writingHintFast 3.65s ease forwards!important}
+@keyframes periodLandFast{
+  0%,50%{opacity:0;transform:scale(.2)}
+  54%{opacity:1;transform:scale(1.45)}
+  62%,80%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+@keyframes dustEmergeFast{
+  0%,40%{opacity:0;transform:translateY(4px)}
+  60%{opacity:.32}
+  80%{opacity:.55;transform:translateY(-4px)}
+  100%{opacity:0;transform:translateY(-14px)}
+}
+@keyframes writingHintFast{
+  0%,18%{opacity:0}
+  27%,68%{opacity:.25}
+  88%,100%{opacity:0}
+}
+
+
+/* V1.0.12 — two slower, genuinely irregular handwriting lines */
+#dailyIntro .s1{
+  animation:writeStroke .92s linear .42s forwards,
+            fadeStroke .7s ease 3.30s forwards!important;
+}
+#dailyIntro .s2{
+  animation:writeStroke .90s linear 1.48s forwards,
+            fadeStroke .7s ease 3.35s forwards!important;
+}
+#dailyIntro .s3,#dailyIntro .s4{display:none!important}
+
+#dailyIntro .finalPeriod{
+  left:87.2%!important;
+  top:52.85%!important;
+  animation:periodLandSlower 4.35s ease forwards!important;
+}
+#dailyIntro .wordDust{animation:dustEmergeSlower 4.35s ease forwards!important}
+#dailyIntro .introHint{animation:writingHintSlower 4.35s ease forwards!important}
+
+@keyframes periodLandSlower{
+  0%,57%{opacity:0;transform:scale(.2)}
+  61%{opacity:1;transform:scale(1.45)}
+  67%,82%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+@keyframes dustEmergeSlower{
+  0%,48%{opacity:0;transform:translateY(4px)}
+  66%{opacity:.30}
+  82%{opacity:.50;transform:translateY(-4px)}
+  100%{opacity:0;transform:translateY(-14px)}
+}
+@keyframes writingHintSlower{
+  0%,18%{opacity:0}
+  27%,72%{opacity:.25}
+  90%,100%{opacity:0}
+}
+
+
+/* V1.0.13 — deliberately slow, two-line handwriting */
+#dailyIntro .s1{
+  display:block!important;
+  animation:writeStroke 2.10s linear .65s forwards,
+            fadeStroke .9s ease 5.65s forwards!important;
+}
+#dailyIntro .s2{
+  display:block!important;
+  animation:writeStroke 2.05s linear 3.00s forwards,
+            fadeStroke .9s ease 5.75s forwards!important;
+}
+#dailyIntro .s3,#dailyIntro .s4{display:none!important}
+
+#dailyIntro .finalPeriod{
+  animation:periodLandVerySlow 7s ease forwards!important;
+}
+#dailyIntro .wordDust{animation:dustEmergeVerySlow 7s ease forwards!important}
+#dailyIntro .introHint{animation:writingHintVerySlow 7s ease forwards!important}
+
+@keyframes periodLandVerySlow{
+  0%,72%{opacity:0;transform:scale(.2)}
+  75%{opacity:1;transform:scale(1.45)}
+  80%,88%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+@keyframes dustEmergeVerySlow{
+  0%,70%{opacity:0;transform:translateY(4px)}
+  80%{opacity:.3}
+  90%{opacity:.48;transform:translateY(-4px)}
+  100%{opacity:0;transform:translateY(-14px)}
+}
+@keyframes writingHintVerySlow{
+  0%,15%{opacity:0}
+  22%,78%{opacity:.25}
+  92%,100%{opacity:0}
+}
+
+
+/* V1.0.14 Abhi */
+#dailyIntro .s1{display:block!important;animation:writeStroke 3.6s linear .7s forwards,fadeStroke .85s ease 4.75s forwards!important}
+#dailyIntro .s2,#dailyIntro .s3,#dailyIntro .s4{display:none!important}
+#dailyIntro .finalPeriod{left:72.5%!important;top:53.15%!important;animation:periodLandAbhi 5.8s ease forwards!important}
+#dailyIntro .wordDust{animation:dustEmergeAbhi 5.8s ease forwards!important}
+@keyframes periodLandAbhi{0%,74%{opacity:0;transform:scale(.2)}78%{opacity:1;transform:scale(1.45)}83%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.5)}}
+@keyframes dustEmergeAbhi{0%,73%{opacity:0}83%{opacity:.28}92%{opacity:.45;transform:translateY(-4px)}100%{opacity:0;transform:translateY(-14px)}}
+
+
+/* V1.0.15 — clean Abhi writing, no travelling light */
+#dailyIntro .s1{
+  animation:writeStroke 2.75s linear .55s forwards,
+            fadeStroke .75s ease 3.95s forwards!important;
+}
+#dailyIntro .penSpark{display:none!important}
+#dailyIntro .finalPeriod{
+  animation:periodLandAbhiClean 4.85s ease forwards!important;
+}
+#dailyIntro .wordDust{
+  animation:dustEmergeAbhiClean 4.85s ease forwards!important;
+}
+@keyframes periodLandAbhiClean{
+  0%,69%{opacity:0;transform:scale(.2)}
+  73%{opacity:1;transform:scale(1.4)}
+  79%,88%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+@keyframes dustEmergeAbhiClean{
+  0%,68%{opacity:0}
+  80%{opacity:.25}
+  91%{opacity:.42;transform:translateY(-4px)}
+  100%{opacity:0;transform:translateY(-14px)}
+}
+
+
+/* V1.0.17 — safe faster intro timing; transition logic unchanged */
+#dailyIntro .s1{
+  animation:writeStroke 1.65s linear .30s forwards,
+            fadeStroke .55s ease 2.65s forwards!important;
+}
+#dailyIntro .wordDust{
+  animation:dustSafeEarly 4.35s ease forwards!important;
+}
+#dailyIntro .finalPeriod{
+  animation:periodSafe 4.35s ease forwards!important;
+}
+@keyframes dustSafeEarly{
+  0%,10%{opacity:0;transform:translateY(3px)}
+  22%{opacity:.16}
+  42%{opacity:.34}
+  66%{opacity:.44;transform:translateY(-3px)}
+  88%{opacity:.18;transform:translateY(-8px)}
+  100%{opacity:0;transform:translateY(-13px)}
+}
+@keyframes periodSafe{
+  0%,50%{opacity:0;transform:scale(.2)}
+  55%{opacity:1;transform:scale(1.35)}
+  63%,80%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+
+
+/* V1.0.18 Mona message */
+#dailyIntro .monaLoadingMessage{position:absolute;left:50%;top:48%;width:min(82vw,340px);transform:translate(-50%,-50%);text-align:center;color:rgba(225,238,255,.96);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:20px;line-height:1.48;font-weight:400;letter-spacing:.01em;text-shadow:0 0 10px rgba(135,190,255,.38),0 0 24px rgba(75,125,235,.20);opacity:0;animation:monaMessage 4.35s ease forwards}#dailyIntro .finalPeriod,#dailyIntro .penSpark,#dailyIntro .writingCanvas{display:none!important}@keyframes monaMessage{0%{opacity:0;transform:translate(-50%,-46%)}16%{opacity:1;transform:translate(-50%,-50%)}72%{opacity:1}91%{opacity:.22;filter:blur(.4px)}100%{opacity:0;transform:translate(-50%,-52%);filter:blur(1.5px)}}
+</style>
+<style id="rise-anyway-v111">
+:root{--violet:#d8bd82;--violet-bright:#f0ddb0;--violet-deep:#a67c3d;--line:rgba(225,196,132,.18)}
+.app{background:radial-gradient(ellipse at 50% -8%,rgba(49,84,128,.22),transparent 30%),linear-gradient(180deg,#061225 0%,#050d1b 48%,#030812 100%)}
+/* V1.1.2 — phoenix-only masthead */
+.wisdomHeader.riseHeader{height:126px;padding-top:calc(8px + env(safe-area-inset-top));gap:0}
+.riseHeader .headerAura{background:radial-gradient(ellipse at 50% 20%,rgba(87,125,174,.16),rgba(22,51,88,.05) 50%,transparent 72%)}
+.risePhoenix{width:92px;height:64px;object-fit:cover;object-position:center 49%;margin:0 auto 4px;mix-blend-mode:screen;opacity:.96;filter:contrast(1.08) saturate(.9) drop-shadow(0 0 10px rgba(232,203,145,.12));clip-path:ellipse(46% 44% at 50% 50%)}
+.riseTitle{margin:0;text-align:center}
+.riseTitle b,.riseTitle em{display:none!important}
+.riseTitle small{display:block;margin-top:2px;color:#afc1de;letter-spacing:3.7px;font-size:9px;line-height:1}
+.riseMotto{margin-top:9px;font-size:7.5px;letter-spacing:2.3px;color:#bfcce0;opacity:.9}
+.screen{height:calc(100dvh - 126px - 116px)}
+.fullQuote{max-width:360px}
+#wisdomCard{padding-top:18px}
+#today.longEntry{overflow-y:auto!important;-webkit-overflow-scrolling:touch}
+#today.longEntry .wisdomCard{height:auto;min-height:100%;justify-content:flex-start;padding-top:18px;padding-bottom:30px}
+#today.longEntry .mark{font-size:34px;margin-bottom:10px}
+#today.longEntry .fullQuote{font-size:15px!important;line-height:1.5!important;text-align:left;max-width:365px}
+#today.longEntry .rule{margin-top:16px}
+#today.longEntry .reflection{padding-bottom:20px}
+.bottomnav .on{background:linear-gradient(135deg,rgba(176,136,66,.25),rgba(82,65,40,.13))}
+</style>
+</head><body>
+
+
+
+
+<div id="dailyIntro" aria-hidden="true">
+  <div class="writingNight"></div>
+  <div class="monaLoadingMessage">You have to take care of the person Mona loves the most</div>
+  <div class="finalPeriod"></div>
+  <div class="wordDust"></div>
+  <div class="introHint">tap to skip</div>
+</div>
+
+
+
+<main class="app">
+<header class="wisdomHeader riseHeader"><div class="headerAura"></div><img class="risePhoenix" src="assets/rise-phoenix-only.png" alt=""><div class="headerTitle riseTitle"><b>RISE</b><em>ANYWAY</em><small id="date"></small></div><div class="riseMotto">PROGRESS OVER PERFECTION.</div></header>
+<section id="today" class="screen active"><article class="wisdomCard" id="wisdomCard"><div class="mark">“</div><div id="fullQuote" class="fullQuote"></div><div class="rule"></div><div class="source"><b id="who"></b></div><div class="reflection"><button id="reflectionToggle">✦ MAKE IT YOURS <span>How will you apply this today?</span></button><div id="reflectionBox"><textarea id="reflectionText" maxlength="600" placeholder="Write a thought for today…"></textarea><button id="saveReflection">SAVE REFLECTION</button></div></div></article></section>
+<section id="library" class="screen"><h2>LIBRARY</h2><p class="libraryCount"><span id="quoteCount"></span> APPROVED ENTRIES</p><div class="tabs"><button class="tab on" data-tab="all">ALL WISDOM</button><button class="tab" data-tab="favs">FAVORITES</button></div><div id="libraryList"></div></section>
+<div class="bottomnav"><button data-page="today" class="on"><span class="navIcon">☼</span><small>TODAY</small></button><button id="fav"><span class="navIcon">♡</span><small>FAVOURITE</small></button><button data-page="library"><span class="navIcon">▤</span><small>LIBRARY</small></button></div><div id="toast"></div></main><script>window.DW_QUOTES = [
+  {
+    "id": "HP-001",
+    "world": "Harry Potter",
+    "character": "Albus Dumbledore",
+    "source": "Harry Potter and the Philosopher's Stone",
+    "quote": "It does not do to dwell on dreams and forget to live.",
+    "highlight": "LIVE IN THE PRESENT",
+    "theme": "Presence; action; perspective",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "HP-002",
+    "world": "Harry Potter",
+    "character": "Albus Dumbledore",
+    "source": "Harry Potter and the Chamber of Secrets",
+    "quote": "It is our choices, Harry, that show what we truly are, far more than our abilities.",
+    "highlight": "OUR CHOICES",
+    "theme": "Character; agency; self-belief",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "HP-003",
+    "world": "Harry Potter",
+    "character": "Hagrid",
+    "source": "Harry Potter and the Goblet of Fire",
+    "quote": "What's comin' will come, an' we'll meet it when it does.",
+    "highlight": "WE'LL MEET IT",
+    "theme": "Courage; anxiety; resilience",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "HP-004",
+    "world": "Harry Potter",
+    "character": "Sirius Black",
+    "source": "Harry Potter and the Order of the Phoenix",
+    "quote": "The world isn't split into good people and Death Eaters.",
+    "highlight": "NOT BLACK AND WHITE",
+    "theme": "Perspective; judgment; maturity",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "HP-005",
+    "world": "Harry Potter",
+    "character": "Albus Dumbledore",
+    "source": "Harry Potter and the Goblet of Fire",
+    "quote": "It matters not what someone is born, but what they grow to be!",
+    "highlight": "WHAT THEY GROW TO BE",
+    "theme": "Growth; identity; self-belief",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-001",
+    "world": "Marvel",
+    "character": "Uncle Ben",
+    "source": "Spider-Man (2002)",
+    "quote": "With great power comes great responsibility.",
+    "highlight": "GREAT RESPONSIBILITY",
+    "theme": "Responsibility; character",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-004",
+    "world": "Marvel",
+    "character": "Tony Stark",
+    "source": "Spider-Man: Homecoming (2017)",
+    "quote": "If you're nothing without this suit, then you shouldn't have it.",
+    "highlight": "NOTHING WITHOUT THIS SUIT",
+    "theme": "Self-worth; competence; growth",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-005",
+    "world": "Marvel",
+    "character": "Steve Rogers",
+    "source": "Captain America: The First Avenger (2011)",
+    "quote": "I can do this all day.",
+    "highlight": "ALL DAY",
+    "theme": "Perseverance; courage",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-006",
+    "world": "Marvel",
+    "character": "Thor",
+    "source": "Thor: The Dark World (2013)",
+    "quote": "I'd rather be a good man than a great king.",
+    "highlight": "A GOOD MAN",
+    "theme": "Character; humility; values",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-008",
+    "world": "Marvel",
+    "character": "Frigga",
+    "source": "Avengers: Endgame (2019)",
+    "quote": "Thor: I'm completely destroyed. My mom died. And my brother— and my planet. It's just all gone.\nFrigga: Everyone fails at who they're supposed to be, Thor. The measure of a person, of a hero... is how well they succeed at being who they are.",
+    "highlight": "HOW WELL THEY SUCCEED AT BEING WHO THEY ARE",
+    "theme": "Self-acceptance; identity; failure; expectations; authenticity; rebuilding",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-009",
+    "world": "Marvel",
+    "character": "Ancient One",
+    "source": "Doctor Strange (2016)",
+    "quote": "We never lose our demons, Mordo. We only learn to live above them.",
+    "highlight": "WE ONLY LEARN TO LIVE ABOVE THEM",
+    "theme": "Self-mastery; acceptance; resilience; inner struggle",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-010",
+    "world": "Marvel",
+    "character": "Natasha Romanoff / Black Widow",
+    "source": "Avengers: Endgame (2019)",
+    "quote": "I don't judge people on their worst mistakes.",
+    "highlight": "WORST MISTAKES",
+    "theme": "Forgiveness; compassion; perspective; redemption",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-011",
+    "world": "Marvel",
+    "character": "Thor Odinson",
+    "source": "Thor: Ragnarok (2017)",
+    "quote": "I choose to run towards my problems, and not away from them. Because that's what heroes do.",
+    "highlight": "RUN TOWARDS MY PROBLEMS",
+    "theme": "Courage; confronting problems; action; responsibility",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-012",
+    "world": "Marvel",
+    "character": "Tony Stark / Iron Man",
+    "source": "Avengers: Endgame (2019)",
+    "quote": "It's not about how much we lost. It's about how much we have left.",
+    "highlight": "HOW MUCH WE HAVE LEFT",
+    "theme": "Gratitude; resilience; perspective; moving forward",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-013",
+    "world": "Marvel",
+    "character": "Natasha Romanoff / Black Widow",
+    "source": "Black Widow (2021)",
+    "quote": "At some point, we all have to choose between what the world wants you to be and who you are.",
+    "highlight": "WHO YOU ARE",
+    "theme": "Identity; authenticity; courage; independence",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-014",
+    "world": "Marvel",
+    "character": "Shuri",
+    "source": "Black Panther (2018)",
+    "quote": "Just because something works doesn't mean it can't be improved.",
+    "highlight": "IT CAN'T BE IMPROVED",
+    "theme": "Continuous improvement; curiosity; growth; innovation",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-015",
+    "world": "Marvel",
+    "character": "Dr. Abraham Erskine",
+    "source": "Captain America: The First Avenger (2011)",
+    "quote": "Whatever happens tomorrow, you must promise me one thing. That you will stay who you are, not a perfect soldier, but a good man.",
+    "highlight": "NOT A PERFECT SOLDIER, BUT A GOOD MAN",
+    "theme": "Character; integrity; humility; staying true to yourself; goodness",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-016",
+    "world": "Marvel",
+    "character": "Peggy Carter",
+    "source": "Captain America: The First Avenger (2011)",
+    "quote": "The world has changed and none of us can go back. All we can do is our best, and sometimes the best that we can do is to start over.",
+    "highlight": "SOMETIMES THE BEST THAT WE CAN DO IS TO START OVER",
+    "theme": "Starting over; acceptance; change; resilience; moving forward",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "MAR-017",
+    "world": "Marvel",
+    "character": "Loki",
+    "source": "Avengers: Infinity War (2018)",
+    "quote": "I assure you, brother, the sun will shine on us again.",
+    "highlight": "THE SUN WILL SHINE ON US AGAIN",
+    "theme": "Hope; optimism; difficult times; perseverance",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "DC-001",
+    "world": "DC",
+    "character": "Alfred Pennyworth",
+    "source": "Batman Begins (2005)",
+    "quote": "Why do we fall, sir? So that we can learn to pick ourselves up.",
+    "highlight": "PICK OURSELVES UP",
+    "theme": "Resilience; recovery",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "DC-002",
+    "world": "DC",
+    "character": "Ra's al Ghul / Ducard",
+    "source": "Batman Begins (2005)",
+    "quote": "Training is nothing! Will is everything!",
+    "highlight": "WILL IS EVERYTHING",
+    "theme": "Willpower; discipline",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "DC-004",
+    "world": "DC",
+    "character": "Bruce Wayne / Batman",
+    "source": "Batman Begins (2005)",
+    "quote": "It's not who I am underneath, but what I do that defines me.",
+    "highlight": "WHAT I DO",
+    "theme": "Action; character",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ROC-001",
+    "world": "Rocky",
+    "character": "Rocky Balboa",
+    "source": "Rocky (1976)",
+    "quote": "'Cause all I wanna do is go the distance. Nobody's ever gone the distance with Creed, and if I can go that distance, you see, and that bell rings and I'm still standin', I'm gonna know for the first time in my life, see, that I weren't just another bum from the neighborhood.",
+    "highlight": "GO THE DISTANCE",
+    "theme": "Endurance; self-worth; redefining success",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ROC-002",
+    "world": "Rocky",
+    "character": "Apollo Creed",
+    "source": "Rocky III (1982)",
+    "quote": "Apollo: He's hooking. He's hooking. He's hooking! Damn, Rock, come on! What's the matter with you?\nRocky: Tomorrow. Let's do it tomorrow.\nApollo: There is no tomorrow! THERE IS NO TOMORROW! THERE IS NO TOMORROW!",
+    "highlight": "THERE IS NO TOMORROW!",
+    "theme": "Action now; discipline; urgency; commitment",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ROC-003",
+    "world": "Rocky",
+    "character": "Rocky Balboa & Adrian Balboa",
+    "source": "Rocky III (1982)",
+    "quote": "Adrian: Why don't you tell me the truth?\nRocky: What are you puttin’ me through Adrian? You wanna know the truth? I don't wanna lose what I got. At first, I didn't care about what happened. I'd go in the ring, get bust up. I didn't care! But now there's you and the kid. I don't wanna lose what I got!\nAdrian: What do we have that can't be replaced? What? A house. We got cars, we've got money! We got everything but the truth. What's the truth, dammit?!\nRocky: I'm afraid! All right? You wanna hear me say it? You wanna break me down? Alright I'm afraid. For the first time in my life, I'm afraid.\nAdrian: I'm afraid too. There's nothin’ wrong with that.\nRocky: There is. For me, there is.\nAdrian: Why? You're human aren't ya?!\nRocky: Look I don't know what I am. All I know is I'm a liar, and because of that, Mickey ain't here no more.\nAdrian: You didn't push him into anything! He was a grown man, and He did what he had to do. And you have no right to feel guilty for what happened. You don't! You were a champion, and you did what you were expected to do. You did what I and everybody else thought you should do. And you wanna tell me that those fights weren't real? That you were carried? Well I don't believe it! But it doesn't matter what I believe because you're the one that's got to carry that fear around inside you, afraid everybody is gonna take things away, that you'll be remembered as a coward, that you're not a man anymore. Well, none of it's true. But it doesn't matter if I tell you. It doesn't matter because you're the one that's got to settle it. Get rid of it! Because when all the smoke is cleared, and everyone is through chanting your name, it's just gonna be us. And you can't live like this. We can't live like this. Cos it's gonna bother you for the rest of your life. Look what it's doing to you now. Apollo thinks you can do it. So do I. But you gotta wanna do it for the right reasons. Not for the guilt over Mickey. Not for the people, not for the title, not for money, or me - but for you. Just you. Just you alone.\nRocky: And if I lose?\nAdrian: Then you lose. But at least you lose with no excuses. No fear. And I know you could live with that.\nRocky: How'd you get so tough?",
+    "highlight": "",
+    "theme": "Fear; courage; self-belief; intrinsic motivation; honesty",
+    "fullTextStatus": "FULL TEXT RECEIVED / MERGED FULL SCENE",
+    "status": "KEEP"
+  },
+  {
+    "id": "ROC-006",
+    "world": "Rocky",
+    "character": "Rocky Balboa",
+    "source": "Rocky Balboa (2006)",
+    "quote": "You ain’t gonna believe this — but you used to fit right here. I'd hold you up to say to your mother, “This kid’s gonna be the best kid in the world. This kid's gonna be somebody better than anybody I ever knew.”\n\nAnd you grew up good and wonderful and it was great just watching you every day was a privilege.\n\nThen the time come for you to be your own man, and take on the world, and you did. But somewhere along the line, you changed. You stopped being you. You let people stick a finger in your face and tell you you're no good. And when things got hard, you started looking for something to blame. Like a big shadow.\n\nLet me tell you something you already know. The world ain't all sunshine and rainbows. It's a very mean and nasty place and I don’t care how tough you are, it will beat you to your knees and keep you there permanently if you let it.\n\nYou, me, or nobody hits is gonna hit as hard as life. But it ain't about how hard you hit, it’s about how hard you get hit and keep movin’ forward. How much you can take, and keep movin’ forward. That’s how winning is done!\n\nNow, if you know what you're worth, go out and get what you're worth — but you gotta be willing to take the hits. And not pointin’ fingers sayin’ you ain't where you want to be because of him or her or anybody. Cowards do that and that ain't you! You're better than that.\n\nI’m always gonna love you no matter what. No matter what happens. You're my son and you're my blood. You're the best thing in my life. But until you start believing in yourself, you ain’t gonna have a life.",
+    "highlight": "KEEP MOVING FORWARD",
+    "theme": "Resilience; perseverance; adversity; forward momentum",
+    "fullTextStatus": "FULL TEXT RECEIVED / KEEP IN FULL",
+    "status": "KEEP"
+  },
+  {
+    "id": "NBD-001",
+    "world": "Never Back Down",
+    "character": "Jean Roqua",
+    "source": "Never Back Down (2008)",
+    "quote": "Never give up. Never back down.",
+    "highlight": "NEVER GIVE UP",
+    "theme": "Perseverance; resolve",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ANI-002",
+    "world": "Disney & Animation",
+    "character": "Mufasa",
+    "source": "The Lion King (1994)",
+    "quote": "You’ve forgotten who you are, and so forgotten me. Look inside yourself, Simba. You are more than what you have become. You must take your place in the Circle of Life.",
+    "highlight": "YOU ARE MORE THAN WHAT YOU HAVE BECOME",
+    "theme": "Identity; self-belief; potential; responsibility; purpose",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ANI-007",
+    "world": "Disney & Animation",
+    "character": "Olaf",
+    "source": "Frozen (2013)",
+    "quote": "Love is putting someone else's needs before yours.",
+    "highlight": "LOVE IS...",
+    "theme": "Love; selflessness",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "SH-001",
+    "world": "Sherlock Holmes",
+    "character": "Sherlock Holmes",
+    "source": "A Scandal in Bohemia",
+    "quote": "It is a capital mistake to theorise before one has data. Insensibly one begins to twist facts to suit theories, instead of theories to suit facts.",
+    "highlight": "THEORIES TO SUIT FACTS",
+    "theme": "Evidence; judgment; thinking",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "SH-003",
+    "world": "Sherlock Holmes",
+    "character": "Sherlock Holmes",
+    "source": "The Hound of the Baskervilles",
+    "quote": "There is nothing more stimulating than a case where everything goes against you. We must cast round for another scent.",
+    "highlight": "EVERYTHING GOES AGAINST YOU",
+    "theme": "Resilience; problem-solving",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "SH-004",
+    "world": "Sherlock Holmes",
+    "character": "Sherlock Holmes",
+    "source": "The Red Circle",
+    "quote": "Education never ends, Watson. It is a series of lessons with the greatest for the last.",
+    "highlight": "EDUCATION NEVER ENDS",
+    "theme": "Learning; growth; curiosity",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ROC-007",
+    "world": "Rocky",
+    "character": "Apollo Creed & Tony “Duke” Evers",
+    "source": "Rocky II (1979)",
+    "quote": "Apollo: Do you think I beat him the last time? Do you?\nDuke: You got the decision.\nApollo: Man, I won, but I didn't beat him!\nDuke: What are you afraid of?\nApollo: Tony.\nDuke: Honest?\nApollo: Yeah, honest.\nDuke: He's all wrong for us, baby. I saw you beat that man like I never saw no man get beat before, and the man kept coming after you. We don't need that kind of man in our life.",
+    "highlight": "I WON, BUT I DIDN'T BEAT HIM",
+    "theme": "Relentlessness; resilience; refusing to stay down",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ROC-008",
+    "world": "Rocky",
+    "character": "Rocky Balboa",
+    "source": "Rocky IV (1985)",
+    "quote": "DRAGOOOOOOOO!",
+    "highlight": "DRAGOOOOOOOO!",
+    "theme": "Training; discipline; perseverance; motivational trigger",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NBD-002",
+    "world": "Never Back Down",
+    "character": "Jake Tyler",
+    "source": "Never Back Down (2008)",
+    "quote": "Well if that's what you believe, then he was right. You gave up. Sometimes fighting the fight means that you have to do the one thing you don't want to do. You have to fight for his forgiveness. You can't just hide here forever. At least I can't. I'm gonna stop this guy. Win, lose, it makes no difference. It ends tonight. This is my fight. Everyone's got one.",
+    "highlight": "THIS IS MY FIGHT. EVERYONE'S GOT ONE.",
+    "theme": "Facing what you avoid; courage; accountability; difficult choices",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NBD-003",
+    "world": "Never Back Down",
+    "character": "Jean Roqua & Jake Tyler",
+    "source": "Never Back Down (2008)",
+    "quote": "Jean: Jake, no matter what happens, control the outcome. It's on you.\nJake: Always has been.\nJean: It's on you, always has been, always will be.",
+    "highlight": "IT'S ON YOU. ALWAYS HAS BEEN, ALWAYS WILL BE.",
+    "theme": "Personal responsibility; agency; accountability",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NBD-004",
+    "world": "Never Back Down",
+    "character": "Ryan McCarthy",
+    "source": "Never Back Down (2008)",
+    "quote": "If you gonna be the best, you have to take out the best.",
+    "highlight": "TAKE OUT THE BEST",
+    "theme": "Face the biggest challenge; growth through challenge",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NBD-005",
+    "world": "Never Back Down",
+    "character": "Jake Tyler",
+    "source": "Never Back Down (2008)",
+    "quote": "I don't want to be angry anymore. The only time I'm not is when I'm in the gym, and I'm training with you.",
+    "highlight": "I DON'T WANT TO BE ANGRY ANYMORE",
+    "theme": "Self-improvement; emotional control; training; change",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "AC-002",
+    "world": "Alex Cross",
+    "character": "Alex Cross",
+    "source": "Cross",
+    "quote": "The most striking thing about beautiful churches, to me, is that they were mostly designed by people who were inspired by a belief in something larger and more important than themselves, and this is how I try to lead my own life.",
+    "highlight": "SOMETHING LARGER AND MORE IMPORTANT THAN THEMSELVES",
+    "theme": "Purpose; meaning; service; humility; values",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "ANI-010",
+    "world": "Disney & Animation",
+    "character": "Po & Lord Shen",
+    "source": "Kung Fu Panda 2 (2011)",
+    "quote": "Shen: How did you? How did you do it?\nPo: You know? You just keep your elbows up, keep the shoulders loose?\nShen: Not that, how did you find peace? I took away your parents, everything, I scarred you for life.\nPo: See, that’s the thing Shen, scars heal.\nShen: No they don’t, wounds heal.\nPo: Oh yeah? Well, what do scars do, they fade I guess?\nShen: I don’t care what scars do.\nPo: You should Shen, you gotta let go of that stuff from the past, cause it just doesn’t matter, the only thing that matters is what you choose to be now.",
+    "highlight": "THE ONLY THING THAT MATTERS IS WHAT YOU CHOOSE TO BE NOW",
+    "theme": "Letting go of the past; identity; healing; choice; inner peace",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-001",
+    "world": "General Wisdom",
+    "character": "Sir Edmund Hillary / evolved saying",
+    "source": "Interview tradition / attribution nuanced",
+    "quote": "It is not the mountain we conquer, but ourselves.",
+    "highlight": "SELF-MASTERY",
+    "theme": "Self-mastery; challenge; discipline",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP — attribution nuanced"
+  },
+  {
+    "id": "NF-002",
+    "world": "General Wisdom",
+    "character": "Squire Bill Widener (quoted by Theodore Roosevelt)",
+    "source": "Theodore Roosevelt, Autobiography (1913)",
+    "quote": "Do what you can, with what you've got, where you are.",
+    "highlight": "DO WHAT YOU CAN",
+    "theme": "Action; resourcefulness; starting",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-003",
+    "world": "General Wisdom",
+    "character": "Les Brown",
+    "source": "Live Your Dreams (1992)",
+    "quote": "You are never too old to set another goal or to dream a new dream.",
+    "highlight": "ANOTHER GOAL",
+    "theme": "Reinvention; hope; goals",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-004",
+    "world": "General Wisdom",
+    "character": "Proverb / uncertain origin",
+    "source": "Modern proverb",
+    "quote": "It always seems impossible until it's done.",
+    "highlight": "UNTIL IT'S DONE",
+    "theme": "Perseverance; possibility",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP — attribution uncertain"
+  },
+  {
+    "id": "NF-005",
+    "world": "General Wisdom",
+    "character": "J. K. Rowling",
+    "source": "Harvard commencement address (2008)",
+    "quote": "And so rock bottom became the solid foundation on which I rebuilt my life.",
+    "highlight": "SOLID FOUNDATION",
+    "theme": "Failure; rebuilding; resilience",
+    "fullTextStatus": "SCENE/PASSAGE — FULL TEXT MAY BE NEEDED",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-006",
+    "world": "General Wisdom",
+    "character": "Mary Anne Radmacher",
+    "source": "Author's poem/artwork; later book",
+    "quote": "Courage doesn't always roar. Sometimes courage is the quiet voice at the end of the day saying, 'I will try again tomorrow.'",
+    "highlight": "I WILL TRY AGAIN TOMORROW",
+    "theme": "Courage; perseverance; resilience",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-011",
+    "world": "General Wisdom",
+    "character": "Jim Henson",
+    "source": "Recalled by Brian Henson",
+    "quote": "If you want to be fascinating, be fascinated.",
+    "highlight": "BE FASCINATED",
+    "theme": "Curiosity; creativity; presence",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-012",
+    "world": "General Wisdom",
+    "character": "Dale Carnegie",
+    "source": "How to Win Friends and Influence People",
+    "quote": "To be interesting, be interested.",
+    "highlight": "BE INTERESTED",
+    "theme": "Listening; connection; curiosity",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-015",
+    "world": "General Wisdom",
+    "character": "Attribution uncertain",
+    "source": "Common modern quotation",
+    "quote": "It is never too late to be what you might have been.",
+    "highlight": "IT IS NEVER TOO LATE",
+    "theme": "Reinvention; possibility; hope",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP — attribution uncertain"
+  },
+  {
+    "id": "NF-016",
+    "world": "General Wisdom",
+    "character": "Henry Ford",
+    "source": "My Life and Work",
+    "quote": "Failure is only the opportunity more intelligently to begin again.",
+    "highlight": "BEGIN AGAIN",
+    "theme": "Failure; learning; resilience",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-020",
+    "world": "General Wisdom",
+    "character": "Modern paraphrase of Buddhist teaching",
+    "source": "Modern wording",
+    "quote": "You yourself, as much as anybody in the entire universe, deserve your love and affection.",
+    "highlight": "DESERVE YOUR LOVE AND AFFECTION",
+    "theme": "Self-compassion; kindness; self-respect",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP — attribution corrected"
+  },
+  {
+    "id": "NF-021",
+    "world": "General Wisdom",
+    "character": "Steve Jobs",
+    "source": "Stanford commencement address (2005)",
+    "quote": "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma - which is living with the results of other people's thinking. Don't let the noise of other's opinions drown out your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary.",
+    "highlight": "YOUR TIME IS LIMITED",
+    "theme": "Authenticity; courage; purpose",
+    "fullTextStatus": "FULL TEXT RECEIVED",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-022",
+    "world": "General Wisdom",
+    "character": "Steve Jobs",
+    "source": "Stanford commencement address (2005)",
+    "quote": "Of course it was impossible to connect the dots looking forward when I was in college. But it was very, very clear looking backwards ten years later. Again, you can’t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something — your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.",
+    "highlight": "CONNECT THE DOTS",
+    "theme": "Trust; uncertainty; perspective",
+    "fullTextStatus": "FULL TEXT RECEIVED / KEEP IN FULL",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-023",
+    "world": "General Wisdom",
+    "character": "Aesop tradition",
+    "source": "The Lion and the Mouse — traditional moral",
+    "quote": "No act of kindness, no matter how small, is ever wasted.",
+    "highlight": "NO ACT OF KINDNESS",
+    "theme": "Kindness; generosity; humanity",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-024",
+    "world": "General Wisdom",
+    "character": "Apple / Think Different campaign",
+    "source": "Think Different (1997); Steve Jobs narration",
+    "quote": "Here's to the crazy ones… the people who are crazy enough to think that they can change the world are the ones who do.",
+    "highlight": "CRAZY ENOUGH TO CHANGE THE WORLD",
+    "theme": "Individuality; ambition; creativity",
+    "fullTextStatus": "FULL TEXT RECEIVED",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-027",
+    "world": "General Wisdom",
+    "character": "Arnold Schwarzenegger",
+    "source": "1982 Boston Globe interview",
+    "quote": "When you go through hardships and decide not to surrender, that is strength.",
+    "highlight": "DECIDE NOT TO SURRENDER",
+    "theme": "Adversity; resilience; strength",
+    "fullTextStatus": "SCENE/PASSAGE — FULL TEXT MAY BE NEEDED",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-029",
+    "world": "General Wisdom",
+    "character": "Arnold Schwarzenegger",
+    "source": "First Inaugural Address as Governor of California (2003)",
+    "quote": "What we face may look insurmountable… What I learned is that we are always stronger than we know.",
+    "highlight": "STRONGER THAN WE KNOW",
+    "theme": "Self-belief; training; perseverance",
+    "fullTextStatus": "FULL TEXT RECEIVED",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-032",
+    "world": "General Wisdom",
+    "character": "Arnold Schwarzenegger",
+    "source": "USC commencement speech (2009)",
+    "quote": "Just remember, you can't climb the ladder of success with your hands in your pockets.",
+    "highlight": "HANDS OUT OF YOUR POCKETS",
+    "theme": "Action; effort; initiative",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-034",
+    "world": "General Wisdom",
+    "character": "Wayne Gretzky",
+    "source": "Attributed to Gretzky in modern proverb references",
+    "quote": "You miss 100% of the shots you don't take.",
+    "highlight": "TAKE THE SHOT",
+    "theme": "Courage; opportunity; action",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-035",
+    "world": "General Wisdom",
+    "character": "Joe Sabah (quoted by Zig Ziglar)",
+    "source": "Zig Ziglar, Over the Top (1994)",
+    "quote": "You don't have to be great to start, but you have to start to be great.",
+    "highlight": "START TO BE GREAT",
+    "theme": "Starting; action; growth; courage",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-036",
+    "world": "General Wisdom",
+    "character": "Maya Angelou",
+    "source": "Quoted by Oprah Winfrey; documented 1995",
+    "quote": "You did what you knew how to do, and when you knew better, you did better.",
+    "highlight": "WHEN YOU KNEW BETTER, YOU DID BETTER",
+    "theme": "Growth; learning; self-compassion; accountability",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-037",
+    "world": "General Wisdom",
+    "character": "Suzy Kassem",
+    "source": "Rise Up and Salute the Sun (2010); earlier 2008 blog",
+    "quote": "Doubt kills more dreams than failure ever will.",
+    "highlight": "DOUBT KILLS MORE DREAMS",
+    "theme": "Self-belief; courage; doubt; dreams",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-038",
+    "world": "General Wisdom",
+    "character": "Samuel Beckett",
+    "source": "Worstward Ho (1983)",
+    "quote": "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better.",
+    "highlight": "FAIL BETTER",
+    "theme": "Failure; persistence; experimentation; improvement",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-039",
+    "world": "General Wisdom",
+    "character": "Robert H. Schuller",
+    "source": "Tough Times Never Last, but Tough People Do! (1983/1984 editions)",
+    "quote": "Tough times never last, but tough people do.",
+    "highlight": "TOUGH PEOPLE DO",
+    "theme": "Resilience; adversity; endurance",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-040",
+    "world": "General Wisdom",
+    "character": "Albert Einstein",
+    "source": "LIFE magazine, 'Old Man's Advice to Youth' (May 2, 1955)",
+    "quote": "Try not to become a man of success but rather try to become a man of value.",
+    "highlight": "BECOME A PERSON OF VALUE",
+    "theme": "Purpose; contribution; character; values",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  },
+  {
+    "id": "NF-041",
+    "world": "General Wisdom",
+    "character": "Anonymous / origin uncertain",
+    "source": "English-language saying; Chinese attribution unsupported",
+    "quote": "The best time to plant a tree was 20 years ago. The second best time is now.",
+    "highlight": "THE SECOND BEST TIME IS NOW",
+    "theme": "Starting; regret; action; renewal",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP — attribution corrected"
+  },
+  {
+    "id": "NF-042",
+    "world": "General Wisdom",
+    "character": "Laozi (Lao Tzu), traditionally ascribed",
+    "source": "Tao Te Ching, chapter 64; modern English rendering",
+    "quote": "A journey of a thousand miles begins with a single step.",
+    "highlight": "BEGINS WITH A SINGLE STEP",
+    "theme": "Starting; patience; progress; persistence",
+    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "status": "KEEP"
+  }
+];
+</script><script>const quotes=(window.DW_QUOTES||[]).filter(q=>q.quote);
+const $=id=>document.getElementById(id);
+const DAY=86400000;
+const START_UTC=Date.UTC(2026,8,1); // 1 September 2026
+const localDayUTC=(d=new Date())=>Date.UTC(d.getFullYear(),d.getMonth(),d.getDate());
+const dayNumber=()=>Math.max(0,Math.floor((localDayUTC()-START_UTC)/DAY));
+const dailyIndex=()=>quotes.length?Math.min(dayNumber(),quotes.length-1):0;
+const todayKey=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+let i=dailyIndex();
+// Today is intentionally locked to the current calendar day. Historical/future swiping is disabled.
+localStorage.removeItem('dwIndex');
+let favs=new Set(JSON.parse(localStorage.dwFavs||'[]'));
+let reflections=JSON.parse(localStorage.dwReflections||'{}');
+function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function quoteHtml(q){
+  const raw=(q.quote||'').trim();
+  // R6: q.highlight is deliberately ignored. The quote is rendered as stored,
+  // in one font, one colour and one weight.
+  // Dialogue speaker labels start a new paragraph for readability.
+  const normalized=raw.replace(/\s+(?=([A-Z][A-Za-z.'’ -]{1,35}:\s*))/g,'\n');
+  const blocks=normalized.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  return blocks.map(block=>`<p class="quoteBlock">${esc(block)}</p>`).join('');
+}
+function dateForIndex(n){return new Date(START_UTC+n*DAY)}
+function dateLabelForIndex(n){return dateForIndex(n).toLocaleDateString('en-AU',{timeZone:'UTC',month:'short',day:'numeric'}).toUpperCase()}
+function save(){localStorage.dwFavs=JSON.stringify([...favs]);localStorage.dwReflections=JSON.stringify(reflections)}
+function reflectionKey(){return todayKey()+'::'+quotes[i].id}
+function render(){if(!quotes.length)return;i=dailyIndex();const q=quotes[i];$('today').classList.toggle('longEntry',(q.quote||'').length>700);$('date').textContent=dateLabelForIndex(i);$('fullQuote').innerHTML=quoteHtml(q);$('who').textContent=/uncertain|paraphrase|tradition|ascribed/i.test(q.character||'')?'Unknown':q.character;$('fav').classList.toggle('active',favs.has(q.id));$('fav').querySelector('.navIcon').textContent=favs.has(q.id)?'♥':'♡';$('reflectionText').value=reflections[reflectionKey()]||'';save()}
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1300)}
+function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='today'){i=dailyIndex();render()}if(p==='library')lib()}
+// Day navigation removed: one calendar day = one Daily Wisdom quote.
+$('fav').onclick=()=>{const id=quotes[i].id;favs.has(id)?favs.delete(id):favs.add(id);render();toast(favs.has(id)?'Added to favorites':'Removed from favorites')};
+$('reflectionToggle').onclick=()=>$('reflectionBox').classList.toggle('open');
+$('saveReflection').onclick=()=>{const v=$('reflectionText').value.trim();if(v)reflections[reflectionKey()]=v;else delete reflections[reflectionKey()];save();toast('Reflection saved')};
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(b.dataset.page));
+function lib(filter='all'){let h='';const unlocked=dailyIndex();quotes.forEach((q,n)=>{if(n>unlocked)return;if(filter==='favs'&&!favs.has(q.id))return;h+=`<div class="libitem" data-n="${n}"><span class="d">${esc(q.world)}</span><p>${esc(q.quote).replace(/\n/g,' ')}</p><small>${esc(q.character||'Unknown')}</small>${favs.has(q.id)?'<span class="heart">♥</span>':''}</div>`});$('libraryList').innerHTML=h||'<p class="empty">No favorites yet.</p>'}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');lib(t.dataset.tab)});
+// Swipe navigation removed. Vertical scrolling remains normal.
+$('quoteCount').textContent=quotes.length;
+render();
+if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));}
+if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)));}
+</script>
+
+<script>
+(function(){
+  const intro=document.getElementById('dailyIntro');
+  const spark=intro && intro.querySelector('.penSpark');
+  if(!intro || !spark) return;
+
+  const segments=[{id:'write1',start:700,dur:3600}];
+  const svg=intro.querySelector('.writingCanvas');
+  let started=null, raf=0;
+
+  function placeSpark(path,progress){
+    const len=path.getTotalLength();
+    const pt=path.getPointAtLength(len*Math.max(0,Math.min(1,progress)));
+    const svgPt=svg.createSVGPoint(); svgPt.x=pt.x; svgPt.y=pt.y;
+    const screenPt=svgPt.matrixTransform(svg.getScreenCTM());
+    spark.style.left=screenPt.x+'px';
+    spark.style.top=screenPt.y+'px';
+  }
+
+  function tick(ts){
+    if(!started) started=ts;
+    const t=ts-started;
+    let active=false;
+    for(const seg of segments){
+      if(t>=seg.start && t<=seg.start+seg.dur){
+        const path=document.getElementById(seg.id);
+        if(path){
+          placeSpark(path,(t-seg.start)/seg.dur);
+          spark.style.opacity='1';
+          active=true;
+        }
+        break;
+      }
+    }
+    if(!active) spark.style.opacity='0';
+    if(t<5200 && document.body.contains(intro)) raf=requestAnimationFrame(tick);
+  }
+  spark.style.animation='none';
+  raf=requestAnimationFrame(tick);
+})();
+</script>
+
+
+<script>
+(function () {
+  var intro = document.getElementById('dailyIntro');
+  if (!intro) return;
+
+  var closed = false;
+  function forceCloseIntro() {
+    if (closed) return;
+    closed = true;
+    intro.style.pointerEvents = 'none';
+    intro.style.opacity = '0';
+    setTimeout(function () {
+      if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+    }, 650);
+  }
+
+  /* guaranteed handoff to the app even if an older animation callback fails */
+  setTimeout(forceCloseIntro, 4350);
+
+  /* preserve tap-to-skip */
+  intro.addEventListener('click', forceCloseIntro, {once:true});
+  intro.addEventListener('touchend', forceCloseIntro, {once:true, passive:true});
+})();
+</script>
+
+</body></html>

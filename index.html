@@ -668,20 +668,155 @@ footer { display:none !important; }
   90%,100%{opacity:0}
 }
 
+
+/* V1.0.9 — invisible writing intro */
+#dailyIntro{
+  position:fixed!important;inset:0!important;z-index:99999!important;
+  overflow:hidden!important;background:#010611!important;
+  opacity:1;transition:opacity .8s ease;touch-action:manipulation;
+}
+#dailyIntro.introHide{opacity:0!important;pointer-events:none!important}
+
+/* suppress older intro visuals */
+#dailyIntro .softNight,#dailyIntro .spineGlow,#dailyIntro .pageWhisper,
+#dailyIntro .stardust,#dailyIntro .wisdomParticle,
+#dailyIntro .bookDarkness,#dailyIntro .bookNebula,#dailyIntro .bookSeam,
+#dailyIntro .bookBeam,#dailyIntro .pageArc,#dailyIntro .particleField,
+#dailyIntro .shootingStar,#dailyIntro .introNebula,#dailyIntro .introCore,
+#dailyIntro .introStar{display:none!important}
+
+#dailyIntro .writingNight{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 49%,rgba(42,82,162,.08),transparent 42%),
+    radial-gradient(ellipse at 50% 65%,rgba(76,122,232,.06),transparent 28%),
+    linear-gradient(180deg,#01040c 0%,#020817 62%,#030a1a 100%);
+  animation:writingNightBreathe 5s ease forwards;
+}
+
+#dailyIntro .writingCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  overflow:visible;
+}
+#dailyIntro .wisdomStroke{
+  fill:none;
+  stroke:rgba(199,227,255,.95);
+  stroke-width:1.65;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:url(#glowLine);
+  stroke-dasharray:100;
+  stroke-dashoffset:100;
+  opacity:0;
+}
+#dailyIntro .s1{animation:writeStroke 1.05s ease-out .55s forwards, fadeStroke 1s ease 3.65s forwards}
+#dailyIntro .s2{animation:writeStroke 1.05s ease-out 1.18s forwards, fadeStroke 1s ease 3.75s forwards}
+#dailyIntro .s3{animation:writeStroke 1.00s ease-out 1.82s forwards, fadeStroke 1s ease 3.85s forwards}
+#dailyIntro .s4{animation:writeStroke .95s ease-out 2.42s forwards, fadeStroke 1s ease 3.95s forwards}
+
+#dailyIntro .penSpark{
+  position:absolute;
+  left:18%;top:37.7%;
+  width:5px;height:5px;border-radius:50%;
+  background:#fff;
+  box-shadow:
+    0 0 6px 2px rgba(255,255,255,.95),
+    0 0 16px 5px rgba(124,183,255,.78),
+    0 0 28px 9px rgba(77,123,255,.30);
+  opacity:0;
+  animation:penTravel 4.15s cubic-bezier(.25,.65,.25,1) .45s forwards;
+}
+
+#dailyIntro .wordDust{
+  position:absolute;inset:0;
+  opacity:0;
+  background-image:
+    radial-gradient(circle at 12% 14%,rgba(220,239,255,.9) 0 1px,transparent 1.3px),
+    radial-gradient(circle at 72% 23%,rgba(153,205,255,.7) 0 1px,transparent 1.3px),
+    radial-gradient(circle at 36% 51%,rgba(213,235,255,.85) 0 1px,transparent 1.2px),
+    radial-gradient(circle at 58% 68%,rgba(142,194,255,.75) 0 1px,transparent 1.25px),
+    radial-gradient(circle at 82% 47%,rgba(218,238,255,.8) 0 1px,transparent 1.3px),
+    radial-gradient(circle at 25% 76%,rgba(177,216,255,.7) 0 1px,transparent 1.2px);
+  background-size:97px 101px,121px 113px,83px 89px,109px 127px,91px 103px,131px 119px;
+  animation:dustEmerge 5s ease forwards;
+}
+
+#dailyIntro .introHint{
+  position:absolute!important;left:50%!important;bottom:7.5%!important;
+  transform:translateX(-50%)!important;
+  color:rgba(210,224,255,.28)!important;
+  font:500 11px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;
+  letter-spacing:.22em!important;text-transform:uppercase!important;
+  opacity:0;animation:writingHint 5s ease forwards!important;
+}
+
+@keyframes writeStroke{
+  0%{stroke-dashoffset:100;opacity:0}
+  12%{opacity:.9}
+  100%{stroke-dashoffset:0;opacity:1}
+}
+@keyframes fadeStroke{
+  0%{opacity:1}
+  100%{opacity:0;filter:blur(2px)}
+}
+@keyframes penTravel{
+  0%{opacity:0;left:18%;top:37.7%;transform:scale(.7)}
+  5%{opacity:1}
+  22%{left:78%;top:38.4%;transform:scale(1)}
+  25%{opacity:.9}
+  28%{left:22%;top:43.1%}
+  48%{left:77%;top:43.8%}
+  52%{left:23%;top:48.2%}
+  70%{left:74%;top:49.0%}
+  74%{left:30%;top:53.6%}
+  91%{left:70%;top:54.3%;opacity:1}
+  100%{left:75%;top:55.2%;opacity:0;transform:scale(1.15)}
+}
+@keyframes dustEmerge{
+  0%,38%{opacity:0;transform:translateY(6px)}
+  58%{opacity:.36}
+  78%{opacity:.72;transform:translateY(-5px)}
+  100%{opacity:0;transform:translateY(-18px)}
+}
+@keyframes writingNightBreathe{
+  0%{filter:brightness(.55)}
+  35%{filter:brightness(.72)}
+  74%{filter:brightness(.96)}
+  100%{filter:brightness(.88)}
+}
+@keyframes writingHint{
+  0%,22%{opacity:0}
+  30%,73%{opacity:.28}
+  90%,100%{opacity:0}
+}
+
 </style></head><body>
 
 
 
+
 <div id="dailyIntro" aria-hidden="true">
-  <div class="softNight"></div>
-  <div class="spineGlow"></div>
-  <div class="pageWhisper pageWhisperLeft"></div>
-  <div class="pageWhisper pageWhisperRight"></div>
-  <div class="pageWhisper pageWhisperLeft second"></div>
-  <div class="pageWhisper pageWhisperRight second"></div>
-  <div class="stardust"><i class="wisdomParticle" style="--x:39.6%;--y:85.6%;--dx:-9.7vw;--rise:51.3vh;--s:1px;--delay:1.25s;--dur:3.25s"></i><i class="wisdomParticle" style="--x:50.2%;--y:80.0%;--dx:-12.2vw;--rise:44.1vh;--s:1.5px;--delay:1.89s;--dur:2.45s"></i><i class="wisdomParticle" style="--x:62.6%;--y:76.9%;--dx:-6.9vw;--rise:28.7vh;--s:1.5px;--delay:1.94s;--dur:2.82s"></i><i class="wisdomParticle" style="--x:65.6%;--y:83.3%;--dx:4.2vw;--rise:31.2vh;--s:1px;--delay:1.70s;--dur:3.28s"></i><i class="wisdomParticle" style="--x:35.1%;--y:76.6%;--dx:-6.9vw;--rise:30.8vh;--s:2.5px;--delay:1.93s;--dur:2.47s"></i><i class="wisdomParticle" style="--x:61.7%;--y:82.1%;--dx:1.0vw;--rise:29.2vh;--s:2.5px;--delay:1.35s;--dur:3.43s"></i><i class="wisdomParticle" style="--x:53.0%;--y:83.3%;--dx:9.9vw;--rise:37.4vh;--s:1.5px;--delay:2.54s;--dur:2.75s"></i><i class="wisdomParticle" style="--x:37.0%;--y:82.0%;--dx:0.8vw;--rise:38.4vh;--s:1.5px;--delay:2.71s;--dur:3.30s"></i><i class="wisdomParticle" style="--x:50.1%;--y:78.0%;--dx:-9.1vw;--rise:45.4vh;--s:2px;--delay:2.18s;--dur:3.25s"></i><i class="wisdomParticle" style="--x:63.6%;--y:85.1%;--dx:1.2vw;--rise:39.4vh;--s:1px;--delay:1.53s;--dur:2.49s"></i><i class="wisdomParticle" style="--x:32.3%;--y:78.5%;--dx:-5.2vw;--rise:51.3vh;--s:1.5px;--delay:1.32s;--dur:2.72s"></i><i class="wisdomParticle" style="--x:37.3%;--y:82.6%;--dx:12.3vw;--rise:34.7vh;--s:1px;--delay:1.54s;--dur:2.22s"></i><i class="wisdomParticle" style="--x:60.0%;--y:79.4%;--dx:-8.6vw;--rise:42.4vh;--s:1px;--delay:1.25s;--dur:2.93s"></i><i class="wisdomParticle" style="--x:46.5%;--y:76.8%;--dx:-11.2vw;--rise:51.7vh;--s:1px;--delay:1.15s;--dur:2.34s"></i><i class="wisdomParticle" style="--x:50.8%;--y:79.6%;--dx:8.0vw;--rise:44.7vh;--s:2.5px;--delay:1.27s;--dur:2.99s"></i><i class="wisdomParticle" style="--x:38.2%;--y:85.1%;--dx:-4.1vw;--rise:49.7vh;--s:1px;--delay:2.34s;--dur:2.66s"></i><i class="wisdomParticle" style="--x:67.7%;--y:76.0%;--dx:8.7vw;--rise:34.9vh;--s:2px;--delay:1.06s;--dur:3.45s"></i><i class="wisdomParticle" style="--x:59.9%;--y:85.9%;--dx:2.1vw;--rise:33.9vh;--s:1.5px;--delay:1.79s;--dur:2.31s"></i><i class="wisdomParticle" style="--x:54.0%;--y:81.0%;--dx:-0.7vw;--rise:33.1vh;--s:1px;--delay:1.20s;--dur:3.14s"></i><i class="wisdomParticle" style="--x:55.6%;--y:83.2%;--dx:0.4vw;--rise:31.0vh;--s:1.5px;--delay:2.01s;--dur:3.26s"></i><i class="wisdomParticle" style="--x:48.3%;--y:76.5%;--dx:-11.7vw;--rise:31.7vh;--s:1px;--delay:2.31s;--dur:3.12s"></i><i class="wisdomParticle" style="--x:54.2%;--y:76.2%;--dx:-3.5vw;--rise:42.3vh;--s:1px;--delay:2.76s;--dur:3.17s"></i><i class="wisdomParticle" style="--x:53.8%;--y:84.2%;--dx:1.8vw;--rise:44.6vh;--s:1.5px;--delay:1.95s;--dur:3.17s"></i><i class="wisdomParticle" style="--x:55.6%;--y:76.1%;--dx:2.9vw;--rise:58.0vh;--s:2.5px;--delay:1.58s;--dur:3.38s"></i><i class="wisdomParticle" style="--x:46.3%;--y:82.3%;--dx:-10.9vw;--rise:41.8vh;--s:2.5px;--delay:1.66s;--dur:3.42s"></i><i class="wisdomParticle" style="--x:63.3%;--y:81.2%;--dx:3.3vw;--rise:59.6vh;--s:1.5px;--delay:2.17s;--dur:2.34s"></i><i class="wisdomParticle" style="--x:49.4%;--y:79.8%;--dx:2.2vw;--rise:58.3vh;--s:1px;--delay:1.52s;--dur:3.00s"></i><i class="wisdomParticle" style="--x:63.0%;--y:82.8%;--dx:11.3vw;--rise:52.0vh;--s:2.5px;--delay:2.09s;--dur:2.67s"></i><i class="wisdomParticle" style="--x:47.2%;--y:80.9%;--dx:0.8vw;--rise:55.7vh;--s:1.5px;--delay:1.29s;--dur:2.85s"></i><i class="wisdomParticle" style="--x:63.9%;--y:85.9%;--dx:7.3vw;--rise:48.6vh;--s:1.5px;--delay:2.78s;--dur:2.56s"></i><i class="wisdomParticle" style="--x:62.4%;--y:78.7%;--dx:12.9vw;--rise:48.9vh;--s:1px;--delay:1.65s;--dur:3.46s"></i><i class="wisdomParticle" style="--x:61.0%;--y:83.5%;--dx:-6.5vw;--rise:54.8vh;--s:2px;--delay:1.95s;--dur:2.45s"></i><i class="wisdomParticle" style="--x:49.9%;--y:77.1%;--dx:-10.1vw;--rise:30.8vh;--s:1px;--delay:2.40s;--dur:3.49s"></i><i class="wisdomParticle" style="--x:66.0%;--y:83.9%;--dx:-9.4vw;--rise:48.1vh;--s:2.5px;--delay:1.48s;--dur:2.32s"></i><i class="wisdomParticle" style="--x:48.5%;--y:82.7%;--dx:-5.7vw;--rise:46.7vh;--s:1px;--delay:2.09s;--dur:3.32s"></i><i class="wisdomParticle" style="--x:55.8%;--y:79.2%;--dx:-12.0vw;--rise:58.4vh;--s:1px;--delay:2.18s;--dur:2.68s"></i><i class="wisdomParticle" style="--x:62.5%;--y:84.1%;--dx:5.8vw;--rise:47.8vh;--s:1.5px;--delay:1.40s;--dur:3.17s"></i><i class="wisdomParticle" style="--x:67.8%;--y:76.7%;--dx:10.4vw;--rise:58.2vh;--s:2px;--delay:1.63s;--dur:2.41s"></i><i class="wisdomParticle" style="--x:40.7%;--y:79.9%;--dx:-1.8vw;--rise:53.8vh;--s:1px;--delay:1.96s;--dur:2.31s"></i><i class="wisdomParticle" style="--x:66.2%;--y:79.4%;--dx:-7.8vw;--rise:59.2vh;--s:1px;--delay:2.00s;--dur:3.16s"></i><i class="wisdomParticle" style="--x:62.4%;--y:81.6%;--dx:-4.5vw;--rise:57.1vh;--s:2.5px;--delay:1.90s;--dur:2.34s"></i><i class="wisdomParticle" style="--x:58.3%;--y:76.8%;--dx:-9.4vw;--rise:52.7vh;--s:1px;--delay:1.59s;--dur:2.73s"></i><i class="wisdomParticle" style="--x:37.4%;--y:83.6%;--dx:-11.4vw;--rise:57.3vh;--s:2px;--delay:2.20s;--dur:2.57s"></i><i class="wisdomParticle" style="--x:61.9%;--y:80.4%;--dx:4.9vw;--rise:52.3vh;--s:1.5px;--delay:2.25s;--dur:3.48s"></i><i class="wisdomParticle" style="--x:49.6%;--y:79.7%;--dx:8.9vw;--rise:45.4vh;--s:1.5px;--delay:1.48s;--dur:3.43s"></i><i class="wisdomParticle" style="--x:62.7%;--y:84.4%;--dx:-5.8vw;--rise:49.0vh;--s:2px;--delay:1.96s;--dur:3.42s"></i><i class="wisdomParticle" style="--x:42.0%;--y:78.2%;--dx:0.7vw;--rise:53.3vh;--s:1.5px;--delay:2.17s;--dur:2.36s"></i><i class="wisdomParticle" style="--x:46.0%;--y:76.3%;--dx:-3.3vw;--rise:59.2vh;--s:1.5px;--delay:1.68s;--dur:2.24s"></i><i class="wisdomParticle" style="--x:68.7%;--y:84.3%;--dx:-12.6vw;--rise:55.3vh;--s:1.5px;--delay:2.04s;--dur:2.37s"></i><i class="wisdomParticle" style="--x:67.6%;--y:80.3%;--dx:3.4vw;--rise:59.8vh;--s:1px;--delay:1.67s;--dur:2.85s"></i><i class="wisdomParticle" style="--x:68.5%;--y:83.2%;--dx:-3.4vw;--rise:60.5vh;--s:1px;--delay:2.70s;--dur:3.05s"></i><i class="wisdomParticle" style="--x:49.1%;--y:77.7%;--dx:-6.9vw;--rise:40.1vh;--s:1.5px;--delay:2.68s;--dur:3.18s"></i><i class="wisdomParticle" style="--x:47.3%;--y:83.4%;--dx:4.4vw;--rise:52.2vh;--s:2.5px;--delay:2.19s;--dur:3.05s"></i><i class="wisdomParticle" style="--x:33.3%;--y:85.6%;--dx:0.3vw;--rise:44.0vh;--s:1.5px;--delay:2.01s;--dur:2.59s"></i></div>
+  <div class="writingNight"></div>
+  <svg class="writingCanvas" viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <filter id="glowLine" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2.2" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <path class="wisdomStroke s1" pathLength="100" d="M70 320 C120 292, 165 300, 212 320 S292 349, 326 323"/>
+    <path class="wisdomStroke s2" pathLength="100" d="M88 365 C128 340, 180 346, 228 366 S298 389, 320 370"/>
+    <path class="wisdomStroke s3" pathLength="100" d="M92 410 C132 392, 176 394, 218 410 S286 432, 308 416"/>
+    <path class="wisdomStroke s4" pathLength="100" d="M118 455 C151 440, 190 442, 226 455 S279 472, 294 458"/>
+  </svg>
+  <div class="penSpark"></div>
+  <div class="wordDust"></div>
   <div class="introHint">tap to skip</div>
 </div>
+
 
 
 <main class="app">

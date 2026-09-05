@@ -357,12 +357,49 @@ footer { display:none !important; }
   90%,100%{opacity:0}
 }
 
+
+#dailyIntro .introStarExtra{
+  width:1.5px;height:1.5px;
+  box-shadow:0 0 5px rgba(186,214,255,.75);
+}
+#dailyIntro .shootingStar{
+  position:absolute;
+  top:20%;
+  left:-18%;
+  width:130px;
+  height:2px;
+  opacity:0;
+  transform:rotate(-18deg);
+  transform-origin:left center;
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(205,226,255,.55),#ffffff);
+  filter:drop-shadow(0 0 5px rgba(132,180,255,.95));
+  animation:shootingStarPass 5s ease-in-out forwards;
+}
+#dailyIntro .shootingStar:after{
+  content:"";
+  position:absolute;
+  right:-2px;
+  top:50%;
+  width:5px;
+  height:5px;
+  transform:translateY(-50%);
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 8px #fff,0 0 18px #7db5ff,0 0 28px #5b8fff;
+}
+@keyframes shootingStarPass{
+  0%,28%{opacity:0;transform:translate(0,0) rotate(-18deg) scaleX(.75)}
+  34%{opacity:1}
+  58%{opacity:1;transform:translate(128vw,42vh) rotate(-18deg) scaleX(1)}
+  66%,100%{opacity:0;transform:translate(140vw,48vh) rotate(-18deg) scaleX(1)}
+}
+
 </style></head><body>
 
 <div id="dailyIntro" aria-hidden="true">
-  <div class="introNebula"></div>
+  <div class="introNebula"></div><span class="introStar introStarExtra" style="left:5%;top:12%;animation-delay:0.2s"></span><span class="introStar introStarExtra" style="left:9%;top:27%;animation-delay:0.9s"></span><span class="introStar introStarExtra" style="left:14%;top:39%;animation-delay:1.5s"></span><span class="introStar introStarExtra" style="left:18%;top:53%;animation-delay:0.35s"></span><span class="introStar introStarExtra" style="left:22%;top:67%;animation-delay:1.1s"></span><span class="introStar introStarExtra" style="left:27%;top:21%;animation-delay:0.6s"></span><span class="introStar introStarExtra" style="left:31%;top:57%;animation-delay:1.7s"></span><span class="introStar introStarExtra" style="left:35%;top:82%;animation-delay:0.4s"></span><span class="introStar introStarExtra" style="left:39%;top:29%;animation-delay:1.0s"></span><span class="introStar introStarExtra" style="left:44%;top:12%;animation-delay:0.75s"></span><span class="introStar introStarExtra" style="left:47%;top:59%;animation-delay:1.3s"></span><span class="introStar introStarExtra" style="left:51%;top:38%;animation-delay:0.15s"></span><span class="introStar introStarExtra" style="left:55%;top:79%;animation-delay:0.85s"></span><span class="introStar introStarExtra" style="left:60%;top:18%;animation-delay:1.55s"></span><span class="introStar introStarExtra" style="left:63%;top:52%;animation-delay:0.45s"></span><span class="introStar introStarExtra" style="left:67%;top:87%;animation-delay:1.2s"></span><span class="introStar introStarExtra" style="left:71%;top:34%;animation-delay:0.7s"></span><span class="introStar introStarExtra" style="left:76%;top:22%;animation-delay:1.6s"></span><span class="introStar introStarExtra" style="left:80%;top:51%;animation-delay:0.25s"></span><span class="introStar introStarExtra" style="left:84%;top:71%;animation-delay:1.05s"></span><span class="introStar introStarExtra" style="left:88%;top:12%;animation-delay:0.5s"></span><span class="introStar introStarExtra" style="left:92%;top:61%;animation-delay:1.4s"></span><span class="introStar introStarExtra" style="left:96%;top:36%;animation-delay:0.8s"></span><span class="introStar introStarExtra" style="left:7%;top:72%;animation-delay:1.25s"></span><span class="introStar introStarExtra" style="left:13%;top:91%;animation-delay:0.55s"></span><span class="introStar introStarExtra" style="left:19%;top:9%;animation-delay:1.35s"></span><span class="introStar introStarExtra" style="left:25%;top:46%;animation-delay:0.1s"></span><span class="introStar introStarExtra" style="left:30%;top:93%;animation-delay:1.45s"></span><span class="introStar introStarExtra" style="left:36%;top:64%;animation-delay:0.65s"></span><span class="introStar introStarExtra" style="left:42%;top:91%;animation-delay:1.05s"></span><span class="introStar introStarExtra" style="left:48%;top:18%;animation-delay:1.75s"></span><span class="introStar introStarExtra" style="left:54%;top:63%;animation-delay:0.55s"></span><span class="introStar introStarExtra" style="left:58%;top:32%;animation-delay:1.15s"></span><span class="introStar introStarExtra" style="left:62%;top:94%;animation-delay:0.3s"></span><span class="introStar introStarExtra" style="left:69%;top:6%;animation-delay:0.95s"></span><span class="introStar introStarExtra" style="left:73%;top:74%;animation-delay:1.55s"></span><span class="introStar introStarExtra" style="left:79%;top:84%;animation-delay:0.45s"></span><span class="introStar introStarExtra" style="left:86%;top:47%;animation-delay:1.2s"></span><span class="introStar introStarExtra" style="left:90%;top:88%;animation-delay:0.7s"></span><span class="introStar introStarExtra" style="left:94%;top:8%;animation-delay:1.5s"></span>
   <span class="introStar" style="left:12%;top:18%;animation-delay:0.1s"></span><span class="introStar" style="left:24%;top:34%;animation-delay:0.7s"></span><span class="introStar" style="left:37%;top:16%;animation-delay:1.1s"></span><span class="introStar" style="left:52%;top:25%;animation-delay:0.45s"></span><span class="introStar" style="left:68%;top:14%;animation-delay:0.85s"></span><span class="introStar" style="left:83%;top:30%;animation-delay:1.3s"></span><span class="introStar" style="left:91%;top:19%;animation-delay:0.2s"></span><span class="introStar" style="left:16%;top:62%;animation-delay:1.15s"></span><span class="introStar" style="left:29%;top:76%;animation-delay:0.4s"></span><span class="introStar" style="left:43%;top:68%;animation-delay:0.95s"></span><span class="introStar" style="left:57%;top:73%;animation-delay:0.15s"></span><span class="introStar" style="left:74%;top:65%;animation-delay:0.65s"></span><span class="introStar" style="left:88%;top:78%;animation-delay:1.05s"></span><span class="introStar" style="left:7%;top:46%;animation-delay:0.8s"></span><span class="introStar" style="left:95%;top:53%;animation-delay:0.5s"></span><span class="introStar" style="left:33%;top:48%;animation-delay:0.25s"></span><span class="introStar" style="left:65%;top:44%;animation-delay:1.2s"></span><span class="introStar" style="left:49%;top:86%;animation-delay:0.75s"></span><span class="introStar" style="left:21%;top:88%;animation-delay:1.35s"></span><span class="introStar" style="left:78%;top:90%;animation-delay:0.3s"></span><span class="introStar" style="left:11%;top:82%;animation-delay:0.55s"></span><span class="introStar" style="left:89%;top:41%;animation-delay:0.9s"></span><span class="introStar" style="left:59%;top:10%;animation-delay:0.6s"></span><span class="introStar" style="left:40%;top:89%;animation-delay:1.0s"></span>
-  <div class="introCore"></div>
+  <div class="shootingStar"></div><div class="introCore"></div>
   <div class="introHint">tap to skip</div>
 </div>
 <main class="app">
@@ -1184,36 +1221,20 @@ render();
 if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));}
 if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)));}
 </script>
+
 <script>
 (function(){
   const intro=document.getElementById('dailyIntro');
   if(!intro) return;
 
-  const now=new Date();
-  const todayKey=[
-    now.getFullYear(),
-    String(now.getMonth()+1).padStart(2,'0'),
-    String(now.getDate()).padStart(2,'0')
-  ].join('-');
-  const storageKey='dwIntroPlayedDate';
-
   function removeIntro(){
     if(!intro || intro.dataset.done==='1') return;
     intro.dataset.done='1';
     intro.classList.add('introHide');
-    try{ localStorage.setItem(storageKey,todayKey); }catch(e){}
     setTimeout(()=>intro.remove(),750);
   }
 
-  let alreadyPlayed=false;
-  try{ alreadyPlayed=localStorage.getItem(storageKey)===todayKey; }catch(e){}
-
-  if(alreadyPlayed){
-    intro.remove();
-    return;
-  }
-
-  // Full ritual once per calendar day; any tap skips immediately.
+  // Play on every app/page load. Tap anywhere to skip immediately.
   intro.addEventListener('click',removeIntro,{once:true});
   intro.addEventListener('touchstart',removeIntro,{once:true,passive:true});
   setTimeout(removeIntro,5000);

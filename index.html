@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="daily-wisdom-build" content="R8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071127"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Daily Wisdom</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/icon-192.png"><style>:root{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="daily-wisdom-build" content="V1.0.1"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071127"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Daily Wisdom</title><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/icon-192.png"><style>:root{
   --violet:#ad9cff;
   --violet-bright:#c7bbff;
   --violet-deep:#6f5bc7;
@@ -1151,7 +1151,9 @@ const localDayUTC=(d=new Date())=>Date.UTC(d.getFullYear(),d.getMonth(),d.getDat
 const dayNumber=()=>Math.max(0,Math.floor((localDayUTC()-START_UTC)/DAY));
 const dailyIndex=()=>quotes.length?Math.min(dayNumber(),quotes.length-1):0;
 const todayKey=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
-let i=Number.isInteger(+localStorage.dwIndex)?+localStorage.dwIndex:dailyIndex(); if(i>=quotes.length)i=dailyIndex();
+let i=dailyIndex();
+// Today is intentionally locked to the current calendar day. Historical/future swiping is disabled.
+localStorage.removeItem('dwIndex');
 let favs=new Set(JSON.parse(localStorage.dwFavs||'[]'));
 let reflections=JSON.parse(localStorage.dwReflections||'{}');
 function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -1166,19 +1168,19 @@ function quoteHtml(q){
 }
 function dateForIndex(n){return new Date(START_UTC+n*DAY)}
 function dateLabelForIndex(n){return dateForIndex(n).toLocaleDateString('en-AU',{timeZone:'UTC',month:'short',day:'numeric'}).toUpperCase()}
-function save(){localStorage.dwFavs=JSON.stringify([...favs]);localStorage.dwIndex=i;localStorage.dwReflections=JSON.stringify(reflections)}
+function save(){localStorage.dwFavs=JSON.stringify([...favs]);localStorage.dwReflections=JSON.stringify(reflections)}
 function reflectionKey(){return todayKey()+'::'+quotes[i].id}
-function render(){if(!quotes.length)return;const q=quotes[i];$('date').textContent=dateLabelForIndex(i);$('fullQuote').innerHTML=quoteHtml(q);$('who').textContent=q.character;$('fav').classList.toggle('active',favs.has(q.id));$('fav').querySelector('.navIcon').textContent=favs.has(q.id)?'♥':'♡';$('reflectionText').value=reflections[reflectionKey()]||'';save()}
+function render(){if(!quotes.length)return;i=dailyIndex();const q=quotes[i];$('date').textContent=dateLabelForIndex(i);$('fullQuote').innerHTML=quoteHtml(q);$('who').textContent=q.character;$('fav').classList.toggle('active',favs.has(q.id));$('fav').querySelector('.navIcon').textContent=favs.has(q.id)?'♥':'♡';$('reflectionText').value=reflections[reflectionKey()]||'';save()}
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1300)}
-function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='library')lib()}
-let transitioning=false;function changeDay(delta){if(transitioning)return;let target=i+delta;if(target<0||target>=quotes.length){toast('End of unlocked wisdom.');return}transitioning=true;const card=$('wisdomCard');card.classList.add(delta>0?'swipe-out-left':'swipe-out-right');setTimeout(()=>{i=target;render();card.className='wisdomCard '+(delta>0?'swipe-in-right':'swipe-in-left');setTimeout(()=>{card.className='wisdomCard';transitioning=false},300)},220)}
+function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='today'){i=dailyIndex();render()}if(p==='library')lib()}
+// Day navigation removed: one calendar day = one Daily Wisdom quote.
 $('fav').onclick=()=>{const id=quotes[i].id;favs.has(id)?favs.delete(id):favs.add(id);render();toast(favs.has(id)?'Added to favorites':'Removed from favorites')};
 $('reflectionToggle').onclick=()=>$('reflectionBox').classList.toggle('open');
 $('saveReflection').onclick=()=>{const v=$('reflectionText').value.trim();if(v)reflections[reflectionKey()]=v;else delete reflections[reflectionKey()];save();toast('Reflection saved')};
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(b.dataset.page));
-function lib(filter='all'){let h='';quotes.forEach((q,n)=>{if(filter==='favs'&&!favs.has(q.id))return;h+=`<div class="libitem" data-n="${n}"><span class="d">${esc(q.world)}</span><p>${esc(q.quote).replace(/\n/g,' ')}</p><small>${esc(q.character||'Unknown')}</small>${favs.has(q.id)?'<span class="heart">♥</span>':''}</div>`});$('libraryList').innerHTML=h||'<p class="empty">No favorites yet.</p>';document.querySelectorAll('.libitem').forEach(e=>e.onclick=()=>{i=+e.dataset.n;page('today');render()})}
+function lib(filter='all'){let h='';const unlocked=dailyIndex();quotes.forEach((q,n)=>{if(n>unlocked)return;if(filter==='favs'&&!favs.has(q.id))return;h+=`<div class="libitem" data-n="${n}"><span class="d">${esc(q.world)}</span><p>${esc(q.quote).replace(/\n/g,' ')}</p><small>${esc(q.character||'Unknown')}</small>${favs.has(q.id)?'<span class="heart">♥</span>':''}</div>`});$('libraryList').innerHTML=h||'<p class="empty">No favorites yet.</p>'}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');lib(t.dataset.tab)});
-let sx=0,sy=0;$('today').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('today').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>52&&Math.abs(dx)>Math.abs(dy))dx<0?changeDay(1):changeDay(-1)},{passive:true});
+// Swipe navigation removed. Vertical scrolling remains normal.
 $('quoteCount').textContent=quotes.length;
 render();
 if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));}

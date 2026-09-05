@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head>
-  <!-- Daily Wisdom V1.0.2 quality sweep: 70 entries --><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="daily-wisdom-build" content="V1.0.3"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071127"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Daily Wisdom</title><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/icon-192.png"><style>:root{
+  <!-- Rise Anyway V1.1.0 — 67 audited entries --><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="daily-wisdom-build" content="Rise-Anyway-V1.1.0"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071127"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Rise Anyway</title><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/icon-192.png"><style>:root{
   --violet:#ad9cff;
   --violet-bright:#c7bbff;
   --violet-deep:#6f5bc7;
@@ -1014,7 +1014,29 @@ footer { display:none !important; }
 
 /* V1.0.18 Mona message */
 #dailyIntro .monaLoadingMessage{position:absolute;left:50%;top:48%;width:min(82vw,340px);transform:translate(-50%,-50%);text-align:center;color:rgba(225,238,255,.96);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:20px;line-height:1.48;font-weight:400;letter-spacing:.01em;text-shadow:0 0 10px rgba(135,190,255,.38),0 0 24px rgba(75,125,235,.20);opacity:0;animation:monaMessage 4.35s ease forwards}#dailyIntro .finalPeriod,#dailyIntro .penSpark,#dailyIntro .writingCanvas{display:none!important}@keyframes monaMessage{0%{opacity:0;transform:translate(-50%,-46%)}16%{opacity:1;transform:translate(-50%,-50%)}72%{opacity:1}91%{opacity:.22;filter:blur(.4px)}100%{opacity:0;transform:translate(-50%,-52%);filter:blur(1.5px)}}
-</style></head><body>
+</style>
+<style id="rise-anyway-v110">
+:root{--violet:#d8bd82;--violet-bright:#f0ddb0;--violet-deep:#a67c3d;--line:rgba(225,196,132,.18)}
+.app{background:radial-gradient(ellipse at 50% -6%,rgba(49,84,128,.28),transparent 35%),linear-gradient(180deg,#061225 0%,#050d1b 48%,#030812 100%)}
+.wisdomHeader.riseHeader{height:204px;padding-top:calc(8px + env(safe-area-inset-top));}
+.riseHeader .headerAura{background:radial-gradient(ellipse,rgba(87,125,174,.24),rgba(22,51,88,.08) 50%,transparent 72%)}
+.risePhoenix{width:76px;height:64px;object-fit:cover;object-position:center 43%;filter:drop-shadow(0 0 10px rgba(232,203,145,.18));margin-top:-2px}
+.riseTitle{margin-top:-2px}
+.riseTitle b{font-family:Georgia,"Times New Roman",serif;font-size:31px;letter-spacing:8px;color:#f4e8cc;font-weight:500;line-height:1}
+.riseTitle em{display:block;font-style:normal;font-size:11px;letter-spacing:6.5px;color:#e4d4b2;margin-top:5px}
+.riseTitle small{margin-top:8px;color:#b8c9e3;letter-spacing:4.5px}
+.riseMotto{margin-top:7px;font-size:8px;letter-spacing:2.6px;color:#c8d4e8}
+.screen{height:calc(100dvh - 204px - 116px)}
+.fullQuote{max-width:360px}
+#today.longEntry{overflow-y:auto!important;-webkit-overflow-scrolling:touch}
+#today.longEntry .wisdomCard{height:auto;min-height:100%;justify-content:flex-start;padding-top:18px;padding-bottom:30px}
+#today.longEntry .mark{font-size:34px;margin-bottom:10px}
+#today.longEntry .fullQuote{font-size:15px!important;line-height:1.5!important;text-align:left;max-width:365px}
+#today.longEntry .rule{margin-top:16px}
+#today.longEntry .reflection{padding-bottom:20px}
+.bottomnav .on{background:linear-gradient(135deg,rgba(176,136,66,.25),rgba(82,65,40,.13))}
+</style>
+</head><body>
 
 
 
@@ -1030,7 +1052,7 @@ footer { display:none !important; }
 
 
 <main class="app">
-<header class="wisdomHeader"><div class="headerAura"></div><div class="headerOrnament"><span>✦</span><svg class="bookMark" viewBox="0 0 120 70"><path d="M60 59C48 48 33 43 13 44V12c20 0 36 5 47 16v31Z"/><path d="M60 59c12-11 27-16 47-15V12c-20 0-36 5-47 16v31Z"/><path d="M60 28v31"/></svg><span>✦</span></div><div class="headerTitle"><b>DAILY WISDOM</b><small id="date"></small></div><div class="headerDivider"><span></span><i>✦</i><span></span></div></header>
+<header class="wisdomHeader riseHeader"><div class="headerAura"></div><img class="risePhoenix" src="assets/rise-phoenix.png" alt=""><div class="headerTitle riseTitle"><b>RISE</b><em>ANYWAY</em><small id="date"></small></div><div class="riseMotto">PROGRESS OVER PERFECTION.</div></header>
 <section id="today" class="screen active"><article class="wisdomCard" id="wisdomCard"><div class="mark">“</div><div id="fullQuote" class="fullQuote"></div><div class="rule"></div><div class="source"><b id="who"></b></div><div class="reflection"><button id="reflectionToggle">✦ MAKE IT YOURS <span>How will you apply this today?</span></button><div id="reflectionBox"><textarea id="reflectionText" maxlength="600" placeholder="Write a thought for today…"></textarea><button id="saveReflection">SAVE REFLECTION</button></div></div></article></section>
 <section id="library" class="screen"><h2>LIBRARY</h2><p class="libraryCount"><span id="quoteCount"></span> APPROVED ENTRIES</p><div class="tabs"><button class="tab on" data-tab="all">ALL WISDOM</button><button class="tab" data-tab="favs">FAVORITES</button></div><div id="libraryList"></div></section>
 <div class="bottomnav"><button data-page="today" class="on"><span class="navIcon">☼</span><small>TODAY</small></button><button id="fav"><span class="navIcon">♡</span><small>FAVOURITE</small></button><button data-page="library"><span class="navIcon">▤</span><small>LIBRARY</small></button></div><div id="toast"></div></main><script>window.DW_QUOTES = [
@@ -1090,17 +1112,6 @@ footer { display:none !important; }
     "status": "KEEP"
   },
   {
-    "id": "DBZ-001",
-    "world": "Dragon Ball / DBZ",
-    "character": "Vegeta",
-    "source": "Dragon Ball Z — Majin Vegeta arc",
-    "quote": "There is one thing a Saiyan always keeps: his pride!",
-    "highlight": "HIS PRIDE",
-    "theme": "Identity; resolve; pride",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
     "id": "MAR-001",
     "world": "Marvel",
     "character": "Uncle Ben",
@@ -1108,17 +1119,6 @@ footer { display:none !important; }
     "quote": "With great power comes great responsibility.",
     "highlight": "GREAT RESPONSIBILITY",
     "theme": "Responsibility; character",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "MAR-002",
-    "world": "Marvel",
-    "character": "Aunt May",
-    "source": "Spider-Man 2 (2004)",
-    "quote": "Sometimes, to do what's right, we have to be steady.",
-    "highlight": "DO WHAT'S RIGHT",
-    "theme": "Sacrifice; courage; duty",
     "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
     "status": "KEEP"
   },
@@ -1323,23 +1323,12 @@ footer { display:none !important; }
   {
     "id": "ROC-003",
     "world": "Rocky",
-    "character": "Rocky Balboa",
+    "character": "Rocky Balboa & Adrian Balboa",
     "source": "Rocky III (1982)",
-    "quote": "Nothing is real if you don't believe in who you are!",
-    "highlight": "BELIEVE IN WHO YOU ARE",
-    "theme": "Self-belief; fear; identity",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
-    "status": "KEEP"
-  },
-  {
-    "id": "ROC-004",
-    "world": "Rocky",
-    "character": "Adrian Balboa",
-    "source": "Rocky III (1982)",
-    "quote": "There's nothing wrong with being afraid!",
-    "highlight": "NOTHING WRONG WITH BEING AFRAID",
-    "theme": "Fear; courage; intrinsic motivation",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "quote": "Adrian: Why don't you tell me the truth?\nRocky: What are you puttin’ me through Adrian? You wanna know the truth? I don't wanna lose what I got. At first, I didn't care about what happened. I'd go in the ring, get bust up. I didn't care! But now there's you and the kid. I don't wanna lose what I got!\nAdrian: What do we have that can't be replaced? What? A house. We got cars, we've got money! We got everything but the truth. What's the truth, dammit?!\nRocky: I'm afraid! All right? You wanna hear me say it? You wanna break me down? Alright I'm afraid. For the first time in my life, I'm afraid.\nAdrian: I'm afraid too. There's nothin’ wrong with that.\nRocky: There is. For me, there is.\nAdrian: Why? You're human aren't ya?!\nRocky: Look I don't know what I am. All I know is I'm a liar, and because of that, Mickey ain't here no more.\nAdrian: You didn't push him into anything! He was a grown man, and He did what he had to do. And you have no right to feel guilty for what happened. You don't! You were a champion, and you did what you were expected to do. You did what I and everybody else thought you should do. And you wanna tell me that those fights weren't real? That you were carried? Well I don't believe it! But it doesn't matter what I believe because you're the one that's got to carry that fear around inside you, afraid everybody is gonna take things away, that you'll be remembered as a coward, that you're not a man anymore. Well, none of it's true. But it doesn't matter if I tell you. It doesn't matter because you're the one that's got to settle it. Get rid of it! Because when all the smoke is cleared, and everyone is through chanting your name, it's just gonna be us. And you can't live like this. We can't live like this. Cos it's gonna bother you for the rest of your life. Look what it's doing to you now. Apollo thinks you can do it. So do I. But you gotta wanna do it for the right reasons. Not for the guilt over Mickey. Not for the people, not for the title, not for money, or me - but for you. Just you. Just you alone.\nRocky: And if I lose?\nAdrian: Then you lose. But at least you lose with no excuses. No fear. And I know you could live with that.\nRocky: How'd you get so tough?",
+    "highlight": "",
+    "theme": "Fear; courage; self-belief; intrinsic motivation; honesty",
+    "fullTextStatus": "FULL TEXT RECEIVED / MERGED FULL SCENE",
     "status": "KEEP"
   },
   {
@@ -1347,10 +1336,10 @@ footer { display:none !important; }
     "world": "Rocky",
     "character": "Rocky Balboa",
     "source": "Rocky Balboa (2006)",
-    "quote": "It ain’t about how hard you hit. It’s about how hard you can get hit and keep moving forward. It's about how much you can take and keep moving forward!",
+    "quote": "You ain’t gonna believe this — but you used to fit right here. I'd hold you up to say to your mother, “This kid’s gonna be the best kid in the world. This kid's gonna be somebody better than anybody I ever knew.”\n\nAnd you grew up good and wonderful and it was great just watching you every day was a privilege.\n\nThen the time come for you to be your own man, and take on the world, and you did. But somewhere along the line, you changed. You stopped being you. You let people stick a finger in your face and tell you you're no good. And when things got hard, you started looking for something to blame. Like a big shadow.\n\nLet me tell you something you already know. The world ain't all sunshine and rainbows. It's a very mean and nasty place and I don’t care how tough you are, it will beat you to your knees and keep you there permanently if you let it.\n\nYou, me, or nobody hits is gonna hit as hard as life. But it ain't about how hard you hit, it’s about how hard you get hit and keep movin’ forward. How much you can take, and keep movin’ forward. That’s how winning is done!\n\nNow, if you know what you're worth, go out and get what you're worth — but you gotta be willing to take the hits. And not pointin’ fingers sayin’ you ain't where you want to be because of him or her or anybody. Cowards do that and that ain't you! You're better than that.\n\nI’m always gonna love you no matter what. No matter what happens. You're my son and you're my blood. You're the best thing in my life. But until you start believing in yourself, you ain’t gonna have a life.",
     "highlight": "KEEP MOVING FORWARD",
     "theme": "Resilience; perseverance; adversity; forward momentum",
-    "fullTextStatus": "COMPLETE SHORT QUOTE / ANCHOR",
+    "fullTextStatus": "FULL TEXT RECEIVED / KEEP IN FULL",
     "status": "KEEP"
   },
   {
@@ -1644,10 +1633,10 @@ footer { display:none !important; }
     "world": "General Wisdom",
     "character": "Steve Jobs",
     "source": "Stanford commencement address (2005)",
-    "quote": "You can\u2019t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something - your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.",
+    "quote": "Of course it was impossible to connect the dots looking forward when I was in college. But it was very, very clear looking backwards ten years later. Again, you can’t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something — your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.",
     "highlight": "CONNECT THE DOTS",
     "theme": "Trust; uncertainty; perspective",
-    "fullTextStatus": "SCENE/PASSAGE — FULL TEXT MAY BE NEEDED",
+    "fullTextStatus": "FULL TEXT RECEIVED / KEEP IN FULL",
     "status": "KEEP"
   },
   {
@@ -1832,7 +1821,7 @@ function dateForIndex(n){return new Date(START_UTC+n*DAY)}
 function dateLabelForIndex(n){return dateForIndex(n).toLocaleDateString('en-AU',{timeZone:'UTC',month:'short',day:'numeric'}).toUpperCase()}
 function save(){localStorage.dwFavs=JSON.stringify([...favs]);localStorage.dwReflections=JSON.stringify(reflections)}
 function reflectionKey(){return todayKey()+'::'+quotes[i].id}
-function render(){if(!quotes.length)return;i=dailyIndex();const q=quotes[i];$('date').textContent=dateLabelForIndex(i);$('fullQuote').innerHTML=quoteHtml(q);$('who').textContent=/uncertain|paraphrase|tradition|ascribed/i.test(q.character||'')?'Unknown':q.character;$('fav').classList.toggle('active',favs.has(q.id));$('fav').querySelector('.navIcon').textContent=favs.has(q.id)?'♥':'♡';$('reflectionText').value=reflections[reflectionKey()]||'';save()}
+function render(){if(!quotes.length)return;i=dailyIndex();const q=quotes[i];$('today').classList.toggle('longEntry',(q.quote||'').length>700);$('date').textContent=dateLabelForIndex(i);$('fullQuote').innerHTML=quoteHtml(q);$('who').textContent=/uncertain|paraphrase|tradition|ascribed/i.test(q.character||'')?'Unknown':q.character;$('fav').classList.toggle('active',favs.has(q.id));$('fav').querySelector('.navIcon').textContent=favs.has(q.id)?'♥':'♡';$('reflectionText').value=reflections[reflectionKey()]||'';save()}
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1300)}
 function page(p){document.querySelectorAll('.screen:not(.modal)').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.bottomnav [data-page]').forEach(x=>x.classList.toggle('on',x.dataset.page===p));if(p==='today'){i=dailyIndex();render()}if(p==='library')lib()}
 // Day navigation removed: one calendar day = one Daily Wisdom quote.

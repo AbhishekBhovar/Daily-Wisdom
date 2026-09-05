@@ -958,6 +958,32 @@ footer { display:none !important; }
 @keyframes periodLandAbhi{0%,74%{opacity:0;transform:scale(.2)}78%{opacity:1;transform:scale(1.45)}83%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.5)}}
 @keyframes dustEmergeAbhi{0%,73%{opacity:0}83%{opacity:.28}92%{opacity:.45;transform:translateY(-4px)}100%{opacity:0;transform:translateY(-14px)}}
 
+
+/* V1.0.15 — clean Abhi writing, no travelling light */
+#dailyIntro .s1{
+  animation:writeStroke 2.75s linear .55s forwards,
+            fadeStroke .75s ease 3.95s forwards!important;
+}
+#dailyIntro .penSpark{display:none!important}
+#dailyIntro .finalPeriod{
+  animation:periodLandAbhiClean 4.85s ease forwards!important;
+}
+#dailyIntro .wordDust{
+  animation:dustEmergeAbhiClean 4.85s ease forwards!important;
+}
+@keyframes periodLandAbhiClean{
+  0%,69%{opacity:0;transform:scale(.2)}
+  73%{opacity:1;transform:scale(1.4)}
+  79%,88%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+@keyframes dustEmergeAbhiClean{
+  0%,68%{opacity:0}
+  80%{opacity:.25}
+  91%{opacity:.42;transform:translateY(-4px)}
+  100%{opacity:0;transform:translateY(-14px)}
+}
+
 </style></head><body>
 
 
@@ -984,7 +1010,6 @@ footer { display:none !important; }
 
   </svg>
   <div class="finalPeriod"></div>
-  <div class="penSpark"></div>
   <div class="wordDust"></div>
   <div class="introHint">tap to skip</div>
 </div>
@@ -1810,26 +1835,6 @@ render();
 if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));}
 if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)));}
 </script>
-
-<script>
-(function(){
-  const intro=document.getElementById('dailyIntro');
-  if(!intro) return;
-
-  function removeIntro(){
-    if(!intro || intro.dataset.done==='1') return;
-    intro.dataset.done='1';
-    intro.classList.add('introHide');
-    setTimeout(()=>intro.remove(),750);
-  }
-
-  // Invisible-book intro plays on every app/page load. Tap anywhere to skip immediately.
-  intro.addEventListener('click',removeIntro,{once:true});
-  intro.addEventListener('touchstart',removeIntro,{once:true,passive:true});
-  setTimeout(removeIntro,5800);
-})();
-</script>
-
 
 <script>
 (function(){

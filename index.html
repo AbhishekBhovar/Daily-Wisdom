@@ -984,6 +984,38 @@ footer { display:none !important; }
   100%{opacity:0;transform:translateY(-14px)}
 }
 
+
+/* V1.0.16 — faster Abhi + earlier star/dust appearance */
+#dailyIntro .s1{
+  animation:writeStroke 1.75s linear .35s forwards,
+            fadeStroke .65s ease 2.85s forwards!important;
+}
+
+/* bring the star/dust field in earlier, while Abhi is still being written */
+#dailyIntro .wordDust{
+  animation:dustEmergeEarlier 3.95s ease forwards!important;
+}
+
+#dailyIntro .finalPeriod{
+  animation:periodLandEarlier 3.95s ease forwards!important;
+}
+
+@keyframes dustEmergeEarlier{
+  0%,12%{opacity:0;transform:translateY(3px)}
+  24%{opacity:.18}
+  40%{opacity:.36}
+  68%{opacity:.46;transform:translateY(-3px)}
+  88%{opacity:.22;transform:translateY(-8px)}
+  100%{opacity:0;transform:translateY(-13px)}
+}
+
+@keyframes periodLandEarlier{
+  0%,57%{opacity:0;transform:scale(.2)}
+  62%{opacity:1;transform:scale(1.35)}
+  70%,84%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.5)}
+}
+
 </style></head><body>
 
 

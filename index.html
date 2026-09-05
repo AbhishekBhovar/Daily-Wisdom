@@ -949,6 +949,15 @@ footer { display:none !important; }
   92%,100%{opacity:0}
 }
 
+
+/* V1.0.14 Abhi */
+#dailyIntro .s1{display:block!important;animation:writeStroke 3.6s linear .7s forwards,fadeStroke .85s ease 4.75s forwards!important}
+#dailyIntro .s2,#dailyIntro .s3,#dailyIntro .s4{display:none!important}
+#dailyIntro .finalPeriod{left:72.5%!important;top:53.15%!important;animation:periodLandAbhi 5.8s ease forwards!important}
+#dailyIntro .wordDust{animation:dustEmergeAbhi 5.8s ease forwards!important}
+@keyframes periodLandAbhi{0%,74%{opacity:0;transform:scale(.2)}78%{opacity:1;transform:scale(1.45)}83%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.5)}}
+@keyframes dustEmergeAbhi{0%,73%{opacity:0}83%{opacity:.28}92%{opacity:.45;transform:translateY(-4px)}100%{opacity:0;transform:translateY(-14px)}}
+
 </style></head><body>
 
 
@@ -969,31 +978,7 @@ footer { display:none !important; }
     
     
     
-    <path id="write1" class="wisdomStroke s1" pathLength="100"
-      d="M47 367
-         C58 350 63 390 74 369
-         C82 353 88 341 94 373
-         C100 398 109 348 118 368
-         C126 386 133 360 141 371
-         C151 385 158 337 166 366
-         C173 394 183 357 193 370
-         C203 383 211 349 220 367
-         C229 389 239 358 249 371
-         C259 382 268 344 277 366
-         C286 392 296 361 306 370
-         C316 378 326 351 340 366"/>
-    <path id="write2" class="wisdomStroke s2" pathLength="100"
-      d="M61 446
-         C71 425 77 469 88 445
-         C97 427 104 414 111 450
-         C118 476 128 423 138 444
-         C148 466 156 435 165 448
-         C175 461 184 418 193 443
-         C202 470 212 430 222 447
-         C232 461 241 426 250 444
-         C260 468 270 437 280 448
-         C290 458 300 422 310 443
-         C320 465 330 437 341 445"/>
+    <path id="write1" class="wisdomStroke s1" pathLength="100" d="M92 448 C101 420 111 385 124 360 C132 345 141 350 144 367 C149 395 151 426 153 448 M107 410 C122 407 139 407 153 410 M166 367 C166 393 165 421 165 446 C174 426 187 411 199 416 C211 421 210 442 199 449 C188 456 176 449 166 443 M219 365 C218 392 218 420 218 448 M219 421 C228 410 239 409 246 417 C252 425 250 438 250 448 M269 415 C268 426 268 437 268 448 M269 395 C269 392 271 390 274 390 C277 390 279 392 279 395 C279 398 277 400 274 400 C271 400 269 398 269 395"/>
 
 
 
@@ -1841,7 +1826,7 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
   // Invisible-book intro plays on every app/page load. Tap anywhere to skip immediately.
   intro.addEventListener('click',removeIntro,{once:true});
   intro.addEventListener('touchstart',removeIntro,{once:true,passive:true});
-  setTimeout(removeIntro,7000);
+  setTimeout(removeIntro,5800);
 })();
 </script>
 
@@ -1852,10 +1837,7 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
   const spark=intro && intro.querySelector('.penSpark');
   if(!intro || !spark) return;
 
-  const segments=[
-    {id:'write1',start:650,dur:2100},
-    {id:'write2',start:3000,dur:2050}
-  ];
+  const segments=[{id:'write1',start:700,dur:3600}];
   const svg=intro.querySelector('.writingCanvas');
   let started=null, raf=0;
 
@@ -1884,7 +1866,7 @@ if('caches' in window){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)
       }
     }
     if(!active) spark.style.opacity='0';
-    if(t<6500 && document.body.contains(intro)) raf=requestAnimationFrame(tick);
+    if(t<5200 && document.body.contains(intro)) raf=requestAnimationFrame(tick);
   }
   spark.style.animation='none';
   raf=requestAnimationFrame(tick);

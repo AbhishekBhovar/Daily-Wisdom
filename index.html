@@ -790,6 +790,51 @@ footer { display:none !important; }
   90%,100%{opacity:0}
 }
 
+
+/* V1.0.10 — faster running-handwriting pass */
+#dailyIntro .wisdomStroke{
+  stroke-width:1.55!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+#dailyIntro .s1{animation:writeStroke .58s linear .42s forwards,fadeStroke .65s ease 3.78s forwards!important}
+#dailyIntro .s2{animation:writeStroke .55s linear .92s forwards,fadeStroke .65s ease 3.82s forwards!important}
+#dailyIntro .s3{animation:writeStroke .55s linear 1.40s forwards,fadeStroke .65s ease 3.86s forwards!important}
+#dailyIntro .s4{animation:writeStroke .52s linear 1.88s forwards,fadeStroke .65s ease 3.90s forwards!important}
+
+#dailyIntro .penSpark{
+  animation:penTravelFast 2.35s cubic-bezier(.22,.7,.25,1) .35s forwards!important;
+}
+#dailyIntro .finalPeriod{
+  position:absolute;
+  left:79.2%;top:56.05%;
+  width:5px;height:5px;border-radius:50%;
+  background:#f8fcff;
+  opacity:0;
+  box-shadow:0 0 6px 2px rgba(255,255,255,.9),0 0 15px 5px rgba(116,181,255,.65);
+  animation:periodLand 5s ease forwards;
+}
+@keyframes penTravelFast{
+  0%{opacity:0;left:13%;top:39.5%;transform:scale(.72)}
+  3%{opacity:1}
+  22%{left:86%;top:39.0%}
+  25%{left:17%;top:45.2%}
+  47%{left:82%;top:44.7%}
+  50%{left:20%;top:50.9%}
+  72%{left:84%;top:50.3%}
+  75%{left:27%;top:56.6%}
+  95%{left:79%;top:56.0%;opacity:1;transform:scale(1)}
+  100%{left:79.2%;top:56.05%;opacity:0;transform:scale(.8)}
+}
+@keyframes periodLand{
+  0%,50%{opacity:0;transform:scale(.2)}
+  54%{opacity:1;transform:scale(1.55)}
+  59%{opacity:1;transform:scale(1)}
+  78%{opacity:1}
+  91%{opacity:.9;transform:scale(1)}
+  100%{opacity:0;transform:scale(.55)}
+}
+
 </style></head><body>
 
 
@@ -807,11 +852,14 @@ footer { display:none !important; }
         </feMerge>
       </filter>
     </defs>
-    <path class="wisdomStroke s1" pathLength="100" d="M70 320 C120 292, 165 300, 212 320 S292 349, 326 323"/>
-    <path class="wisdomStroke s2" pathLength="100" d="M88 365 C128 340, 180 346, 228 366 S298 389, 320 370"/>
-    <path class="wisdomStroke s3" pathLength="100" d="M92 410 C132 392, 176 394, 218 410 S286 432, 308 416"/>
-    <path class="wisdomStroke s4" pathLength="100" d="M118 455 C151 440, 190 442, 226 455 S279 472, 294 458"/>
+    
+    <path class="wisdomStroke s1" pathLength="100" d="M52 334 C67 316 76 352 91 333 C105 315 112 351 127 332 C143 314 151 350 167 331 C182 314 191 349 207 331 C222 315 232 347 247 331 C263 315 275 346 291 330 C307 314 319 340 337 327"/>
+    <path class="wisdomStroke s2" pathLength="100" d="M66 382 C81 364 91 398 106 380 C121 363 130 397 145 379 C160 362 171 396 187 378 C202 362 213 395 229 378 C245 361 256 394 272 377 C288 361 301 391 320 374"/>
+    <path class="wisdomStroke s3" pathLength="100" d="M78 430 C93 413 103 447 118 429 C133 412 143 446 158 428 C173 411 184 445 200 427 C215 411 226 444 242 427 C258 410 270 442 286 425 C301 410 313 438 328 423"/>
+    <path class="wisdomStroke s4" pathLength="100" d="M104 478 C118 462 128 494 143 477 C158 460 168 493 183 476 C198 460 209 492 224 475 C240 459 251 490 267 474 C282 459 294 486 309 472"/>
+
   </svg>
+  <div class="finalPeriod"></div>
   <div class="penSpark"></div>
   <div class="wordDust"></div>
   <div class="introHint">tap to skip</div>
